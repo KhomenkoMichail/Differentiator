@@ -17,10 +17,22 @@ enum operatorCode_t {
     opPOW = 5,
     opSIN = 6,
     opCOS = 7,
+    opTG = 8,
+    opCTG = 9,
+    opARCSIN = 10,
+    opARCCOS = 11,
+    opARCTG = 12,
+    opARCCTG = 13,
+    opSH = 14,
+    opCH = 15,
+    opTH = 16,
+    opCTH = 17,
+    opLN = 18,
+    opLOG = 19,
 };
 
 union nodeValue_t {
-    operatorCode_t opCode; //valueCode
+    operatorCode_t opCode;
     double constValue;
     unsigned long long varHash;
 };
@@ -46,6 +58,7 @@ struct tree_t {
     size_t size;
 
     variableInfo* variableArr;
+    size_t variableArrSize;
     size_t numOfVariables;
 
     int errorCode;

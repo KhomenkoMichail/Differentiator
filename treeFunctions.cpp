@@ -185,8 +185,8 @@ void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message) 
     fprintf(dumpFile, "Tree size == %llu\n", *treeSize(tree));
     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
 
-    fprintf(dumpFile, "number of variables == %llu\n", tree->numOfVariables);
-    for (size_t numOfVar = 0; numOfVar < tree->numOfVariables; numOfVar++)
+    fprintf(dumpFile, "number of variables == %llu\n", tree->variableArrSize);
+    for (size_t numOfVar = 0; numOfVar < tree->variableArrSize; numOfVar++)
         fprintf(dumpFile, "var[%llu] == \"%s\"; value == [%lf]; hash == %llu\n", numOfVar,
         (tree->variableArr[numOfVar]).varName, (tree->variableArr[numOfVar]).varValue,
         (tree->variableArr[numOfVar]).varHash);

@@ -1,13 +1,21 @@
 digraph Tree {
     rankdir = TB;
     node [shape = Mrecord, color = black];
-    node0x00000270512263e0 [rank = 0, label = "{ <addr>0x00000270512263e0| type: OP| val = * | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x0000027051226410| <right>RIGHT\n 0x00000270529f9650}}", style = filled, fillcolor = "#d1e6ffff", color = black];
-    node0x0000027051226410 [rank = 1, label = "{ <addr>0x0000027051226410| type: VAR| val = 177693 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
-    node0x00000270529f9650 [rank = 1, label = "{ <addr>0x00000270529f9650| type: OP| val = + | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x00000270529f9680| <right>RIGHT\n 0x00000270529f96b0}}", style = filled, fillcolor = "#d1e6ffff", color = black];
-    node0x00000270529f9680 [rank = 2, label = "{ <addr>0x00000270529f9680| type: VAR| val = 177694 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
-    node0x00000270529f96b0 [rank = 2, label = "{ <addr>0x00000270529f96b0| type: NUM| val = 6.000000 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
-    node0x00000270512263e0:left -> node0x0000027051226410:addr [color = "#666350ff"];
-    node0x00000270512263e0:right -> node0x00000270529f9650:addr [color = "#666350ff"];
-    node0x00000270529f9650:left -> node0x00000270529f9680:addr [color = "#666350ff"];
-    node0x00000270529f9650:right -> node0x00000270529f96b0:addr [color = "#666350ff"];
+    node0x0000014315ca8a90 [rank = 0, label = "{ <addr>0x0000014315ca8a90| type: OP| val = + | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x0000014315ca8820| <right>RIGHT\n 0x0000014315ca8710}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca8820 [rank = 1, label = "{ <addr>0x0000014315ca8820| type: OP| val = * | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x0000014315ca8b20| <right>RIGHT\n 0x0000014315ca8740}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca8b20 [rank = 2, label = "{ <addr>0x0000014315ca8b20| type: NUM| val = 1.000000 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca8740 [rank = 2, label = "{ <addr>0x0000014315ca8740| type: OP| val = + | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x0000014315ca8770| <right>RIGHT\n 0x0000014315ca87a0}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca8770 [rank = 3, label = "{ <addr>0x0000014315ca8770| type: VAR| val = 177694 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca87a0 [rank = 3, label = "{ <addr>0x0000014315ca87a0| type: NUM| val = 6.000000 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca8710 [rank = 1, label = "{ <addr>0x0000014315ca8710| type: OP| val = * | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x0000014315ca86e0| <right>RIGHT\n 0x0000014315ca86b0}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca86e0 [rank = 2, label = "{ <addr>0x0000014315ca86e0| type: VAR| val = 177693 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca86b0 [rank = 2, label = "{ <addr>0x0000014315ca86b0| type: OP| val = + | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000014315ca8a90:left -> node0x0000014315ca8820:addr [color = "#666350ff"];
+    node0x0000014315ca8820:left -> node0x0000014315ca8b20:addr [color = "#666350ff"];
+    node0x0000014315ca8820:right -> node0x0000014315ca8740:addr [color = "#666350ff"];
+    node0x0000014315ca8740:left -> node0x0000014315ca8770:addr [color = "#666350ff"];
+    node0x0000014315ca8740:right -> node0x0000014315ca87a0:addr [color = "#666350ff"];
+    node0x0000014315ca8a90:right -> node0x0000014315ca8710:addr [color = "#666350ff"];
+    node0x0000014315ca8710:left -> node0x0000014315ca86e0:addr [color = "#666350ff"];
+    node0x0000014315ca8710:right -> node0x0000014315ca86b0:addr [color = "#666350ff"];
  }

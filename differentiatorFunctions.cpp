@@ -10,6 +10,7 @@
 #include "structAccessFunctions.h"
 #include "treeFunctions.h"
 #include "differentiatorFunctions.h"
+#include "DSL.h"
 
 char* copyFileContent (const char* nameOfFile) {
     assert(nameOfFile);
@@ -73,7 +74,7 @@ int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile)
     }
 
     tree->variableArr = (variableInfo*)calloc(NUM_OF_VARS, sizeof(variableInfo));
-    tree->numOfVariables = NUM_OF_VARS;
+    tree->variableArrSize = NUM_OF_VARS;
 
     char* bufferStart = copyFileContent(nameOfFile);
     if (bufferStart == NULL) {
@@ -81,7 +82,7 @@ int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile)
         return 1;
     }
     else
-        *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, dumpInfo, dumpFile);
+        *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
 
     if (fclose(dumpFile) != 0) {
         fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
@@ -94,7 +95,7 @@ int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile)
     return 0;
 }
 
-node_t* nodeCtorByReadBuffer(char** bufPos, tree_t* tree, dump* dumpInfo, FILE* dumpFile) {
+node_t* nodeCtorByReadBuffer(char** bufPos, tree_t* tree, node_t* parentNode, dump* dumpInfo, FILE* dumpFile) {
     assert(bufPos);
     assert(dumpInfo);
     assert(tree);
@@ -111,13 +112,15 @@ node_t* nodeCtorByReadBuffer(char** bufPos, tree_t* tree, dump* dumpInfo, FILE* 
 
         node_t* newNode = (node_t*)calloc(1, sizeof(node_t));
 
-        *nodeType(newNode) = getNodeType(bufPos); //FIXME variable!!
-        processNodeType(tree, newNode, bufPos); //trree -> error bad op
+        *nodeType(newNode) = getNodeType(bufPos);
+        processNodeType(tree, newNode, bufPos);
+
+        *(nodeParent(newNode)) = parentNode;
 
         DUMP_MESSAGE(dumpFile, "Прочитала имя узла.\n", *bufPos);
 
         DUMP_MESSAGE(dumpFile, "<h3>Сейчас зайду в левое поддерево.\n</font></h3>", *bufPos);
-        *nodeLeft(newNode) = nodeCtorByReadBuffer(bufPos, tree, dumpInfo, dumpFile);
+        *nodeLeft(newNode) = nodeCtorByReadBuffer(bufPos, tree, newNode, dumpInfo, dumpFile);
 
         if(*nodeLeft(newNode) != NULL) {
             fclose(dumpFile);
@@ -126,7 +129,7 @@ node_t* nodeCtorByReadBuffer(char** bufPos, tree_t* tree, dump* dumpInfo, FILE* 
         }
 
         DUMP_MESSAGE(dumpFile, "<h3>Сейчас зайду в правое поддерево.\n</font></h3>", *bufPos);
-        *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, dumpInfo, dumpFile);
+        *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, newNode, dumpInfo, dumpFile);
 
         if(*nodeRight(newNode) != NULL) {
             fclose(dumpFile);
@@ -182,7 +185,7 @@ nodeType_t getNodeType(char** bufPos) {
         if (strncmp((operatorsArray[numOfOp]).opName, operatorName, MAX_OP_NAME_LEN) == 0)
              return typeOperator;
 
-    return typeVariable;;
+    return typeVariable;
 }
 
 int processNodeType (tree_t* tree, node_t* node, char** bufPos) {
@@ -202,20 +205,20 @@ int processNodeType (tree_t* tree, node_t* node, char** bufPos) {
             (nodeValue(node))->constValue = atof(valueString);
             break;
 
-        case typeVariable: {//FIXME
+        case typeVariable: {
             sscanf(*bufPos, "%s%n", valueString, &lenOfValue);
             (*bufPos) += lenOfValue;
 
             unsigned long long variableHash = getStringHash(valueString);
-            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&variableHash, tree->variableArr, tree->numOfVariables, sizeof(struct variableInfo), bsearchHashComparator);
+            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&variableHash, tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
 
             if((searchedVariable != NULL) && (strcmp(searchedVariable->varName, valueString) == 0)) {
                 (nodeValue(node))->varHash = searchedVariable->varHash;
             }
-            else {
+            else {//FIXME
                 ((tree->variableArr)[0]).varName = strdup(valueString);
                 ((tree->variableArr)[0]).varHash = variableHash;
-                qsort(tree->variableArr, tree->numOfVariables, sizeof(struct variableInfo), structVariableComparator);
+                qsort(tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), structVariableComparator);
                 (nodeValue(node))->varHash = variableHash;
             }
 
@@ -251,14 +254,14 @@ int processNodeType (tree_t* tree, node_t* node, char** bufPos) {
 
 double solveNode (tree_t* tree, node_t* node) {
     assert(tree);
-    assert (node);
+    assert(node);
 
     switch (*nodeType(node)) {
         case typeNumber:
             return (nodeValue(node))->constValue;
             break;
         case typeVariable: {
-            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&((nodeValue(node))->varHash), tree->variableArr, tree->numOfVariables, sizeof(struct variableInfo), bsearchHashComparator);
+            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&((nodeValue(node))->varHash), tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
 
             if (!searchedVariable) {
                 printf("Error of searching variable!\n");
@@ -293,6 +296,30 @@ double solveNode (tree_t* tree, node_t* node) {
                     return (sin(rightValue));
                 case opCOS:
                     return (cos(rightValue));
+                case opTG:
+                    return (tan(rightValue));
+                case opCTG:
+                    return NAN; //FIXME
+                case opARCSIN:
+                    return (asin(rightValue));
+                case opARCCOS:
+                    return (acos(rightValue));
+                case opARCTG:
+                    return (atan(rightValue));
+                case opARCCTG:
+                    return NAN; //FIXME
+                case opSH:
+                    return (sinh(rightValue));
+                case opCH:
+                    return (cosh(rightValue));
+                case opTH:
+                    return (tanh(rightValue));
+                case opCTH:
+                    return NAN; //FIXME
+                case opLN:
+                    return (log(rightValue));
+                case opLOG:
+                    return NAN; //FIXME
                 default:
                     return NAN;
             }
@@ -333,4 +360,103 @@ int structVariableComparator(const void* firstStruct, const void* secondStruct) 
     const struct variableInfo* secondVariable = (const struct variableInfo*)secondStruct;
 
     return (int)(firstVariable->varHash - secondVariable->varHash);
+}
+
+double solveMathExpressionTree (tree_t* tree, dump* dumpInfo) {
+    assert(tree);
+    assert(dumpInfo);
+
+    for(size_t numOfVar = 0; numOfVar < tree->variableArrSize; numOfVar++)
+        if ((tree->variableArr)[numOfVar].varName)
+            (tree->variableArr)[numOfVar].varValue = getDoubleVarValue((tree->variableArr)[numOfVar].varName);
+
+    double result = solveNode(tree, *treeRoot(tree));
+
+    printf("the result of solving Math Expression is : %lf", result);
+
+    return result;
+}
+
+double getDoubleVarValue (const char* varName) {
+    int ch = 0;
+    double number = NAN;
+    char ch1 = '\0';
+
+    printf("Enter the value of variable \"%s\": ", varName);
+
+    while ((scanf ("%lf%c", &number, &ch1) != 2) || (ch1 != '\n')) {
+
+        putchar(ch1);
+        while ((ch = getchar()) != '\n')
+            putchar (ch);
+
+        printf (" is not a number.\nEnter a number like 3, 52.52, -8\n");
+    }
+    return number;
+}
+
+node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName) {
+    assert(node);
+    assert(dumpInfo);
+
+    unsigned long long diffVarHash = getStringHash(diffVarName);
+
+    switch (*nodeType(node)) {
+        case typeNumber:
+            return NULL;
+        case typeVariable:
+            if ((nodeValue(node))->varHash == diffVarHash)
+                return newNodeCtor(typeNumber, {.constValue = 1.0}, NULL, NULL);
+            else
+                return NULL;
+        case typeOperator:
+            switch (nodeValue(node)->opCode) {
+                case opADD:
+                    return ADD_(dL, dR);
+                case opSUB:
+                    return SUB_(dL, dR);
+                case opMUL:
+                    return ADD_(MUL_(dL, cR), MUL_(cL, dR));
+                case opDIV:
+                    return DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR));
+                default:
+                    return NULL;
+            }
+
+        default:
+            return NULL;
+    }
+
+    return NULL;
+}
+
+node_t* newNodeCtor (nodeType_t curType, nodeValue_t curValue, node_t* left, node_t* right) {
+
+    node_t* newNode = (node_t*)calloc(1, sizeof(node_t));
+
+    *nodeType(newNode) = curType;
+    *nodeValue(newNode) = curValue;
+
+    //*nodeParent(newNode) = parentNode;
+
+    *nodeLeft(newNode) = left;
+    *nodeRight(newNode) = right;
+
+    return newNode;
+}
+
+node_t* copyNode (node_t* node) {
+
+    node_t* newNode = (node_t*)calloc(1, sizeof(node_t));
+
+    *nodeType(newNode) = *nodeType(node);
+    *nodeValue(newNode) = *nodeValue(node);
+
+    if(*nodeLeft(node))
+        *nodeLeft(newNode) = copyNode(*nodeLeft(node));
+
+    if(*nodeRight(node))
+        *nodeRight(newNode) = copyNode(*nodeRight(node));
+
+    return newNode;
 }

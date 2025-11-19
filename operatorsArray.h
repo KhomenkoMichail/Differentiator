@@ -1,9 +1,21 @@
 struct operatorInfo operatorsArray[] ={ {"+", opADD},
                                     {"-", opSUB},
                                     {"*", opMUL},
-                                    {"\\", opDIV},
+                                    {"/", opDIV},
                                     {"^", opPOW},
                                     {"sin", opSIN},
-                                    {"cos", opCOS} };
+                                    {"cos", opCOS},
+                                    {"tg", opTG},
+                                    {"ctg", opCTG},
+                                    {"arcsin", opARCSIN},
+                                    {"arccos", opARCCOS},
+                                    {"arctg", opARCTG},
+                                    {"arcctg", opARCCTG},
+                                    {"sh", opSH},
+                                    {"ch", opCH},
+                                    {"th", opTH},
+                                    {"cth", opCTH},
+                                    {"ln", opLN},
+                                    {"log", opLOG} };
 
 const size_t NUM_OF_OPERATORS = sizeof(operatorsArray) / sizeof(operatorInfo);
