@@ -1,0 +1,13 @@
+digraph Tree {
+    rankdir = TB;
+    node [shape = Mrecord, color = black];
+    node0x00000270512263e0 [rank = 0, label = "{ <addr>0x00000270512263e0| type: OP| val = * | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x0000027051226410| <right>RIGHT\n 0x00000270529f9650}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x0000027051226410 [rank = 1, label = "{ <addr>0x0000027051226410| type: VAR| val = 177693 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x00000270529f9650 [rank = 1, label = "{ <addr>0x00000270529f9650| type: OP| val = + | PARENT\n 0x0000000000000000|{<left>LEFT\n 0x00000270529f9680| <right>RIGHT\n 0x00000270529f96b0}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x00000270529f9680 [rank = 2, label = "{ <addr>0x00000270529f9680| type: VAR| val = 177694 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x00000270529f96b0 [rank = 2, label = "{ <addr>0x00000270529f96b0| type: NUM| val = 6.000000 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x00000270512263e0:left -> node0x0000027051226410:addr [color = "#666350ff"];
+    node0x00000270512263e0:right -> node0x00000270529f9650:addr [color = "#666350ff"];
+    node0x00000270529f9650:left -> node0x00000270529f9680:addr [color = "#666350ff"];
+    node0x00000270529f9650:right -> node0x00000270529f96b0:addr [color = "#666350ff"];
+ }

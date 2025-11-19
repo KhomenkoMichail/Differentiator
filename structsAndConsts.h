@@ -1,0 +1,90 @@
+#ifndef STRUCTS_AND_CONSTS_H
+#define STRUCTS_AND_CONSTS_H
+
+enum nodeType_t {
+    typeOperator = 1,
+    typeVariable = 2,
+    typeNumber = 3,
+};
+
+//#typedef double nodeValue_t;
+
+enum operatorCode_t {
+    opADD = 1,
+    opSUB = 2,
+    opMUL = 3,
+    opDIV = 4,
+    opPOW = 5,
+    opSIN = 6,
+    opCOS = 7,
+};
+
+union nodeValue_t {
+    operatorCode_t opCode; //valueCode
+    double constValue;
+    unsigned long long varHash;
+};
+
+struct node_t {
+    nodeType_t type;
+    nodeValue_t value;
+
+    node_t* parent;
+
+    node_t* left;
+    node_t* right;
+};
+
+struct variableInfo {
+    const char* varName;
+    double varValue;
+    unsigned long long varHash;
+};
+
+struct tree_t {
+    node_t* rootNode;
+    size_t size;
+
+    variableInfo* variableArr;
+    size_t numOfVariables;
+
+    int errorCode;
+};
+
+struct dump {
+    const char* nameOfFile;
+    const char* nameOfFunc;
+    unsigned int numOfLine;
+
+    const char* nameOfDumpFile;
+    const char* nameOfGraphFile;
+    int dumpFileWasOpened;
+};
+
+enum treeErr_t {
+    noErrors = 0x00,
+    badLeft = 0x02,
+    badRight = 0x04,
+    tooManyRecursiveCalls = 0x08,
+};
+
+struct operatorInfo {
+    const char* opName;
+    operatorCode_t opCode;
+};
+
+const size_t MAX_OP_NAME_LEN = 5;
+
+const size_t NODE_DESCRIPTION_SIZE = 64;
+
+const size_t STR_SIZE = 64;
+
+const size_t MAX_TREE_SIZE = 500;
+
+const size_t COMMAND_LENGTH = 512;
+
+const int NUM_OF_SCREENSHOTS = 25;
+
+const size_t NUM_OF_VARS = 10;
+
+#endif

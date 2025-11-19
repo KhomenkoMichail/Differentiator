@@ -1,0 +1,622 @@
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FFA3E2AB7C0 в функции strlen(). Попытка прочесть данные по адресу 0x000000004C4C554E в модуле C:\WINDOWS\System32\msvcrt.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF61A4DA7D0 (64-bit), Flags: Cmdre0, Thread: 0x27B4 (Main), errno: 2 (No such file or directory), _doserrno: 3 (No such process). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FFA3E2AB7C0 in C:\WINDOWS\System32\msvcrt.dll: strlen()
+# 2 0x00007FF61A3A303F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_pformat() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_pformat.c:2573
+# 3 0x00007FF61A39A88D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_vfprintf() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_vfprintf.c:54
+
+# 4 0x00007FF61A3B10B7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintf() at C:/Users/Admin/Downloads/CodeBlocks/MinGW/x86_64-w64-mingw32/include/stdio.h:364:
+
+    362:   int __retval;
+    363:   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+=>  364:   __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+    365:   __builtin_va_end( __local_argv );
+    366:   return __retval;
+
+# 5 0x00007FF61A380A2F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:98:
+
+     96:                 break;
+     97: 
+=>   98:         fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+     99:                 node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+    100:     }
+
+# 6 0x00007FF61A38058D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:44:
+
+     42: 
+     43:     size_t graphNodesMade = 0;
+=>   44:     fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+     45:     size_t graphLinksMade = 0;
+     46:     fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
+
+# 7 0x00007FF61A3812BD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:205:
+
+    203:     graphImageCounter++;
+    204: 
+=>  205:     fprintfTreeGraphDump(tree, nameOfTextGraphFile);
+    206: 
+    207:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 8 0x00007FF61A3811B5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:188:
+
+    186:     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
+    187: 
+=>  188:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    189: 
+    190:     if (fclose(dumpFile) != 0) {
+
+# 9 0x00007FF61A38344E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:87:
+
+     85:     }
+     86: 
+=>   87:     treeDump(tree, dumpInfo, "Р’РѕС‚ СЃРѕР·РґР°РЅРЅРѕРµ С„РёРЅР°Р»СЊРЅРѕРµ РґРµСЂРµРІРѕ:");
+     88: 
+     89:     return 0;
+
+#10 0x00007FF61A3514A7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:15:
+
+     13:     dumpInfo.nameOfDumpFile = "dump.html";
+     14: 
+=>   15:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     16: }
+     17: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 19 2025 13:37:01, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 19 2025 13:37:08
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FFA3E2AB7C0 в функции strlen(). Попытка прочесть данные по адресу 0x000000004C4C554E в модуле C:\WINDOWS\System32\msvcrt.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF61A4DA7D0 (64-bit), Flags: Cmdre0, Thread: 0x27B4 (Main), errno: 2 (No such file or directory), _doserrno: 3 (No such process). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FFA3E2AB7C0 in C:\WINDOWS\System32\msvcrt.dll: strlen()
+# 2 0x00007FF61A3A303F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_pformat() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_pformat.c:2573
+# 3 0x00007FF61A39A88D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_vfprintf() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_vfprintf.c:54
+
+# 4 0x00007FF61A3B10B7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintf() at C:/Users/Admin/Downloads/CodeBlocks/MinGW/x86_64-w64-mingw32/include/stdio.h:364:
+
+    362:   int __retval;
+    363:   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+=>  364:   __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+    365:   __builtin_va_end( __local_argv );
+    366:   return __retval;
+
+# 5 0x00007FF61A380A2F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:98:
+
+     96:                 break;
+     97: 
+=>   98:         fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+     99:                 node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+    100:     }
+
+# 6 0x00007FF61A38058D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:44:
+
+     42: 
+     43:     size_t graphNodesMade = 0;
+=>   44:     fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+     45:     size_t graphLinksMade = 0;
+     46:     fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
+
+# 7 0x00007FF61A3812BD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:205:
+
+    203:     graphImageCounter++;
+    204: 
+=>  205:     fprintfTreeGraphDump(tree, nameOfTextGraphFile);
+    206: 
+    207:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 8 0x00007FF61A3811B5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:188:
+
+    186:     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
+    187: 
+=>  188:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    189: 
+    190:     if (fclose(dumpFile) != 0) {
+
+# 9 0x00007FF61A38344E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:87:
+
+     85:     }
+     86: 
+=>   87:     treeDump(tree, dumpInfo, "Р’РѕС‚ СЃРѕР·РґР°РЅРЅРѕРµ С„РёРЅР°Р»СЊРЅРѕРµ РґРµСЂРµРІРѕ:");
+     88: 
+     89:     return 0;
+
+#10 0x00007FF61A3514A7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:15:
+
+     13:     dumpInfo.nameOfDumpFile = "dump.html";
+     14: 
+=>   15:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     16: }
+     17: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 19 2025 13:37:01, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 19 2025 13:37:08
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FFA3E2AB7C0 в функции strlen(). Попытка прочесть данные по адресу 0x000000004C4C554E в модуле C:\WINDOWS\System32\msvcrt.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7322AA7D0 (64-bit), Flags: Cmdre0, Thread: 0x56A8 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚), errno: 2 (No such file or directory), _doserrno: 3 (No such process). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FFA3E2AB7C0 in C:\WINDOWS\System32\msvcrt.dll: strlen()
+# 2 0x00007FF73217303F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_pformat() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_pformat.c:2573
+# 3 0x00007FF73216A88D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_vfprintf() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_vfprintf.c:54
+
+# 4 0x00007FF7321810B7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintf() at C:/Users/Admin/Downloads/CodeBlocks/MinGW/x86_64-w64-mingw32/include/stdio.h:364:
+
+    362:   int __retval;
+    363:   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+=>  364:   __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+    365:   __builtin_va_end( __local_argv );
+    366:   return __retval;
+
+# 5 0x00007FF732150A2F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:98:
+
+     96:                 break;
+     97: 
+=>   98:         fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+     99:                 node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+    100:     }
+
+# 6 0x00007FF73215058D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:44:
+
+     42: 
+     43:     size_t graphNodesMade = 0;
+=>   44:     fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+     45:     size_t graphLinksMade = 0;
+     46:     fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
+
+# 7 0x00007FF7321512BD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:205:
+
+    203:     graphImageCounter++;
+    204: 
+=>  205:     fprintfTreeGraphDump(tree, nameOfTextGraphFile);
+    206: 
+    207:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 8 0x00007FF7321511B5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:188:
+
+    186:     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
+    187: 
+=>  188:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    189: 
+    190:     if (fclose(dumpFile) != 0) {
+
+# 9 0x00007FF7321537B0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:129:
+
+    127:         if(*nodeLeft(newNode) != NULL) {
+    128:             fclose(dumpFile);
+=>  129:             SUBTREE_DUMP((*nodeLeft(newNode)), dumpInfo, "Р’РѕС‚ СЃРѕР·РґР°РЅРЅРѕРµ Р›Р•Р’РћР• РїРѕРґРґРµСЂРµРІРѕ.\n");
+    130:             dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
+    131:         }
+
+#10 0x00007FF73215383F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:134:
+
+    132: 
+    133:         DUMP_MESSAGE(dumpFile, "<h3>РЎРµР№С‡Р°СЃ Р·Р°Р№РґСѓ РІ РїСЂР°РІРѕРµ РїРѕРґРґРµСЂРµРІРѕ.\n</font></h3>", *bufPos);
+=>  134:         *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, dumpInfo, dumpFile);
+    135: 
+    136:         if(*nodeRight(newNode) != NULL) {
+
+#11 0x00007FF7321533CF in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:79:
+
+     77:     }
+     78:     else
+=>   79:         *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, dumpInfo, dumpFile);
+     80: 
+     81:     if (fclose(dumpFile) != 0) {
+
+#12 0x00007FF7321214A7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:15:
+
+     13:     dumpInfo.nameOfDumpFile = "dump.html";
+     14: 
+=>   15:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     16: }
+     17: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 19 2025 13:40:32, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 19 2025 13:40:39
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FFA3E2AB7C0 в функции strlen(). Попытка прочесть данные по адресу 0x000000004C4C554E в модуле C:\WINDOWS\System32\msvcrt.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7322AA7D0 (64-bit), Flags: Cmdre0, Thread: 0x56A8 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚), errno: 2 (No such file or directory), _doserrno: 3 (No such process). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FFA3E2AB7C0 in C:\WINDOWS\System32\msvcrt.dll: strlen()
+# 2 0x00007FF73217303F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_pformat() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_pformat.c:2573
+# 3 0x00007FF73216A88D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_vfprintf() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_vfprintf.c:54
+
+# 4 0x00007FF7321810B7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintf() at C:/Users/Admin/Downloads/CodeBlocks/MinGW/x86_64-w64-mingw32/include/stdio.h:364:
+
+    362:   int __retval;
+    363:   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+=>  364:   __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+    365:   __builtin_va_end( __local_argv );
+    366:   return __retval;
+
+# 5 0x00007FF732150A2F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:98:
+
+     96:                 break;
+     97: 
+=>   98:         fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+     99:                 node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+    100:     }
+
+# 6 0x00007FF73215058D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:44:
+
+     42: 
+     43:     size_t graphNodesMade = 0;
+=>   44:     fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+     45:     size_t graphLinksMade = 0;
+     46:     fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
+
+# 7 0x00007FF7321512BD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:205:
+
+    203:     graphImageCounter++;
+    204: 
+=>  205:     fprintfTreeGraphDump(tree, nameOfTextGraphFile);
+    206: 
+    207:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 8 0x00007FF7321511B5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:188:
+
+    186:     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
+    187: 
+=>  188:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    189: 
+    190:     if (fclose(dumpFile) != 0) {
+
+# 9 0x00007FF7321537B0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:129:
+
+    127:         if(*nodeLeft(newNode) != NULL) {
+    128:             fclose(dumpFile);
+=>  129:             SUBTREE_DUMP((*nodeLeft(newNode)), dumpInfo, "Р’РѕС‚ СЃРѕР·РґР°РЅРЅРѕРµ Р›Р•Р’РћР• РїРѕРґРґРµСЂРµРІРѕ.\n");
+    130:             dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
+    131:         }
+
+#10 0x00007FF73215383F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:134:
+
+    132: 
+    133:         DUMP_MESSAGE(dumpFile, "<h3>РЎРµР№С‡Р°СЃ Р·Р°Р№РґСѓ РІ РїСЂР°РІРѕРµ РїРѕРґРґРµСЂРµРІРѕ.\n</font></h3>", *bufPos);
+=>  134:         *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, dumpInfo, dumpFile);
+    135: 
+    136:         if(*nodeRight(newNode) != NULL) {
+
+#11 0x00007FF7321533CF in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:79:
+
+     77:     }
+     78:     else
+=>   79:         *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, dumpInfo, dumpFile);
+     80: 
+     81:     if (fclose(dumpFile) != 0) {
+
+#12 0x00007FF7321214A7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:15:
+
+     13:     dumpInfo.nameOfDumpFile = "dump.html";
+     14: 
+=>   15:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     16: }
+     17: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 19 2025 13:40:32, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 19 2025 13:40:40
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FFA3E2AB7C0 в функции strlen(). Попытка прочесть данные по адресу 0x000000004C4C554E в модуле C:\WINDOWS\System32\msvcrt.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6B034A7D0 (64-bit), Flags: Cmdre0, Thread: 0x2884 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚), errno: 2 (No such file or directory), _doserrno: 3 (No such process). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FFA3E2AB7C0 in C:\WINDOWS\System32\msvcrt.dll: strlen()
+# 2 0x00007FF6B021308F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_pformat() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_pformat.c:2573
+# 3 0x00007FF6B020A8DD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_vfprintf() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_vfprintf.c:54
+
+# 4 0x00007FF6B0221067 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printf() at C:/Users/Admin/Downloads/CodeBlocks/MinGW/x86_64-w64-mingw32/include/stdio.h:375:
+
+    373:   int __retval;
+    374:   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+=>  375:   __retval = __mingw_vfprintf( stdout, __format, __local_argv );
+    376:   __builtin_va_end( __local_argv );
+    377:   return __retval;
+
+# 5 0x00007FF6B01F09EA in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:98:
+
+     96:                 break;
+     97:         printf("numOfOp == %llu\n", numOfOp);
+=>   98:         printf("(operatorsArray[numOfOp]).opName == %s\n", (operatorsArray[numOfOp]).opName);
+     99:         fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+    100:                 node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+
+# 6 0x00007FF6B01F058D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:44:
+
+     42: 
+     43:     size_t graphNodesMade = 0;
+=>   44:     fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+     45:     size_t graphLinksMade = 0;
+     46:     fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
+
+# 7 0x00007FF6B01F1306 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:206:
+
+    204:     graphImageCounter++;
+    205: 
+=>  206:     fprintfTreeGraphDump(tree, nameOfTextGraphFile);
+    207: 
+    208:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 8 0x00007FF6B01F11FE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:189:
+
+    187:     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
+    188: 
+=>  189:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    190: 
+    191:     if (fclose(dumpFile) != 0) {
+
+# 9 0x00007FF6B01F3800 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:129:
+
+    127:         if(*nodeLeft(newNode) != NULL) {
+    128:             fclose(dumpFile);
+=>  129:             SUBTREE_DUMP((*nodeLeft(newNode)), dumpInfo, "Р’РѕС‚ СЃРѕР·РґР°РЅРЅРѕРµ Р›Р•Р’РћР• РїРѕРґРґРµСЂРµРІРѕ.\n");
+    130:             dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
+    131:         }
+
+#10 0x00007FF6B01F388F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:134:
+
+    132: 
+    133:         DUMP_MESSAGE(dumpFile, "<h3>РЎРµР№С‡Р°СЃ Р·Р°Р№РґСѓ РІ РїСЂР°РІРѕРµ РїРѕРґРґРµСЂРµРІРѕ.\n</font></h3>", *bufPos);
+=>  134:         *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, dumpInfo, dumpFile);
+    135: 
+    136:         if(*nodeRight(newNode) != NULL) {
+
+#11 0x00007FF6B01F341F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:79:
+
+     77:     }
+     78:     else
+=>   79:         *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, dumpInfo, dumpFile);
+     80: 
+     81:     if (fclose(dumpFile) != 0) {
+
+#12 0x00007FF6B01C14A7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:15:
+
+     13:     dumpInfo.nameOfDumpFile = "dump.html";
+     14: 
+=>   15:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     16: }
+     17: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 19 2025 13:47:36, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 19 2025 13:47:43
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FFA3E2AB7C0 в функции strlen(). Попытка прочесть данные по адресу 0x000000004C4C554E в модуле C:\WINDOWS\System32\msvcrt.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6B034A7D0 (64-bit), Flags: Cmdre0, Thread: 0x2884 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚), errno: 2 (No such file or directory), _doserrno: 3 (No such process). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FFA3E2AB7C0 in C:\WINDOWS\System32\msvcrt.dll: strlen()
+# 2 0x00007FF6B021308F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_pformat() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_pformat.c:2573
+# 3 0x00007FF6B020A8DD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_vfprintf() at E:/temp/gcc/build-mingw-w64/mingw-w64-crt/../../src/mingw-w64-crt/stdio/mingw_vfprintf.c:54
+
+# 4 0x00007FF6B0221067 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printf() at C:/Users/Admin/Downloads/CodeBlocks/MinGW/x86_64-w64-mingw32/include/stdio.h:375:
+
+    373:   int __retval;
+    374:   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+=>  375:   __retval = __mingw_vfprintf( stdout, __format, __local_argv );
+    376:   __builtin_va_end( __local_argv );
+    377:   return __retval;
+
+# 5 0x00007FF6B01F09EA in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:98:
+
+     96:                 break;
+     97:         printf("numOfOp == %llu\n", numOfOp);
+=>   98:         printf("(operatorsArray[numOfOp]).opName == %s\n", (operatorsArray[numOfOp]).opName);
+     99:         fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+    100:                 node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+
+# 6 0x00007FF6B01F058D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:44:
+
+     42: 
+     43:     size_t graphNodesMade = 0;
+=>   44:     fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+     45:     size_t graphLinksMade = 0;
+     46:     fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
+
+# 7 0x00007FF6B01F1306 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:206:
+
+    204:     graphImageCounter++;
+    205: 
+=>  206:     fprintfTreeGraphDump(tree, nameOfTextGraphFile);
+    207: 
+    208:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 8 0x00007FF6B01F11FE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Differentiator/treeFunctions.cpp:189:
+
+    187:     fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
+    188: 
+=>  189:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    190: 
+    191:     if (fclose(dumpFile) != 0) {
+
+# 9 0x00007FF6B01F3800 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:129:
+
+    127:         if(*nodeLeft(newNode) != NULL) {
+    128:             fclose(dumpFile);
+=>  129:             SUBTREE_DUMP((*nodeLeft(newNode)), dumpInfo, "Р’РѕС‚ СЃРѕР·РґР°РЅРЅРѕРµ Р›Р•Р’РћР• РїРѕРґРґРµСЂРµРІРѕ.\n");
+    130:             dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
+    131:         }
+
+#10 0x00007FF6B01F388F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeCtorByReadBuffer() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:134:
+
+    132: 
+    133:         DUMP_MESSAGE(dumpFile, "<h3>РЎРµР№С‡Р°СЃ Р·Р°Р№РґСѓ РІ РїСЂР°РІРѕРµ РїРѕРґРґРµСЂРµРІРѕ.\n</font></h3>", *bufPos);
+=>  134:         *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, dumpInfo, dumpFile);
+    135: 
+    136:         if(*nodeRight(newNode) != NULL) {
+
+#11 0x00007FF6B01F341F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:79:
+
+     77:     }
+     78:     else
+=>   79:         *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, dumpInfo, dumpFile);
+     80: 
+     81:     if (fclose(dumpFile) != 0) {
+
+#12 0x00007FF6B01C14A7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:15:
+
+     13:     dumpInfo.nameOfDumpFile = "dump.html";
+     14: 
+=>   15:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     16: }
+     17: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 19 2025 13:47:36, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 19 2025 13:47:43
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
