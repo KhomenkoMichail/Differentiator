@@ -13,11 +13,14 @@ int main (void) {
 
     dumpInfo.nameOfGraphFile = "treeGraph.txt";
     dumpInfo.nameOfDumpFile = "dump.html";
+    dumpInfo.nameOfLatexFile = "latexReport.tex";
 
     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
     solveMathExpressionTree (&expressionTree, &dumpInfo);
 
     *treeRoot(&diffTree) = differentiateNode (*treeRoot(&expressionTree), &dumpInfo, "x");
     treeDump(&diffTree, &dumpInfo, "diffTree:");
+
+    printfLatexReport(&expressionTree, &dumpInfo);
 
 }

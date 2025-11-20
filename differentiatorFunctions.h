@@ -41,4 +41,12 @@
 
     int findDiffVariable (node_t* node, unsigned long long diffVarHash);
 
+    void fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile);
+
+    int needBrackets(node_t* node);
+
+    int getOperatorPriority(operatorCode_t opCode);
+
+    void printfLatexReport(tree_t* expressionTree, dump* dumpInfo);
+
 #endif

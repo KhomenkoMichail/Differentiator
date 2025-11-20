@@ -210,7 +210,8 @@ int processNodeType (tree_t* tree, node_t* node, char** bufPos) {
             (*bufPos) += lenOfValue;
 
             unsigned long long variableHash = getStringHash(valueString);
-            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&variableHash, tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&variableHash,
+            tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
 
             if((searchedVariable != NULL) && (strcmp(searchedVariable->varName, valueString) == 0)) {
                 (nodeValue(node))->varHash = searchedVariable->varHash;
@@ -522,4 +523,244 @@ int findDiffVariable (node_t* node, unsigned long long diffVarHash) {
     }
 
     return 0;
+}
+
+void fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile) {
+    assert(node);
+    assert(latexFile);
+
+    *nodeParent(node) = parentNode;
+
+    switch(*nodeType(node)) {
+        case typeNumber:
+            fprintf(latexFile, "%g", (nodeValue(node))->constValue);
+            break;
+        case typeVariable: {
+            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&(nodeValue(node)->varHash),
+            tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+
+            fprintf(latexFile, "%s", searchedVariable->varName);
+            break;
+        }
+        case typeOperator:
+            if (needBrackets(node))
+                fprintf(latexFile, "(");
+            switch((nodeValue(node))->opCode) {
+                case opADD:
+                    fprintfNodeToLatex(tree, *nodeLeft(node), node, latexFile);
+                    fprintf(latexFile, " + ");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    break;
+
+                case opSUB:
+                    fprintfNodeToLatex(tree, *nodeLeft(node), node, latexFile);
+                    fprintf(latexFile, " - ");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    break;
+
+                case opMUL:
+                    fprintfNodeToLatex(tree, *nodeLeft(node), node, latexFile);
+                    fprintf(latexFile, " \\cdot ");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    break;
+
+                case opDIV:
+                    fprintf(latexFile, "\\frac{");
+                    fprintfNodeToLatex(tree, *nodeLeft(node), node, latexFile);
+                    fprintf(latexFile, "}{");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, "}");
+                    break;
+
+                case opPOW:
+                    fprintfNodeToLatex(tree, *nodeLeft(node), node, latexFile);
+                    fprintf(latexFile, "^{");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, "}");
+                    break;
+
+                case opSIN:
+                    fprintf(latexFile, "\\sin(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opCOS:
+                    fprintf(latexFile, "\\cos(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opTG:
+                    fprintf(latexFile, "\\tan(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opCTG:
+                    fprintf(latexFile, "\\cot(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opARCSIN:
+                    fprintf(latexFile, "\\arcsin(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opARCCOS:
+                    fprintf(latexFile, "\\arccos(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opARCTG:
+                    fprintf(latexFile, "\\arctan(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opARCCTG:
+                    fprintf(latexFile, "\\arccot(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opSH:
+                    fprintf(latexFile, "\\sinh(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opCH:
+                    fprintf(latexFile, "\\cosh(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opTH:
+                    fprintf(latexFile, "\\tanh(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opCTH:
+                    fprintf(latexFile, "\\coth(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opLN:
+                    fprintf(latexFile, "\\ln(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opLOG:
+                    fprintf(latexFile, "\\log_{");
+                    fprintfNodeToLatex(tree, *nodeLeft(node), node, latexFile);
+                    fprintf(latexFile, "}(");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, ")");
+                    break;
+
+                case opEXP:
+                    fprintf(latexFile, "e^{");
+                    fprintfNodeToLatex(tree, *nodeRight(node), node, latexFile);
+                    fprintf(latexFile, "}");
+                    break;
+
+                default:
+                    break;
+            }
+            if (needBrackets(node))
+                fprintf(latexFile, ")");
+
+        default:
+            break;
+    }
+}
+
+int needBrackets(node_t* node) {
+    assert(node);
+
+    int currentPriority = getOperatorPriority((nodeValue(node))->opCode);
+    int parentPriority = 0;
+
+    if(*nodeParent(node))
+        parentPriority = getOperatorPriority((nodeValue(*nodeParent(node)))->opCode);
+
+    return (currentPriority < parentPriority);
+}
+
+int getOperatorPriority(operatorCode_t opCode) {
+    switch (opCode) {
+        case opADD:
+        case opSUB:
+            return 1;
+        case opMUL:
+        case opDIV:
+            return 2;
+        case opPOW:
+            return 3;
+        case opSIN:
+        case opCOS:
+        case opTG:
+        case opCTG:
+        case opARCSIN:
+        case opARCCOS:
+        case opARCTG:
+        case opARCCTG:
+        case opSH:
+        case opCH:
+        case opTH:
+        case opCTH:
+        case opLN:
+        case opLOG:
+        case opEXP:
+        default:
+            return 4;
+    }
+    return 0;
+}
+
+void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
+    assert(expressionTree);
+    assert(dumpInfo);
+
+    FILE* latexFile = fopen(dumpInfo->nameOfLatexFile, "w");
+
+    if (!latexFile) {
+        fprintf(stderr, "Error of opening file \"%s\"", dumpInfo->nameOfDumpFile);
+        perror("");
+        return;
+    }
+
+    fprintf(latexFile, "\\documentclass{article}\n");
+    fprintf(latexFile, "\\usepackage[utf8]{inputenc}\n");
+    fprintf(latexFile, "\\usepackage[russian]{babel}\n");
+    fprintf(latexFile, "\\usepackage{amsmath}\n");
+    fprintf(latexFile, "\\usepackage{amssymb}\n");
+    fprintf(latexFile, "\\usepackage{geometry}\n");
+    fprintf(latexFile, "\\geometry{a4paper, margin=0.5cm}\n");
+    fprintf(latexFile, "\\begin{document}\n");
+
+    fprintf(latexFile, "Все что мы имеем:\n");
+    fprintf(latexFile, "\\[ f = ");
+    fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), NULL, latexFile);
+    fprintf(latexFile, " \\]\n\n");
+
+    fprintf(latexFile, "Производная:\n");
+    fprintf(latexFile, "\\[\n");
+    node_t* diffTreeRoot = differentiateNode(*treeRoot(expressionTree), dumpInfo, "x");
+    fprintfNodeToLatex(expressionTree, diffTreeRoot, NULL, latexFile);
+    fprintf(latexFile, "\n\\]\n");
+
+    fprintf(latexFile, "\\end{document}\n");
+
+    if (fclose(latexFile) != 0) {
+        fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
+        perror("");
+    }
 }

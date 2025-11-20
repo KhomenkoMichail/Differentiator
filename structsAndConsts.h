@@ -7,8 +7,6 @@ enum nodeType_t {
     typeNumber = 3,
 };
 
-//#typedef double nodeValue_t;
-
 enum operatorCode_t {
     opADD = 1,
     opSUB = 2,
@@ -73,6 +71,8 @@ struct dump {
     const char* nameOfDumpFile;
     const char* nameOfGraphFile;
     int dumpFileWasOpened;
+
+    const char* nameOfLatexFile;
 };
 
 enum treeErr_t {
