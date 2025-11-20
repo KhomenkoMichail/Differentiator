@@ -29,6 +29,7 @@ enum operatorCode_t {
     opCTH = 17,
     opLN = 18,
     opLOG = 19,
+    opEXP = 20,
 };
 
 union nodeValue_t {

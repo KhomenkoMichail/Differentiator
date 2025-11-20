@@ -320,6 +320,8 @@ double solveNode (tree_t* tree, node_t* node) {
                     return (log(rightValue));
                 case opLOG:
                     return NAN; //FIXME
+                case opEXP:
+                    return (exp(rightValue));
                 default:
                     return NAN;
             }
@@ -403,12 +405,12 @@ node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName
 
     switch (*nodeType(node)) {
         case typeNumber:
-            return NULL;
+            return NUM(0.0);
         case typeVariable:
             if ((nodeValue(node))->varHash == diffVarHash)
-                return newNodeCtor(typeNumber, {.constValue = 1.0}, NULL, NULL);
+                return NUM(1.0);
             else
-                return NULL;
+                return NUM(0.0);
         case typeOperator:
             switch (nodeValue(node)->opCode) {
                 case opADD:
@@ -419,6 +421,48 @@ node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName
                     return ADD_(MUL_(dL, cR), MUL_(cL, dR));
                 case opDIV:
                     return DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR));
+                case opPOW: {
+                    int baseHasDiffVar = findDiffVariable(*nodeLeft(node), diffVarHash);
+                    int powHasDiffVar = findDiffVariable(*nodeRight(node), diffVarHash);
+
+                    if(baseHasDiffVar && powHasDiffVar)
+                        return ADD_(MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL), MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR));
+                    else if(baseHasDiffVar)
+                        return MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL);
+                    else if(powHasDiffVar)
+                        return MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR);
+                    else return NUM(0.0);
+                }
+                case opSIN:
+                    return COMPOUND_FUNC(COS_(cR));
+                case opCOS:
+                    return COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR)));
+                case opTG:
+                    return COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0))));
+                case opCTG:
+                    return COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SIN_(cR), NUM(2.0))));
+                case opARCSIN:
+                    return COMPOUND_FUNC(DIV_(NUM(1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5))));
+                case opARCCOS:
+                    return COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5))));
+                case opARCTG:
+                    return COMPOUND_FUNC(DIV_(NUM(1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0)))));
+                case opARCCTG:
+                    return COMPOUND_FUNC(DIV_(NUM(-1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0)))));
+                case opSH:
+                    return COMPOUND_FUNC(CH_(cR));
+                case opCH:
+                    return COMPOUND_FUNC(SH_(cR));
+                case opTH:
+                    return COMPOUND_FUNC(DIV_(NUM(1.0), POW_(CH_(cR), NUM(2.0))));
+                case opCTH:
+                    return COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SH_(cR), NUM(2.0))));
+                case opLN:
+                    return COMPOUND_FUNC(DIV_(NUM(1.0), cR));
+                case opLOG:
+                    return COMPOUND_FUNC(DIV_(NUM(1.0), MUL_(cR, LN_(cL))));
+                case opEXP:
+                    return COMPOUND_FUNC(EXP_(cR));
                 default:
                     return NULL;
             }
@@ -426,7 +470,6 @@ node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName
         default:
             return NULL;
     }
-
     return NULL;
 }
 
@@ -459,4 +502,24 @@ node_t* copyNode (node_t* node) {
         *nodeRight(newNode) = copyNode(*nodeRight(node));
 
     return newNode;
+}
+
+int findDiffVariable (node_t* node, unsigned long long diffVarHash) {
+    assert(node);
+
+    if (*nodeType(node) == typeVariable)
+        if (nodeValue(node)->varHash == diffVarHash)
+            return 1;
+
+    if (*nodeLeft(node)) {
+        if (findDiffVariable(*nodeLeft(node), diffVarHash))
+            return 1;
+    }
+
+    if (*nodeRight(node)) {
+        if (findDiffVariable(*nodeRight(node), diffVarHash))
+            return 1;
+    }
+
+    return 0;
 }

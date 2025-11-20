@@ -1,1 +1,1 @@
-(* (x nil nil )(+ (y nil nil )(6 nil nil )))
+(* (^ (x nil nil )(sin nil (x nil nil )))(+ (/ (ln nil (x nil nil )) (cos nil (x nil nil )))(* (2 nil nil ) (arctg nil (x nil nil )))))

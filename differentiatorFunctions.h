@@ -39,4 +39,6 @@
 
     node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName);
 
+    int findDiffVariable (node_t* node, unsigned long long diffVarHash);
+
 #endif

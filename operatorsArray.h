@@ -16,6 +16,7 @@ struct operatorInfo operatorsArray[] ={ {"+", opADD},
                                     {"th", opTH},
                                     {"cth", opCTH},
                                     {"ln", opLN},
-                                    {"log", opLOG} };
+                                    {"log", opLOG},
+                                    {"exp", opEXP} };
 
 const size_t NUM_OF_OPERATORS = sizeof(operatorsArray) / sizeof(operatorInfo);
