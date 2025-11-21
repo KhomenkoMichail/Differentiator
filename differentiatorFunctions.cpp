@@ -398,7 +398,7 @@ double getDoubleVarValue (const char* varName) {
     return number;
 }
 
-node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName) {
+node_t* differentiateNode (tree_t* tree, node_t* node, dump* dumpInfo, const char* diffVarName, FILE* latexFile) {
     assert(node);
     assert(dumpInfo);
 
@@ -406,64 +406,64 @@ node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName
 
     switch (*nodeType(node)) {
         case typeNumber:
-            return NUM(0.0);
+            return $(NUM(0.0));
         case typeVariable:
             if ((nodeValue(node))->varHash == diffVarHash)
-                return NUM(1.0);
+                return $(NUM(1.0));
             else
-                return NUM(0.0);
+                return $(NUM(0.0));
         case typeOperator:
             switch (nodeValue(node)->opCode) {
                 case opADD:
-                    return ADD_(dL, dR);
+                    return $(ADD_(dL, dR));
                 case opSUB:
-                    return SUB_(dL, dR);
+                    return $(SUB_(dL, dR));
                 case opMUL:
-                    return ADD_(MUL_(dL, cR), MUL_(cL, dR));
+                    return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
                 case opDIV:
-                    return DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR));
+                    return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
                 case opPOW: {
                     int baseHasDiffVar = findDiffVariable(*nodeLeft(node), diffVarHash);
                     int powHasDiffVar = findDiffVariable(*nodeRight(node), diffVarHash);
 
                     if(baseHasDiffVar && powHasDiffVar)
-                        return ADD_(MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL), MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR));
+                        return $(ADD_(MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL), MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR)));
                     else if(baseHasDiffVar)
-                        return MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL);
+                        return $(MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL));
                     else if(powHasDiffVar)
-                        return MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR);
-                    else return NUM(0.0);
+                        return $(MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR));
+                    else return $(NUM(0.0));
                 }
                 case opSIN:
-                    return COMPOUND_FUNC(COS_(cR));
+                    return $(COMPOUND_FUNC(COS_(cR)));
                 case opCOS:
-                    return COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR)));
+                    return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
                 case opTG:
-                    return COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
                 case opCTG:
-                    return COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SIN_(cR), NUM(2.0))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SIN_(cR), NUM(2.0)))));
                 case opARCSIN:
-                    return COMPOUND_FUNC(DIV_(NUM(1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5)))));
                 case opARCCOS:
-                    return COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5)))));
                 case opARCTG:
-                    return COMPOUND_FUNC(DIV_(NUM(1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0)))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0))))));
                 case opARCCTG:
-                    return COMPOUND_FUNC(DIV_(NUM(-1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0)))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0))))));
                 case opSH:
-                    return COMPOUND_FUNC(CH_(cR));
+                    return $(COMPOUND_FUNC(CH_(cR)));
                 case opCH:
-                    return COMPOUND_FUNC(SH_(cR));
+                    return $(COMPOUND_FUNC(SH_(cR)));
                 case opTH:
-                    return COMPOUND_FUNC(DIV_(NUM(1.0), POW_(CH_(cR), NUM(2.0))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(CH_(cR), NUM(2.0)))));
                 case opCTH:
-                    return COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SH_(cR), NUM(2.0))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SH_(cR), NUM(2.0)))));
                 case opLN:
-                    return COMPOUND_FUNC(DIV_(NUM(1.0), cR));
+                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), cR)));
                 case opLOG:
-                    return COMPOUND_FUNC(DIV_(NUM(1.0), MUL_(cR, LN_(cL))));
+                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), MUL_(cR, LN_(cL)))));
                 case opEXP:
-                    return COMPOUND_FUNC(EXP_(cR));
+                    return $(COMPOUND_FUNC(EXP_(cR)));
                 default:
                     return NULL;
             }
@@ -525,7 +525,7 @@ int findDiffVariable (node_t* node, unsigned long long diffVarHash) {
     return 0;
 }
 
-void fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile) {
+node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile) {
     assert(node);
     assert(latexFile);
 
@@ -680,6 +680,8 @@ void fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* l
         default:
             break;
     }
+
+    return node;
 }
 
 int needBrackets(node_t* node) {
@@ -751,16 +753,33 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), NULL, latexFile);
     fprintf(latexFile, " \\]\n\n");
 
-    fprintf(latexFile, "Производная:\n");
-    fprintf(latexFile, "\\[\n");
-    node_t* diffTreeRoot = differentiateNode(*treeRoot(expressionTree), dumpInfo, "x");
-    fprintfNodeToLatex(expressionTree, diffTreeRoot, NULL, latexFile);
-    fprintf(latexFile, "\n\\]\n");
-
+    node_t* diffTreeRoot = differentiateNode(expressionTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
     fprintf(latexFile, "\\end{document}\n");
 
     if (fclose(latexFile) != 0) {
         fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
         perror("");
     }
+}
+
+const char* getRandomPhrase (void) {
+    const char* phrases[] = { "Нетрудно заметить, что:\n",
+                              "Очевидно что:\n",
+                              "Из леммы 6.66, следует, что:\n",
+                              "Согласно школьной программе:\n",
+                              "Внимательный читатель заметит, что\n",
+                              "Не умаляя общности:\n",
+                              "Произведя некоторые подстановки:\n",
+                              "Ввиду нехитрых преобразований:\n",
+                              "Все доказано:\n",
+                              "Для любых из 6 СПС, верно, что:\n"
+                              "(Желаю всем, кто пишет \"СПС\" вместо \"спасибо\"\n"
+                              "продуктивно потратить сэкономленное время)\n"};
+
+
+    size_t numOfPhrases = sizeof(phrases) / sizeof(phrases[0]);
+
+    size_t curPhraseNum = (size_t)rand() % numOfPhrases;
+
+    return phrases[curPhraseNum];
 }

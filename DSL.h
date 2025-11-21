@@ -3,8 +3,8 @@
 
 #define NUM(value) newNodeCtor(typeNumber, {.constValue = value}, NULL, NULL)
 
-#define dL differentiateNode(*nodeLeft(node), dumpInfo, diffVarName)
-#define dR differentiateNode(*nodeRight(node), dumpInfo, diffVarName)
+#define dL differentiateNode(tree, *nodeLeft(node), dumpInfo, diffVarName, latexFile)
+#define dR differentiateNode(tree, *nodeRight(node), dumpInfo, diffVarName,  latexFile)
 #define cL copyNode(*nodeLeft(node))
 #define cR copyNode(*nodeRight(node))
 
@@ -34,5 +34,16 @@
 #define LN_(right) newNodeCtor(typeOperator, {.opCode = opLN}, NULL, right)
 #define LOG_(left, right) newNodeCtor(typeOperator, {.opCode = opLOG}, left, right)
 #define EXP_(right) newNodeCtor(typeOperator, {.opCode = opEXP}, NULL, right)
+
+#define $(diffNode) ({\
+    node_t* diffResult = (diffNode);\
+    fprintf(latexFile, "%s", getRandomPhrase());\
+    fprintf(latexFile, "\\[ \\frac{d}{d%s}(", diffVarName);\
+    fprintfNodeToLatex(tree, node, NULL, latexFile);\
+    fprintf(latexFile, ") = ");\
+    fprintfNodeToLatex(tree, diffResult, NULL, latexFile);\
+    fprintf(latexFile, "\\]\n");\
+    diffResult;\
+})
 
 #endif

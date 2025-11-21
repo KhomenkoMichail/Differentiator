@@ -37,16 +37,18 @@
 
     node_t* copyNode (node_t* node);
 
-    node_t* differentiateNode (node_t* node, dump* dumpInfo, const char* diffVarName);
+    node_t* differentiateNode (tree_t* tree, node_t* node, dump* dumpInfo, const char* diffVarName, FILE* latexFile);
 
     int findDiffVariable (node_t* node, unsigned long long diffVarHash);
 
-    void fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile);
+    node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile);
 
-    int needBrackets(node_t* node);
+    int needBrackets (node_t* node);
 
-    int getOperatorPriority(operatorCode_t opCode);
+    int getOperatorPriority (operatorCode_t opCode);
 
-    void printfLatexReport(tree_t* expressionTree, dump* dumpInfo);
+    void printfLatexReport (tree_t* expressionTree, dump* dumpInfo);
+
+    const char* getRandomPhrase (void);
 
 #endif

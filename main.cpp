@@ -7,8 +7,8 @@
 
 int main (void) {
     tree_t expressionTree = {};
-    tree_t diffTree = {};
-    diffTree.size = 1000;
+    //tree_t diffTree = {};
+    //diffTree.size = 1000;
     struct dump dumpInfo = {};
 
     dumpInfo.nameOfGraphFile = "treeGraph.txt";
@@ -18,8 +18,8 @@ int main (void) {
     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
     solveMathExpressionTree (&expressionTree, &dumpInfo);
 
-    *treeRoot(&diffTree) = differentiateNode (*treeRoot(&expressionTree), &dumpInfo, "x");
-    treeDump(&diffTree, &dumpInfo, "diffTree:");
+    //*treeRoot(&diffTree) = differentiateNode (*treeRoot(&expressionTree), &dumpInfo, "x");
+    //treeDump(&diffTree, &dumpInfo, "diffTree:");
 
     printfLatexReport(&expressionTree, &dumpInfo);
 

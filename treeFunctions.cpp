@@ -9,21 +9,6 @@
 #include "treeFunctions.h"
 #include "structAccessFunctions.h"
 
-/* //FIXME
-node_t* treeNodeCtor (const char* newObjectDescription) {
-    assert(newObjectDescription);
-
-    node_t* newNode = (node_t*)calloc(1, sizeof(node_t));
-
-    *(nodeObjectDescription(newNode)) = strdup(newObjectDescription);
-    newNode->ownsMemory = 1;
-
-    *(nodeLeft(newNode)) = NULL;
-    *(nodeRight(newNode)) = NULL;
-
-    return newNode;
-}
-*/
 int fprintfTreeGraphDump (tree_t* tree, const char* textGraphFileName) {
     assert(tree);
     assert(textGraphFileName);
@@ -91,7 +76,7 @@ int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile, size_t* nodesPass
         #include "operatorsArray.h"
 
         size_t numOfOp = 0;
-        for (numOfOp = 0; numOfOp < NUM_OF_OPERATORS; numOfOp++) //FIXME
+        for (numOfOp = 0; numOfOp < NUM_OF_OPERATORS; numOfOp++)
             if ((operatorsArray[numOfOp]).opCode == (nodeValue(node))->opCode)
                 break;
 
@@ -216,21 +201,6 @@ void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* n
     fprintf(dumpFile, "Image:\n <img src=DUMPS/graph%d.png width=1000px>\n", graphImageCounter);
 
 }
-
-
-/*tree_t* akinatorTreeCtor(tree_t* tree, dump* dumpInfo) { //FIXME
-    assert(tree);
-    assert(dumpInfo);
-
-    *treeRoot(tree) = treeNodeCtor("animal");
-    *treeSize(tree) = 1;
-    tree->errorCode = noErrors;
-
-    dumpInfo->nameOfFunc = __func__;
-    treeDump(tree, dumpInfo, "AFTER creation of the tree");
-
-    return tree;
-}*/
 
 int nodeVerifier (node_t* node, int* errorCode, size_t* nodesPassed, size_t treeSize) {
     assert(node);
