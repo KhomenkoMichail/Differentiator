@@ -7,15 +7,16 @@
 \geometry{a4paper, margin=0.5cm}
 \begin{document}
 Все что мы имеем:
-\[ f = x \cdot \sin(x) \]
+\[ f = \sin(x) \cdot \cos(x) \]
 
-Производная:
-Согласно школьной программе:
+Ввиду нехитрых преобразований:
 \[ \frac{d}{dx}(x) = 1\]
-Нетрудно заметить, что:
+Не умаляя общности:
+\[ \frac{d}{dx}(\cos(x)) = -1 \cdot \sin(x) \cdot 1\]
+Все доказано:
+\[ \frac{d}{dx}(x) = 1\]
+Внимательный читатель заметит, что
 \[ \frac{d}{dx}(\sin(x)) = \cos(x) \cdot 1\]
-Произведя некоторые подстановки:
-\[ \frac{d}{dx}(x) = 1\]
-Из леммы 6.66, следует, что:
-\[ \frac{d}{dx}(x \cdot \sin(x)) = 1 \cdot \sin(x) + x \cdot \cos(x) \cdot 1\]
+Не умаляя общности:
+\[ \frac{d}{dx}(\sin(x) \cdot \cos(x)) = \cos(x) \cdot 1 \cdot \cos(x) + \sin(x) \cdot -1 \cdot \sin(x) \cdot 1\]
 \end{document}
