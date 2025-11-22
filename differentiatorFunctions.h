@@ -21,15 +21,15 @@
 
     double getDoubleVarValue (const char* varName);
 
-    node_t* newNodeCtor (nodeType_t nodeType, nodeValue_t nodeValue, node_t* left, node_t* right);
+    node_t* newNodeCtor (tree_t* tree, nodeType_t nodeType, nodeValue_t nodeValue, node_t* left, node_t* right);
 
-    node_t* copyNode (node_t* node);
+    node_t* copyNode (tree_t* tree, node_t* node);
 
     node_t* differentiateNode (tree_t* tree, node_t* node, dump* dumpInfo, const char* diffVarName, FILE* latexFile);
 
     int findDiffVariable (node_t* node, unsigned long long diffVarHash);
 
-    node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, node_t* parentNode, FILE* latexFile);
+    node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, FILE* latexFile);
 
     int needBrackets (node_t* node);
 
@@ -38,5 +38,17 @@
     void printfLatexReport (tree_t* expressionTree, dump* dumpInfo);
 
     const char* getRandomPhrase (void);
+
+    double constConvolution (tree_t* tree, node_t* node, FILE* latexFile);
+
+    void makeZeroNode (tree_t* tree, node_t* node, FILE* latexFile);
+
+    void deleteRightNode (tree_t* tree, node_t* node, FILE* latexFile);
+
+    void deleteLeftNode (tree_t* tree, node_t* node, FILE* latexFile);
+
+    int deleteNeutralNode (tree_t* tree, node_t* node, FILE* latexFile);
+
+    void simplifyTree (tree_t* tree, FILE* latexFile);
 
 #endif

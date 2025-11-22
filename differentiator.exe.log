@@ -947,3 +947,557 @@ Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF73953888A в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 464. Попытка прочесть данные по адресу NULL в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF739565830 (64-bit), Flags: Cmdre0, Thread: 0x27C0 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF73953888A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:464:
+
+    462:             tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+    463: 
+=>  464:             fprintf(latexFile, "%s", searchedVariable->varName);
+    465:             break;
+    466:         }
+
+# 1 0x00007FF739534C8F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:332:
+
+    330:         case typeVariable:
+    331:             if ((nodeValue(node))->varHash == diffVarHash)
+=>  332:                 return $(NUM(1.0));
+    333:             else
+    334:                 return $(NUM(0.0));
+
+# 2 0x00007FF73953636A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:360:
+
+    358:                     return $(COMPOUND_FUNC(COS_(cR)));
+    359:                 case opCOS:
+=>  360:                     return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+    361:                 case opTG:
+    362:                     return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+
+# 3 0x00007FF73953518C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:342:
+
+    340:                     return $(SUB_(dL, dR));
+    341:                 case opMUL:
+=>  342:                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
+    343:                 case opDIV:
+    344:                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
+
+# 4 0x00007FF7395395A2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:681:
+
+    679:     memcpy(diffTree.variableArr, expressionTree->variableArr, NUM_OF_VARS);
+    680:     //diffTree.variableArr = expressionTree->variableArr;
+=>  681:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    682:     treeDump(&diffTree, dumpInfo, "diffTreeDump");
+    683:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF739501767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:24:
+
+     22:     //treeDump(&diffTree, &dumpInfo, "diffTree:");
+     23: 
+=>   24:     printfLatexReport(&expressionTree, &dumpInfo);
+     25: 
+     26: }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 14:28:54, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 14:29:03
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF73953888A в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 464. Попытка прочесть данные по адресу NULL в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF739565830 (64-bit), Flags: Cmdre0, Thread: 0x27C0 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF73953888A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:464:
+
+    462:             tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+    463: 
+=>  464:             fprintf(latexFile, "%s", searchedVariable->varName);
+    465:             break;
+    466:         }
+
+# 1 0x00007FF739534C8F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:332:
+
+    330:         case typeVariable:
+    331:             if ((nodeValue(node))->varHash == diffVarHash)
+=>  332:                 return $(NUM(1.0));
+    333:             else
+    334:                 return $(NUM(0.0));
+
+# 2 0x00007FF73953636A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:360:
+
+    358:                     return $(COMPOUND_FUNC(COS_(cR)));
+    359:                 case opCOS:
+=>  360:                     return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+    361:                 case opTG:
+    362:                     return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+
+# 3 0x00007FF73953518C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:342:
+
+    340:                     return $(SUB_(dL, dR));
+    341:                 case opMUL:
+=>  342:                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
+    343:                 case opDIV:
+    344:                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
+
+# 4 0x00007FF7395395A2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:681:
+
+    679:     memcpy(diffTree.variableArr, expressionTree->variableArr, NUM_OF_VARS);
+    680:     //diffTree.variableArr = expressionTree->variableArr;
+=>  681:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    682:     treeDump(&diffTree, dumpInfo, "diffTreeDump");
+    683:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF739501767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:24:
+
+     22:     //treeDump(&diffTree, &dumpInfo, "diffTree:");
+     23: 
+=>   24:     printfLatexReport(&expressionTree, &dumpInfo);
+     25: 
+     26: }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 14:28:54, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 14:29:03
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF6AE96888A в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 464. Попытка прочесть данные по адресу NULL в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6AE995830 (64-bit), Flags: Cmdre0, Thread: 0x2584 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6AE96888A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:464:
+
+    462:             tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+    463: 
+=>  464:             fprintf(latexFile, "%s", searchedVariable->varName);
+    465:             break;
+    466:         }
+
+# 1 0x00007FF6AE964C8F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:332:
+
+    330:         case typeVariable:
+    331:             if ((nodeValue(node))->varHash == diffVarHash)
+=>  332:                 return $(NUM(1.0));
+    333:             else
+    334:                 return $(NUM(0.0));
+
+# 2 0x00007FF6AE96636A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:360:
+
+    358:                     return $(COMPOUND_FUNC(COS_(cR)));
+    359:                 case opCOS:
+=>  360:                     return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+    361:                 case opTG:
+    362:                     return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+
+# 3 0x00007FF6AE96518C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:342:
+
+    340:                     return $(SUB_(dL, dR));
+    341:                 case opMUL:
+=>  342:                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
+    343:                 case opDIV:
+    344:                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
+
+# 4 0x00007FF6AE9695A9 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:681:
+
+    679:     memcpy(diffTree.variableArr, expressionTree->variableArr, NUM_OF_VARS*sizeof(variableInfo));
+    680:     //diffTree.variableArr = expressionTree->variableArr;
+=>  681:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    682:     treeDump(&diffTree, dumpInfo, "diffTreeDump");
+    683:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF6AE931767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:24:
+
+     22:     //treeDump(&diffTree, &dumpInfo, "diffTree:");
+     23: 
+=>   24:     printfLatexReport(&expressionTree, &dumpInfo);
+     25: 
+     26: }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 14:31:45, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 14:31:54
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF6AE96888A в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 464. Попытка прочесть данные по адресу NULL в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6AE995830 (64-bit), Flags: Cmdre0, Thread: 0x2584 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6AE96888A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:464:
+
+    462:             tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+    463: 
+=>  464:             fprintf(latexFile, "%s", searchedVariable->varName);
+    465:             break;
+    466:         }
+
+# 1 0x00007FF6AE964C8F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:332:
+
+    330:         case typeVariable:
+    331:             if ((nodeValue(node))->varHash == diffVarHash)
+=>  332:                 return $(NUM(1.0));
+    333:             else
+    334:                 return $(NUM(0.0));
+
+# 2 0x00007FF6AE96636A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:360:
+
+    358:                     return $(COMPOUND_FUNC(COS_(cR)));
+    359:                 case opCOS:
+=>  360:                     return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+    361:                 case opTG:
+    362:                     return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+
+# 3 0x00007FF6AE96518C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:342:
+
+    340:                     return $(SUB_(dL, dR));
+    341:                 case opMUL:
+=>  342:                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
+    343:                 case opDIV:
+    344:                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
+
+# 4 0x00007FF6AE9695A9 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:681:
+
+    679:     memcpy(diffTree.variableArr, expressionTree->variableArr, NUM_OF_VARS*sizeof(variableInfo));
+    680:     //diffTree.variableArr = expressionTree->variableArr;
+=>  681:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    682:     treeDump(&diffTree, dumpInfo, "diffTreeDump");
+    683:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF6AE931767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:24:
+
+     22:     //treeDump(&diffTree, &dumpInfo, "diffTree:");
+     23: 
+=>   24:     printfLatexReport(&expressionTree, &dumpInfo);
+     25: 
+     26: }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 14:31:45, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 14:31:54
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF7AADC888A в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 464. Попытка прочесть данные по адресу NULL в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7AADF5830 (64-bit), Flags: Cmdre0, Thread: 0x5F6C (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7AADC888A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:464:
+
+    462:             tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+    463: 
+=>  464:             fprintf(latexFile, "%s", searchedVariable->varName);
+    465:             break;
+    466:         }
+
+# 1 0x00007FF7AADC4C8F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:332:
+
+    330:         case typeVariable:
+    331:             if ((nodeValue(node))->varHash == diffVarHash)
+=>  332:                 return $(NUM(1.0));
+    333:             else
+    334:                 return $(NUM(0.0));
+
+# 2 0x00007FF7AADC636A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:360:
+
+    358:                     return $(COMPOUND_FUNC(COS_(cR)));
+    359:                 case opCOS:
+=>  360:                     return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+    361:                 case opTG:
+    362:                     return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+
+# 3 0x00007FF7AADC518C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:342:
+
+    340:                     return $(SUB_(dL, dR));
+    341:                 case opMUL:
+=>  342:                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
+    343:                 case opDIV:
+    344:                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
+
+# 4 0x00007FF7AADC9683 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:688:
+
+    686:     }
+    687:     //diffTree.variableArr = expressionTree->variableArr;
+=>  688:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    689:     treeDump(&diffTree, dumpInfo, "diffTreeDump");
+    690:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF7AAD91767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:24:
+
+     22:     //treeDump(&diffTree, &dumpInfo, "diffTree:");
+     23: 
+=>   24:     printfLatexReport(&expressionTree, &dumpInfo);
+     25: 
+     26: }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 14:34:52, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 14:35:06
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF7AADC888A в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 464. Попытка прочесть данные по адресу NULL в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7AADF5830 (64-bit), Flags: Cmdre0, Thread: 0x5F6C (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7AADC888A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:464:
+
+    462:             tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+    463: 
+=>  464:             fprintf(latexFile, "%s", searchedVariable->varName);
+    465:             break;
+    466:         }
+
+# 1 0x00007FF7AADC4C8F in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:332:
+
+    330:         case typeVariable:
+    331:             if ((nodeValue(node))->varHash == diffVarHash)
+=>  332:                 return $(NUM(1.0));
+    333:             else
+    334:                 return $(NUM(0.0));
+
+# 2 0x00007FF7AADC636A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:360:
+
+    358:                     return $(COMPOUND_FUNC(COS_(cR)));
+    359:                 case opCOS:
+=>  360:                     return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+    361:                 case opTG:
+    362:                     return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+
+# 3 0x00007FF7AADC518C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: differentiateNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:342:
+
+    340:                     return $(SUB_(dL, dR));
+    341:                 case opMUL:
+=>  342:                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
+    343:                 case opDIV:
+    344:                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
+
+# 4 0x00007FF7AADC9683 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:688:
+
+    686:     }
+    687:     //diffTree.variableArr = expressionTree->variableArr;
+=>  688:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    689:     treeDump(&diffTree, dumpInfo, "diffTreeDump");
+    690:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF7AAD91767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:24:
+
+     22:     //treeDump(&diffTree, &dumpInfo, "diffTree:");
+     23: 
+=>   24:     printfLatexReport(&expressionTree, &dumpInfo);
+     25: 
+     26: }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 14:34:52, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 14:35:06
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 1 (_DOMAIN): Нарушение области определения в функции sin (nan, [0]). Она вернет значение nan.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7C9045830 (64-bit), Flags: Cmdre0, Thread: 0x440C (Main), errno: 33 (Domain error). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7C8FF318C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF7C8FF3CE6 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF7C901A5B1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF7C901C29E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: sin()
+
+# 4 0x00007FF7C9014577 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:248:
+
+    246:                     return (pow(leftValue, rightValue));
+    247:                 case opSIN:
+=>  248:                     return (sin(rightValue));
+    249:                 case opCOS:
+    250:                     return (cos(rightValue));
+
+# 5 0x00007FF7C9014479 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:231:
+
+    229: 
+    230:             if(*nodeLeft(node))
+=>  231:                 leftValue = solveNode(tree, *nodeLeft(node));
+    232: 
+    233:             if(*nodeRight(node))
+
+# 6 0x00007FF7C90147BB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:296:
+
+    294:             (tree->variableArr)[numOfVar].varValue = getDoubleVarValue((tree->variableArr)[numOfVar].varName);
+    295: 
+=>  296:     double result = solveNode(tree, *treeRoot(tree));
+    297: 
+    298:     printf("the result of solving Math Expression is : %lf", result);
+
+# 7 0x00007FF7C8FE174D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:17:
+
+     15: 
+     16:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+=>   17:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     18: 
+     19:     printfLatexReport(&expressionTree, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 21 2025 15:14:35, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 21 2025 15:14:46
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <math.h>
 
 #include "structsAndConsts.h"
 #include "helpingFunctions.h"
@@ -84,4 +85,23 @@ int structVariableComparator(const void* firstStruct, const void* secondStruct) 
     const struct variableInfo* secondVariable = (const struct variableInfo*)secondStruct;
 
     return (int)(firstVariable->varHash - secondVariable->varHash);
+}
+
+int compareDouble (double first, double second) {
+    const double EPSILON = 1e-10;
+
+    if (isnan(first) && isnan(second))      //both numbers are nan
+        return 1;
+    else if (isinf(first) && isinf(second))      //both numbers are inf
+        return 1;
+    else {
+        double fabsOfDifference = NAN;
+        fabsOfDifference = fabs(first - second);
+
+        if (fabsOfDifference < EPSILON)
+            return 1;
+        return 0;
+    }
+
+    return 0;
 }

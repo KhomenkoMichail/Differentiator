@@ -13,5 +13,5 @@
 
     int structVariableComparator (const void* firstStruct, const void* secondStruct);
 
-
+    int compareDouble (double first, double second);
 #endif

@@ -26,6 +26,6 @@ int treeVerifier (tree_t* tree);
 
 int deleteTree (tree_t* tree);
 
-int deleteNode(node_t* node , size_t* nodesPassed, size_t treeSize);
+int deleteNode(tree_t* tree, node_t* node);
 
 #endif

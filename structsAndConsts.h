@@ -46,11 +46,15 @@ struct node_t {
     node_t* right;
 };
 
+const size_t STR_SIZE = 64;
+
 struct variableInfo {
-    const char* varName;
+    char varName[STR_SIZE];
     double varValue;
     unsigned long long varHash;
 };
+
+const size_t NUM_OF_VARS = 16;
 
 struct tree_t {
     node_t* rootNode;
@@ -91,14 +95,12 @@ const size_t MAX_OP_NAME_LEN = 5;
 
 const size_t NODE_DESCRIPTION_SIZE = 64;
 
-const size_t STR_SIZE = 64;
-
 const size_t MAX_TREE_SIZE = 500;
 
 const size_t COMMAND_LENGTH = 512;
 
 const int NUM_OF_SCREENSHOTS = 25;
 
-const size_t NUM_OF_VARS = 10;
+const double NOT_CONVOLUTED = 0.131313;
 
 #endif

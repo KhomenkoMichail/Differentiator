@@ -262,24 +262,22 @@ int treeVerifier (tree_t* tree) {
     return tree->errorCode;
 }
 
-int deleteNode(node_t* node , size_t* nodesPassed, size_t treeSize) {
+int deleteNode(tree_t* tree, node_t* node) {
     assert(node);
-
-    (*nodesPassed) += 1;
-    if (*nodesPassed > treeSize)
-        return tooManyRecursiveCalls;
+    assert(tree);
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL)
         && !(_txIsBadReadPtr(*left)))
-        deleteNode(*nodeLeft(node), nodesPassed, treeSize);
+        deleteNode(tree, *nodeLeft(node));
 
     node_t** right = nodeRight(node);
     if((right != NULL) && (*right != NULL)
         && !(_txIsBadReadPtr(*right)))
-        deleteNode(*nodeRight(node), nodesPassed, treeSize);
+        deleteNode(tree, *nodeRight(node));
 
     free(node);
+    *treeSize(tree) -= 1;
     return 0;
 }
 
@@ -288,8 +286,7 @@ int deleteTree (tree_t* tree) {
 
     node_t* rootNode = *treeRoot(tree);
 
-    size_t numOfDeletedNodes = 0;
-    deleteNode(rootNode, &numOfDeletedNodes, *treeSize(tree));
+    deleteNode(tree, rootNode);
 
     return noErrors;
 }
