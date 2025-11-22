@@ -1,5 +1,5 @@
 digraph Tree {
     rankdir = TB;
     node [shape = Mrecord, color = black];
-    node0x0000013101162870 [rank = 0, label = "{ <addr>0x0000013101162870| type: NUM| val = 5.000000 | PARENT\n 0x0000000000000000|{<left>LEFT\n NULL| <right>RIGHT\n NULL}}", style = filled, fillcolor = "#d1e6ffff", color = black];
+    node0x000001ef7fcc2780 [rank = 0, label = "5", shape = circle, style = filled, fillcolor = "#d1e6ffff", color = black];
  }

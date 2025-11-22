@@ -89,6 +89,7 @@ enum treeErr_t {
 struct operatorInfo {
     const char* opName;
     operatorCode_t opCode;
+    const char* dumpColor;
 };
 
 const size_t MAX_OP_NAME_LEN = 5;

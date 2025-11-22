@@ -688,16 +688,13 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     fprintf(latexFile, " \\]\n\n");
 
     tree_t diffTree = {};
-    diffTree.variableArrSize = expressionTree->variableArrSize; //FIXME
-
+    diffTree.variableArrSize = expressionTree->variableArrSize;
     diffTree.variableArr = expressionTree->variableArr;
 
     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
-    treeDump(&diffTree, dumpInfo, "diffTreeDump Before svert");
 
-    simplifyTree(&diffTree, latexFile);
+    simplifyTree(&diffTree, dumpInfo, latexFile);
 
-    treeDump(&diffTree, dumpInfo, "diffTreeDump after svert");
     fprintf(latexFile, "\\end{document}\n");
 
     deleteTree(&diffTree);
@@ -934,7 +931,7 @@ void deleteLeftNode(tree_t* tree, node_t* node, FILE* latexFile) {
     *treeSize(tree) -= 2;
 }
 
-void simplifyTree (tree_t* tree, FILE* latexFile) {
+void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile) {
     assert(tree);
     assert(latexFile);
 
@@ -953,4 +950,6 @@ void simplifyTree (tree_t* tree, FILE* latexFile) {
     fprintf(latexFile, "Итого:\n\\[ ");
     fprintfNodeToLatex(tree, *treeRoot(tree), latexFile);
     fprintf(latexFile, " \\]\n\n");
+
+    treeDump(tree, dumpInfo, "tree AFTER simplifying:");
 }

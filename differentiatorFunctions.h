@@ -49,6 +49,6 @@
 
     int deleteNeutralNode (tree_t* tree, node_t* node, FILE* latexFile);
 
-    void simplifyTree (tree_t* tree, FILE* latexFile);
+    void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile);
 
 #endif

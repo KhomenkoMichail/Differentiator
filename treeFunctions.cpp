@@ -48,30 +48,6 @@ int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile, size_t* nodesPass
     if (*nodesPassed > treeSize)
         return tooManyRecursiveCalls;
 
-    char leftPtr[STR_SIZE] = "NULL";
-    if (*(nodeLeft(node)) != NULL)
-        snprintf(leftPtr, sizeof(leftPtr), "0x%p", *(nodeLeft(node)));
-
-    char rightPtr[STR_SIZE] = "NULL";
-    if (*(nodeRight(node)) != NULL)
-        snprintf(rightPtr, sizeof(rightPtr), "0x%p", *(nodeRight(node)));
-
-    const char* typeName = 0;
-    switch (*nodeType(node)) {
-        case typeOperator:
-            typeName = "OP";
-            break;
-        case typeVariable:
-            typeName = "VAR";
-            break;
-        case typeNumber:
-            typeName = "NUM";
-            break;
-        default:
-            typeName = "ERROR";
-            break;
-    }
-
     if(*nodeType(node) == typeOperator) {
         #include "operatorsArray.h"
 
@@ -80,17 +56,17 @@ int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile, size_t* nodesPass
             if ((operatorsArray[numOfOp]).opCode == (nodeValue(node))->opCode)
                 break;
 
-        fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %s | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
-                node, rank, node, typeName, (operatorsArray[numOfOp]).opName, *nodeParent(node), leftPtr, rightPtr);
+        fprintf(graphFile, "    node0x%p [rank = %d, label = \"%s\", shape = diamond, style = filled, fillcolor = \"%s\", color = black];\n",
+                node, rank, (operatorsArray[numOfOp]).opName, (operatorsArray[numOfOp]).dumpColor);
     }
 
     else if (*nodeType(node) == typeVariable)
-        fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %llu | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
-                node, rank, node, typeName, (nodeValue(node))->varHash, *nodeParent(node), leftPtr, rightPtr);
+        fprintf(graphFile, "    node0x%p [rank = %d, label = \"%llu\", shape = triangle ,style = filled, fillcolor = \"#478c2cff\", color = black];\n",
+                node, rank, (nodeValue(node))->varHash);
 
     else
-        fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| type: %s| val = %lf | PARENT\\n 0x%p|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
-                node, rank, node, typeName, (nodeValue(node))->constValue, *nodeParent(node), leftPtr, rightPtr);
+        fprintf(graphFile, "    node0x%p [rank = %d, label = \"%g\", shape = circle, style = filled, fillcolor = \"#d1e6ffff\", color = black];\n",
+                node, rank, (nodeValue(node))->constValue);
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL) && !(_txIsBadReadPtr(*left)))
@@ -113,26 +89,26 @@ int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile, size_t* nodesPassed
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL) && !(_txIsBadReadPtr(*left))) {
-        fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#666350ff\"];\n", node, *nodeLeft(node));
+        fprintf(graphFile, "    node0x%p -> node0x%p [color = \"#666350ff\"];\n", node, *nodeLeft(node));
         fprintfNodeLinksForGraph(*nodeLeft(node), graphFile, nodesPassed, treeSize);
     }
 
     if((left != NULL) && (*left != NULL) && (_txIsBadReadPtr(*left))) {
         fprintf(graphFile, "    errorNode0x%p [label = \"ERROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
                 *left, *left);
-        fprintf(graphFile, "    node0x%p:left -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *left);
+        fprintf(graphFile, "    node0x%p -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *left);
     }
 
     node_t** right = nodeRight(node);
     if((right != NULL) && (*right != NULL) && !(_txIsBadReadPtr(*right))) {
-        fprintf(graphFile, "    node0x%p:right -> node0x%p:addr [color = \"#666350ff\"];\n", node, *nodeRight(node));
+        fprintf(graphFile, "    node0x%p -> node0x%p [color = \"#666350ff\"];\n", node, *nodeRight(node));
         fprintfNodeLinksForGraph(*nodeRight(node), graphFile, nodesPassed, treeSize);
     }
 
     if((right != NULL) && (*right != NULL) && (_txIsBadReadPtr(*right))) {
         fprintf(graphFile, "    errorNode0x%p [label = \"ERROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
                 *right, *right);
-        fprintf(graphFile, "    node0x%p:right -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *right);
+        fprintf(graphFile, "    node0x%p -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *right);
     }
 
     return 0;
