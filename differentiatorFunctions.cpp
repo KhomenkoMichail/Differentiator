@@ -460,8 +460,6 @@ node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, FILE* latexFile) {
     assert(node);
     assert(latexFile);
 
-    //*nodeParent(node) = parentNode;
-
     switch(*nodeType(node)) {
         case typeNumber:
             if ((nodeValue(node))->constValue >= 0)
@@ -952,4 +950,184 @@ void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile) {
     fprintf(latexFile, " \\]\n\n");
 
     treeDump(tree, dumpInfo, "tree AFTER simplifying:");
+}
+
+node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile) {
+    assert(node);
+    assert(gnuplotFile);
+
+    switch(*nodeType(node)) {
+        case typeNumber:
+            if ((nodeValue(node))->constValue >= 0)
+                fprintf(gnuplotFile, "%g", (nodeValue(node))->constValue);
+            else
+                fprintf(gnuplotFile, "(%g)", (nodeValue(node))->constValue);
+            break;
+        case typeVariable: {
+            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&(nodeValue(node)->varHash),
+            tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+            fprintf(gnuplotFile, "%s", searchedVariable->varName);
+            break;
+        }
+        case typeOperator:
+            if (needBrackets(node))
+                fprintf(gnuplotFile, "(");
+            switch((nodeValue(node))->opCode) {
+                case opADD:
+                    fprintfNodeToGnuplot(tree, *nodeLeft(node), gnuplotFile);
+                    fprintf(gnuplotFile, " + ");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    break;
+
+                case opSUB:
+                    fprintfNodeToGnuplot(tree, *nodeLeft(node), gnuplotFile);
+                    fprintf(gnuplotFile, " - ");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    break;
+
+                case opMUL:
+                    fprintfNodeToGnuplot(tree, *nodeLeft(node), gnuplotFile);
+                    fprintf(gnuplotFile, " * ");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    break;
+
+                case opDIV:
+                    fprintfNodeToGnuplot(tree, *nodeLeft(node), gnuplotFile);
+                    fprintf(gnuplotFile, " / ");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    break;
+
+                case opPOW:
+                    fprintfNodeToGnuplot(tree, *nodeLeft(node), gnuplotFile);
+                    fprintf(gnuplotFile, " ** ");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    break;
+
+                case opSIN:
+                    fprintf(gnuplotFile, "sin(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opCOS:
+                    fprintf(gnuplotFile, "cos(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opTG:
+                    fprintf(gnuplotFile, "tan(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opCTG:
+                    fprintf(gnuplotFile, "(1/tan(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, "))");
+                    break;
+
+                case opARCSIN:
+                    fprintf(gnuplotFile, "asin(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opARCCOS:
+                    fprintf(gnuplotFile, "acos(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opARCTG:
+                    fprintf(gnuplotFile, "atan(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opARCCTG:
+                    fprintf(gnuplotFile, "(pi/2 - atan(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, "))");
+                    break;
+
+                case opSH:
+                    fprintf(gnuplotFile, "sinh(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opCH:
+                    fprintf(gnuplotFile, "cosh(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opTH:
+                    fprintf(gnuplotFile, "tanh(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opCTH:
+                    fprintf(gnuplotFile, "(1/tanh(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, "))");
+                    break;
+
+                case opLN:
+                    fprintf(gnuplotFile, "log(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                case opLOG:
+                    fprintf(gnuplotFile, "(log(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ") / log(");
+                    fprintfNodeToGnuplot(tree, *nodeLeft(node), gnuplotFile);
+                    fprintf(gnuplotFile, "))");
+                    break;
+
+                case opEXP:
+                    fprintf(gnuplotFile, "exp(");
+                    fprintfNodeToGnuplot(tree, *nodeRight(node), gnuplotFile);
+                    fprintf(gnuplotFile, ")");
+                    break;
+
+                default:
+                    break;
+            }
+            if (needBrackets(node))
+                fprintf(gnuplotFile, ")");
+            break;
+
+        default:
+            break;
+    }
+
+    return node;
+}
+
+void createFunctionGraph (tree_t* tree, const char* graphName, FILE* latexFile, dump* dumpInfo) {
+    assert(tree);
+    assert(graphName);
+    assert(latexFile);
+    assert(dumpInfo);
+
+    FILE* gnuplotFile = fopen(dumpInfo->nameOfGnuplotFile, "w");
+
+    if (!gnuplotFile) {
+        fprintf(stderr, "Error of opening file \"%s\"", dumpInfo->nameOfGnuplotFile);
+        perror("");
+        return;
+    }
+
+    fprintf("");
+
+
+    if (fclose(gnuplotFile) != 0) {
+        fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
+        perror("");
+    }
 }

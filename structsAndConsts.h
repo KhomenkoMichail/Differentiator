@@ -77,6 +77,7 @@ struct dump {
     int dumpFileWasOpened;
 
     const char* nameOfLatexFile;
+    const char* nameOfPlotFile;
 };
 
 enum treeErr_t {

@@ -51,4 +51,6 @@
 
     void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile);
 
+    node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile);
+
 #endif
