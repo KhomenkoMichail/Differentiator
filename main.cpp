@@ -12,6 +12,7 @@ int main (void) {
     dumpInfo.nameOfGraphFile = "treeGraph.txt";
     dumpInfo.nameOfDumpFile = "dump.html";
     dumpInfo.nameOfLatexFile = "latexReport.tex";
+    dumpInfo.nameOfPlotFile = "funcGraph.plt";
 
     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
     solveMathExpressionTree (&expressionTree, &dumpInfo);

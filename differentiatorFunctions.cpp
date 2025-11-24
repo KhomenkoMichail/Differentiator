@@ -671,11 +671,12 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
         return;
     }
 
-    fprintf(latexFile, "\\documentclass{article}\n");
+    fprintf(latexFile, "\\documentclass{article}\n"); //FIXME
     fprintf(latexFile, "\\usepackage[utf8]{inputenc}\n");
     fprintf(latexFile, "\\usepackage[russian]{babel}\n");
     fprintf(latexFile, "\\usepackage{amsmath}\n");
     fprintf(latexFile, "\\usepackage{amssymb}\n");
+    fprintf(latexFile, "\\usepackage{graphicx}\n");
     fprintf(latexFile, "\\usepackage{geometry}\n");
     fprintf(latexFile, "\\geometry{a4paper, margin=0.5cm}\n");
     fprintf(latexFile, "\\begin{document}\n");
@@ -692,6 +693,8 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
 
     simplifyTree(&diffTree, dumpInfo, latexFile);
+    createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
+    createFunctionGraph(&diffTree, "график производной", latexFile, dumpInfo);
 
     fprintf(latexFile, "\\end{document}\n");
 
@@ -1115,16 +1118,28 @@ void createFunctionGraph (tree_t* tree, const char* graphName, FILE* latexFile, 
     assert(latexFile);
     assert(dumpInfo);
 
-    FILE* gnuplotFile = fopen(dumpInfo->nameOfGnuplotFile, "w");
+    FILE* gnuplotFile = fopen(dumpInfo->nameOfPlotFile, "w");
 
     if (!gnuplotFile) {
-        fprintf(stderr, "Error of opening file \"%s\"", dumpInfo->nameOfGnuplotFile);
+        fprintf(stderr, "Error of opening file \"%s\"", dumpInfo->nameOfPlotFile);
         perror("");
         return;
     }
 
-    fprintf("");
+    fprintf(gnuplotFile, "f(x) = ");
+    fprintfNodeToGnuplot(tree, *treeRoot(tree), gnuplotFile);
+    fprintf(gnuplotFile, "\nplot f(x) with lines title \"%s\"", graphName);
 
+    static int graphsCounter = 0;
+    graphsCounter++;
+
+    char plotCallCommand[2*STR_SIZE] = {};
+    snprintf(plotCallCommand, sizeof(plotCallCommand), "gnuplot -e \"set terminal png; set output 'funcGraph%d.png'; load '%s'\"", graphsCounter, dumpInfo->nameOfPlotFile);
+    system(plotCallCommand);
+
+    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
+    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{funcGraph%d.png}\n\\end{figure}",
+            graphsCounter);
 
     if (fclose(gnuplotFile) != 0) {
         fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);

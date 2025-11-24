@@ -53,4 +53,6 @@
 
     node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile);
 
+    void createFunctionGraph (tree_t* tree, const char* graphName, FILE* latexFile, dump* dumpInfo);
+
 #endif
