@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "structsAndConsts.h"
 #include "structAccessFunctions.h"
 #include "treeFunctions.h"
 #include "differentiatorFunctions.h"
+#include "texReportFunctions.h"
 
 int main (void) {
     tree_t expressionTree = {};
@@ -15,9 +17,9 @@ int main (void) {
     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
 
     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
-    solveMathExpressionTree (&expressionTree, &dumpInfo);
 
     printfLatexReport(&expressionTree, &dumpInfo);
-    deleteTree(&expressionTree);
 
+    free(expressionTree.variableArr);
+    deleteTree(&expressionTree);
 }

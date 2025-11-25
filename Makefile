@@ -2,7 +2,7 @@ flags = -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equa
 
 build:
 	@echo -------------------------------------------------------------------------
-	g++ main.cpp treeFunctions.cpp structAccessFunctions.cpp differentiatorFunctions.cpp helpingFunctions.cpp $(flags) -o differentiator.exe
+	g++ main.cpp treeFunctions.cpp structAccessFunctions.cpp differentiatorFunctions.cpp helpingFunctions.cpp texReportFunctions.cpp $(flags) -o differentiator.exe
 
 run:
 	./differentiator.exe
