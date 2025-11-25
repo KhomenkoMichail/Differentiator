@@ -232,20 +232,6 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     fprintf(latexFile, " \\]\n\n Ее график имеет вид:\n\n");
     createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
 
-
-    //tree_t diffTree = {};
-    //diffTree.variableArrSize = expressionTree->variableArrSize;
-    //diffTree.variableArr = expressionTree->variableArr;
-
-    /*diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
-
-    simplifyTree(&diffTree, dumpInfo, latexFile);
-    createFunctionGraph(&diffTree, "график производной", latexFile, dumpInfo);
-
-    findTheTangentAtPoint(expressionTree, &diffTree, "x", dumpInfo, latexFile);
-
-
-    deleteTree(&diffTree);*/
     firstDiffReport(expressionTree, dumpInfo, latexFile);
 
     fprintf(latexFile, "\\end{document}\n");
@@ -277,7 +263,6 @@ const char* getRandomPhrase (void) {
 
     return phrases[curPhraseNum];
 }
-
 
 node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile) {
     assert(node);
@@ -560,7 +545,7 @@ void fprintfTexReportIntro (FILE* latexFile) {
 
     fprintf(latexFile, "\\begin{center}\n");
     fprintf(latexFile, "\\vspace*{3cm}\n\n");
-    fprintf(latexFile, "{\\Huge \\textbf{Курс С раздолб до отл 10 на семестрой по матану за одну ночь.}}\\\\[1cm]\n");
+    fprintf(latexFile, "{\\Huge \\textbf{Курс \\guillemotleftОт раздолб до отл 10 на семестрой по матану за одну ночь\\guillemotright.}}\\\\[1cm]\n");
     fprintf(latexFile, "{\\Large Выполнил: Хоменко М.М.}\\\\[0.5cm]\n");
     fprintf(latexFile, "\\vfill\n");
     fprintf(latexFile, "{\\Large Долгопрудный, \\the\\year}\n");
@@ -590,6 +575,7 @@ int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
     diffTree.variableArrSize = expressionTree->variableArrSize;
     diffTree.variableArr = expressionTree->variableArr;
 
+    printf("Enter the name of the variable by which differentiation is performed: ");
     const char* diffVarName = getDiffVarName(expressionTree);
 
     fprintf(latexFile, "{\\Large Вычислим производную данной функции:}\n\n");
@@ -611,6 +597,8 @@ int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
     fprintf(latexFile, "\\section{Упражнение второе: вычисление касательной функции в точке}\n");
     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
 
+    expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+
     deleteTree(&diffTree);
     return 0;
 }
@@ -620,8 +608,6 @@ const char* getDiffVarName (tree_t* tree) {
 
     char diffVarName[STR_SIZE] = {};
     struct variableInfo* searchedVariable = 0;
-
-    printf("Enter the name of the variable by which differentiation is performed: ");
 
     while(1) {
         for (size_t i = 0; i < STR_SIZE; i++)
@@ -639,6 +625,7 @@ const char* getDiffVarName (tree_t* tree) {
         printf("The function does not have variable \"%s\"\n", diffVarName);
         printf("Enter another name of variable: ");
     }
+    searchedVariable->varValue = 0.0;
 
     return searchedVariable->varName;
 }
@@ -663,4 +650,3 @@ void fprintfGraphAtLatex(FILE* latexFile, const char* graphName) {
     fprintf(latexFile, "\t\\caption{%s}\n", graphName);
     fprintf(latexFile, "\\end{figure}\n");
 }
-

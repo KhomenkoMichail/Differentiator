@@ -14,4 +14,8 @@
     int structVariableComparator (const void* firstStruct, const void* secondStruct);
 
     int compareDouble (double first, double second);
+
+    size_t getSize_t (void);
+
+    unsigned long long getFactorial(size_t num);
 #endif

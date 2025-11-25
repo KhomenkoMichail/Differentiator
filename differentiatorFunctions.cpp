@@ -694,5 +694,64 @@ void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile) {
 }
 
 
+void expandTheFunctionInTaylor(tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
+    assert(expressionTree);
+    assert(dumpInfo);
+    assert(latexFile);
+
+    fprintf(latexFile, "\\section{Упражнение третье - разложение по Тайлеру}");
+
+    printf("Enter the name of variable according to which\n the decomposition of the Taylor formula will be carried out");
+    const char* diffVarName = getDiffVarName(expressionTree);
+    unsigned long long diffVarHash = getStringHash(diffVarName);
+
+    printf("Enter the degree to which decomposition must be carried out: ");
+    size_t degree = getSize_t();
+
+    tree_t diffTree = {};
+    diffTree.variableArrSize = expressionTree->variableArrSize;
+    diffTree.variableArr = expressionTree->variableArr;
+    *treeRoot(&diffTree) = *treeRoot(expressionTree);
+
+    tree_t taylorTree = {};
+    taylorTree.variableArrSize = expressionTree->variableArrSize;
+    taylorTree.variableArr = expressionTree->variableArr;
+    *treeRoot(&taylorTree) = newNodeCtor(&taylorTree, typeNumber, {.constValue = 0.0}, NULL, NULL);
+
+
+    fprintf(latexFile, "{\\Large Ну что почесались:}\n\n");
+
+    for (size_t curDegree = 0; curDegree <= degree; curDegree++) {
+
+        diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
+
+        double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+        double degreeFactorial = (double)getFactorial(degree);
+
+        *treeRoot(&taylorTree) = ADD_T_(*treeRoot(&taylorTree), MUL_T_(DIV_T_(NUM_T_(diffValue), NUM_T_(degreeFactorial)), POW_T_(VAR_T_(diffVarHash), NUM_T_((double)degree))));
+    }
+
+    fprintf(latexFile, "{\\Large В итоге:}\n\n");
+    fprintf(latexFile, "\\[\\boxed{ ");
+    fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    fprintf(latexFile, " = ");
+    fprintfNodeToLatex(&taylorTree, *treeRoot(&taylorTree), latexFile);
+    fprintf(latexFile, "+ o(%s^%llu)}\\]\n", diffVarName, degree);
+
+    fprintf(latexFile, "{\\Large Теперь упростим полученнoе выражение:}\n\n");
+    simplifyTree(&taylorTree, dumpInfo, latexFile);
+
+    fprintf(latexFile, "{\\Large Вcё доказано:}\n\n");
+    fprintf(latexFile, "\\[\\boxed{ ");
+    fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    fprintf(latexFile, " = ");
+    fprintfNodeToLatex(&taylorTree, *treeRoot(&taylorTree), latexFile);
+    fprintf(latexFile, "+ o(%s^%llu)}\\]\n", diffVarName, degree);
+
+    deleteTree(&diffTree);
+    deleteTree(&taylorTree);
+}
+
+
 
 

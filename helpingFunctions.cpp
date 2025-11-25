@@ -105,3 +105,30 @@ int compareDouble (double first, double second) {
 
     return 0;
 }
+
+size_t getSize_t (void) {
+    int ch = 0;
+    size_t num = 0;
+    char ch1 = '\0';
+
+    while ((scanf ("%llu%c", &num, &ch1) != 2) || (ch1 != '\n')) {
+
+        putchar(ch1);
+        while ((ch = getchar()) != '\n')
+            putchar (ch);
+
+        printf (" is not a unsigned number.\nEnter a unsigned number like 3, 44, 68\n");
+    }
+    return num;
+}
+
+unsigned long long getFactorial(size_t num) {
+
+    unsigned long long result = 1;
+
+    for (size_t i = 2; i <= num; i++) {
+        result *= i;
+    }
+
+    return result;
+}

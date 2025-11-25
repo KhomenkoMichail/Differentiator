@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1764098102.35597 "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" "latexReport.pdf" "latexReport" 1764098102.87966 0
-  "C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1763671308 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1764106515.91885 "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" "latexReport.pdf" "latexReport" 1764106516.78925 0
+  "C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764099067 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/labx1440.pk" 1764055021 36852 0c96ba12b1435b0f22c888fd715331f9 ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/labx2488.pk" 1764090684 66304 7df9c19247572d91e9f5b84cf393c87d ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/larm1000.pk" 1763669503 22324 3914d575fccd03ba15e2c644546744e5 ""
@@ -20,6 +20,7 @@
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1233951854 940 228d6584342e91276bf566bcf9716b83 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
+  "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty" 1704647332 150008 7a05b0fdc0167c04e192003e780ab195 ""
@@ -60,12 +61,12 @@
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1704400941 30006 57b07afb710ee2f649c65cfbafda39c1 ""
-  "FUNC_GRAPHS/funcGraph1.png" 1764098090 32104 09f0840491e1a30f3f59c89cadac541e ""
-  "FUNC_GRAPHS/funcGraph2.png" 1764098098 31167 ef8392204e21a1527910c29e796a3f4c ""
-  "FUNC_GRAPHS/funcGraph3.png" 1764098100 22481 40f1b1e4ee51f04360d60a5d642e705c ""
-  "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" 1764098100 3164 442dc8090232161f7ca004377e4d0c01 ""
-  "latexReport.aux" 1764098102 1077 2dc51163440c9ea391a1f94a787b3d1d "pdflatex"
-  "latexReport.tex" 1764098100 3164 442dc8090232161f7ca004377e4d0c01 ""
+  "FUNC_GRAPHS/funcGraph1.png" 1764106481 32104 09f0840491e1a30f3f59c89cadac541e ""
+  "FUNC_GRAPHS/funcGraph2.png" 1764106491 31167 ef8392204e21a1527910c29e796a3f4c ""
+  "FUNC_GRAPHS/funcGraph3.png" 1764106496 23012 8f68d4282c0dcb590ff00bd4ec11a0c5 ""
+  "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" 1764106512 311671 9772c40e5cb13df3ab33feb11c6beade ""
+  "latexReport.aux" 1764106516 1242 981690522b82e8940378bdd0cd93fab7 "pdflatex"
+  "latexReport.tex" 1764106512 311671 9772c40e5cb13df3ab33feb11c6beade ""
   (generated)
   "latexReport.aux"
   "latexReport.log"

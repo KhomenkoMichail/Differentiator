@@ -46,4 +46,13 @@
     diffResult;\
 })
 
+//Taylor DSL: &taylorTree
+#define ADD_T_(left, right) newNodeCtor(&taylorTree, typeOperator, {.opCode = opADD}, left, right)
+#define MUL_T_(left, right) newNodeCtor(&taylorTree, typeOperator, {.opCode = opMUL}, left, right)
+#define DIV_T_(left, right) newNodeCtor(&taylorTree, typeOperator, {.opCode = opDIV}, left, right)
+#define POW_T_(left, right) newNodeCtor(&taylorTree, typeOperator, {.opCode = opPOW}, left, right)
+
+#define VAR_T_(hash) newNodeCtor(&taylorTree, typeVariable, {.varHash = hash}, NULL, NULL)
+#define NUM_T_(value) newNodeCtor(&taylorTree, typeNumber, {.constValue = value}, NULL, NULL)
+
 #endif

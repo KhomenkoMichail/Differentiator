@@ -41,4 +41,6 @@
 
     void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile);
 
+    void expandTheFunctionInTaylor(tree_t* expressionTree, dump* dumpInfo, FILE* latexFile);
+
 #endif
