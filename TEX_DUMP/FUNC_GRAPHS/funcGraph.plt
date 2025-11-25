@@ -4,6 +4,6 @@ set xlabel 'x'
 set ylabel 'y'
 set grid
 f(x) = sin(x)
-tangent(x) = 0.841471 + (0.540302)*(x - 1)
+tangent(x) = 0.656987 + (0.753902)*(x - 7)
 plot f(x) with lines title "Исходная функция", \
-	tangent(x) with lines title "Касательная в точке 1"
+	tangent(x) with lines title "Касательная в точке 7"

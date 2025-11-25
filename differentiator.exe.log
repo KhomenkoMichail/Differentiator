@@ -2293,3 +2293,117 @@ Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF8A6E741F5 в функции _stdio_common_vfprintf_s(). Попытка прочесть данные по адресу 0x000000000002B61D в модуле C:\WINDOWS\System32\ucrtbase.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF72FF19830 (64-bit), Flags: Cmdre0, Thread: 0x4734 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A6E741F5 in C:\WINDOWS\System32\ucrtbase.dll: _stdio_common_vfprintf_s()
+# 2 0x00007FF8A6E7550D in C:\WINDOWS\System32\ucrtbase.dll: fputs()
+# 3 0x00007FF8A6E752EB in C:\WINDOWS\System32\ucrtbase.dll: fputs()
+# 4 0x00007FF8A6E74A7F in C:\WINDOWS\System32\ucrtbase.dll: fputs()
+# 5 0x00007FF8A6E74722 in C:\WINDOWS\System32\ucrtbase.dll: _stdio_common_vfprintf()
+# 6 0x00007FF8A6E74673 in C:\WINDOWS\System32\ucrtbase.dll: _stdio_common_vfprintf()
+# 7 0x00007FF72FEF7AA0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printf()
+
+# 8 0x00007FF72FEEC19C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getDiffVarName() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:644:
+
+    642:             break;
+    643: 
+=>  644:         printf("The function does not have variable \"%s\"\n");
+    645:         printf("Enter another name of variable: ");
+    646:     }
+
+# 9 0x00007FF72FEB1753 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18: 
+     19:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+=>   20:     char* name = getDiffVarName(&expressionTree);
+     21:     printf("name = %s\n", name);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 21:39:15, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 21:39:27
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF8A6E741F5 в функции _stdio_common_vfprintf_s(). Попытка прочесть данные по адресу 0x000000000002B61D в модуле C:\WINDOWS\System32\ucrtbase.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF72FF19830 (64-bit), Flags: Cmdre0, Thread: 0x4734 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A6E741F5 in C:\WINDOWS\System32\ucrtbase.dll: _stdio_common_vfprintf_s()
+# 2 0x00007FF8A6E7550D in C:\WINDOWS\System32\ucrtbase.dll: fputs()
+# 3 0x00007FF8A6E752EB in C:\WINDOWS\System32\ucrtbase.dll: fputs()
+# 4 0x00007FF8A6E74A7F in C:\WINDOWS\System32\ucrtbase.dll: fputs()
+# 5 0x00007FF8A6E74722 in C:\WINDOWS\System32\ucrtbase.dll: _stdio_common_vfprintf()
+# 6 0x00007FF8A6E74673 in C:\WINDOWS\System32\ucrtbase.dll: _stdio_common_vfprintf()
+# 7 0x00007FF72FEF7AA0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printf()
+
+# 8 0x00007FF72FEEC19C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getDiffVarName() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:644:
+
+    642:             break;
+    643: 
+=>  644:         printf("The function does not have variable \"%s\"\n");
+    645:         printf("Enter another name of variable: ");
+    646:     }
+
+# 9 0x00007FF72FEB1753 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18: 
+     19:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+=>   20:     char* name = getDiffVarName(&expressionTree);
+     21:     printf("name = %s\n", name);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 21:39:15, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 21:39:27
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------

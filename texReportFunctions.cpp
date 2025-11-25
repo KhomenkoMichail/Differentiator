@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "structsAndConsts.h"
 #include "structAccessFunctions.h"
@@ -228,25 +229,26 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
 
     fprintfTexReportIntro(latexFile);
     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
-    fprintf(latexFile, " \\]\n\n Ее график имеет вид:\n");
+    fprintf(latexFile, " \\]\n\n Ее график имеет вид:\n\n");
     createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
 
 
-    tree_t diffTree = {};
-    diffTree.variableArrSize = expressionTree->variableArrSize;
-    diffTree.variableArr = expressionTree->variableArr;
+    //tree_t diffTree = {};
+    //diffTree.variableArrSize = expressionTree->variableArrSize;
+    //diffTree.variableArr = expressionTree->variableArr;
 
-    diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    /*diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
 
     simplifyTree(&diffTree, dumpInfo, latexFile);
-    //createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
     createFunctionGraph(&diffTree, "график производной", latexFile, dumpInfo);
 
     findTheTangentAtPoint(expressionTree, &diffTree, "x", dumpInfo, latexFile);
 
-    fprintf(latexFile, "\\end{document}\n");
 
-    deleteTree(&diffTree);
+    deleteTree(&diffTree);*/
+    firstDiffReport(expressionTree, dumpInfo, latexFile);
+
+    fprintf(latexFile, "\\end{document}\n");
 
     if (fclose(latexFile) != 0) {
         fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
@@ -449,12 +451,7 @@ void createFunctionGraph(tree_t* tree, const char* graphName, FILE* latexFile, d
         return;
     }
 
-    fprintf(gnuplotFile, "set terminal png size 800,600\n");
-    fprintf(gnuplotFile, "set output 'TEX_DUMP/FUNC_GRAPHS/funcGraph%d.png'\n", graphsCounter);
-    fprintf(gnuplotFile, "set xlabel 'x'\n");
-    fprintf(gnuplotFile, "set ylabel 'y'\n");
-    fprintf(gnuplotFile, "set grid\n");
-    fprintf(gnuplotFile, "f(x) = ");
+    fprintfGnuplotHeaders(gnuplotFile);
     fprintfNodeToGnuplot(tree, *treeRoot(tree), gnuplotFile);
     fprintf(gnuplotFile, "\nplot f(x) with lines title \"%s\"\n", graphName);
 
@@ -469,10 +466,7 @@ void createFunctionGraph(tree_t* tree, const char* graphName, FILE* latexFile, d
 
     system(plotCallCommand);
 
-    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
-    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{FUNC_GRAPHS/funcGraph%d.png}\n", graphsCounter);
-    fprintf(latexFile, "\t\\caption{%s}\n", graphName);
-    fprintf(latexFile, "\\end{figure}\n");
+    fprintfGraphAtLatex(latexFile, graphName);
 }
 
 int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffVarName,
@@ -507,7 +501,6 @@ int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffV
     double pointValue = solveNode(funcTree, *treeRoot(funcTree));
     double derivativeValue = solveNode(diffTree, *treeRoot(diffTree));
 
-    fprintf(latexFile, "\\section{Нахождение касательной функции в точке.}\n");
     fprintf(latexFile, "Уравнение касательной функции:\n");
 
     fprintf(latexFile, "\\[ f = ");
@@ -526,12 +519,7 @@ int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffV
 
     graphsCounter++;
 
-    fprintf(gnuplotFile, "set terminal png size 800,600\n");
-    fprintf(gnuplotFile, "set output 'TEX_DUMP/FUNC_GRAPHS/funcGraph%d.png'\n", graphsCounter);
-    fprintf(gnuplotFile, "set xlabel 'x'\n");
-    fprintf(gnuplotFile, "set ylabel 'y'\n");
-    fprintf(gnuplotFile, "set grid\n");
-    fprintf(gnuplotFile, "f(x) = ");
+    fprintfGnuplotHeaders(gnuplotFile);
     fprintfNodeToGnuplot(funcTree, *treeRoot(funcTree), gnuplotFile);
     fprintf(gnuplotFile, "\ntangent(x) = %g + (%g)*(%s - %g)\n", pointValue, derivativeValue,
                                                              diffVarName, point);
@@ -550,14 +538,10 @@ int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffV
 
     system(plotCallCommand);
 
-    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
-    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{FUNC_GRAPHS/funcGraph%d.png}\n", graphsCounter);
-    //fprintf(latexFile, "\t\\caption{%s}\n", graphName);
-    fprintf(latexFile, "\\end{figure}\n");
+    fprintfGraphAtLatex(latexFile, "График касательной функции в точке");
 
     return 0;
 }
-//NOTE - запрашивать имя переменной по которой идет дифференцирование, протягивать его,
 
 
 void fprintfTexReportIntro (FILE* latexFile) {
@@ -577,9 +561,9 @@ void fprintfTexReportIntro (FILE* latexFile) {
     fprintf(latexFile, "\\begin{center}\n");
     fprintf(latexFile, "\\vspace*{3cm}\n\n");
     fprintf(latexFile, "{\\Huge \\textbf{Курс С раздолб до отл 10 на семестрой по матану за одну ночь.}}\\\\[1cm]\n");
-    fprintf(latexFile, "{\\large Выполнил: Хоменко М.М.}\\\\[0.5cm]\n");
+    fprintf(latexFile, "{\\Large Выполнил: Хоменко М.М.}\\\\[0.5cm]\n");
     fprintf(latexFile, "\\vfill\n");
-    fprintf(latexFile, "{\\large Долгопрудный, \\the\\year}\n");
+    fprintf(latexFile, "{\\Large Долгопрудный, \\the\\year}\n");
     fprintf(latexFile, "\\end{center}\n");
     fprintf(latexFile, "\\newpage\n\n");
 
@@ -592,10 +576,91 @@ void fprintfTexReportIntro (FILE* latexFile) {
     fprintf(latexFile, "подобным сдать экзамен, собрал небольшой курс упражнений для подготовки всего за одну ночь. ");
     fprintf(latexFile, "Желаю вам приятного времяпрепровождения.\n\n");
 
-    fprintf(latexFile, "\\section{Задание первое: взятие производной простейшей функции}\n");
+    fprintf(latexFile, "\\section{Упражнение первое: взятие производной простейшей функции}\n");
     fprintf(latexFile, "Имеем функцию:\n");
     fprintf(latexFile, "\\[ f = ");
 }
 
+int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
+    assert(expressionTree);
+    assert(dumpInfo);
+    assert(latexFile);
 
+    tree_t diffTree = {};
+    diffTree.variableArrSize = expressionTree->variableArrSize;
+    diffTree.variableArr = expressionTree->variableArr;
+
+    const char* diffVarName = getDiffVarName(expressionTree);
+
+    fprintf(latexFile, "{\\Large Вычислим производную данной функции:}\n\n");
+    diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, diffVarName, latexFile);
+
+    fprintf(latexFile, "{\\Large Теперь упростим полученную производную:}\n\n");
+    simplifyTree(&diffTree, dumpInfo, latexFile);
+
+    fprintf(latexFile, "{\\Large Итого получаем:}\n\n");
+    fprintf(latexFile, "\\[ \\frac{d}{d%s}(", diffVarName);
+    fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    fprintf(latexFile, ") = ");
+    fprintfNodeToLatex(&diffTree, *treeRoot(&diffTree), latexFile);
+    fprintf(latexFile, "\\]\n");
+
+    fprintf(latexFile, "{\\Large График полученной производной:}\n\n");
+    createFunctionGraph(&diffTree, "график производной", latexFile, dumpInfo);
+
+    fprintf(latexFile, "\\section{Упражнение второе: вычисление касательной функции в точке}\n");
+    findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+
+    deleteTree(&diffTree);
+    return 0;
+}
+
+const char* getDiffVarName (tree_t* tree) {
+    assert(tree);
+
+    char diffVarName[STR_SIZE] = {};
+    struct variableInfo* searchedVariable = 0;
+
+    printf("Enter the name of the variable by which differentiation is performed: ");
+
+    while(1) {
+        for (size_t i = 0; i < STR_SIZE; i++)
+            diffVarName[i] = '\0';
+
+        scanf("%s", diffVarName);
+
+        unsigned long long variableHash = getStringHash(diffVarName);
+        searchedVariable = (struct variableInfo*)bsearch(&variableHash,
+        tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
+
+        if((searchedVariable != NULL) && (strcmp(searchedVariable->varName, diffVarName) == 0))
+            break;
+
+        printf("The function does not have variable \"%s\"\n", diffVarName);
+        printf("Enter another name of variable: ");
+    }
+
+    return searchedVariable->varName;
+}
+
+void fprintfGnuplotHeaders(FILE* gnuplotFile) {
+    assert(gnuplotFile);
+
+    fprintf(gnuplotFile, "set terminal png size 800,600\n");
+    fprintf(gnuplotFile, "set output 'TEX_DUMP/FUNC_GRAPHS/funcGraph%d.png'\n", graphsCounter);
+    fprintf(gnuplotFile, "set xlabel 'x'\n");
+    fprintf(gnuplotFile, "set ylabel 'y'\n");
+    fprintf(gnuplotFile, "set grid\n");
+    fprintf(gnuplotFile, "f(x) = ");
+}
+
+void fprintfGraphAtLatex(FILE* latexFile, const char* graphName) {
+    assert(latexFile);
+    assert(graphName);
+
+    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
+    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{FUNC_GRAPHS/funcGraph%d.png}\n", graphsCounter);
+    fprintf(latexFile, "\t\\caption{%s}\n", graphName);
+    fprintf(latexFile, "\\end{figure}\n");
+}
 

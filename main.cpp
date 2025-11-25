@@ -18,6 +18,7 @@ int main (void) {
 
     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
 
+
     printfLatexReport(&expressionTree, &dumpInfo);
 
     free(expressionTree.variableArr);

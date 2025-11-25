@@ -21,4 +21,11 @@
 
     void fprintfTexReportIntro (FILE* latexFile);
 
+    const char* getDiffVarName (tree_t* tree);
+
+    void fprintfGnuplotHeaders (FILE* gnuplotFile);
+
+    void fprintfGraphAtLatex (FILE* latexFile, const char* graphName);
+
+    int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile);
 #endif
