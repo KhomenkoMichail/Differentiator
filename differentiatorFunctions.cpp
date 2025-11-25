@@ -726,9 +726,9 @@ void expandTheFunctionInTaylor(tree_t* expressionTree, dump* dumpInfo, FILE* lat
         diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
 
         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
-        double degreeFactorial = (double)getFactorial(degree);
+        double degreeFactorial = (double)getFactorial(curDegree);
 
-        *treeRoot(&taylorTree) = ADD_T_(*treeRoot(&taylorTree), MUL_T_(DIV_T_(NUM_T_(diffValue), NUM_T_(degreeFactorial)), POW_T_(VAR_T_(diffVarHash), NUM_T_((double)degree))));
+        *treeRoot(&taylorTree) = ADD_T_(*treeRoot(&taylorTree), MUL_T_(DIV_T_(NUM_T_(diffValue), NUM_T_(degreeFactorial)), POW_T_(VAR_T_(diffVarHash), NUM_T_((double)curDegree))));
     }
 
     fprintf(latexFile, "{\\Large В итоге:}\n\n");
