@@ -1,0 +1,7 @@
+digraph Tree {
+    rankdir = TB;
+    node [shape = Mrecord, color = black];
+    node0x00000184314f0290 [rank = 0, label = "cos", shape = diamond, style = filled, fillcolor = "#7adba6ff", color = black];
+    node0x00000184314f0080 [rank = 1, label = "177693", shape = triangle ,style = filled, fillcolor = "#478c2cff", color = black];
+    node0x00000184314f0290 -> node0x00000184314f0080 [color = "#666350ff"];
+ }

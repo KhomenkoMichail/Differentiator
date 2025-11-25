@@ -9,10 +9,10 @@ int main (void) {
     tree_t expressionTree = {};
     struct dump dumpInfo = {};
 
-    dumpInfo.nameOfGraphFile = "treeGraph.txt";
-    dumpInfo.nameOfDumpFile = "dump.html";
-    dumpInfo.nameOfLatexFile = "latexReport.tex";
-    dumpInfo.nameOfPlotFile = "funcGraph.plt";
+    dumpInfo.nameOfGraphFile = "DUMPS/treeGraph.txt";
+    dumpInfo.nameOfDumpFile = "DUMPS/dump.html";
+    dumpInfo.nameOfLatexFile = "TEX_DUMP/latexReport.tex";
+    dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
 
     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
     solveMathExpressionTree (&expressionTree, &dumpInfo);

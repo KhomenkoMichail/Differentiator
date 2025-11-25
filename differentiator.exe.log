@@ -1501,3 +1501,795 @@ Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF74C439830 (64-bit), Flags: Cmdre0, Thread: 0x5EDC (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF74C3E319C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF74C3E3704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FF8A6F01989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FF8A6EE4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FF8A6EA1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FF8A6F02AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF74C40305A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeLeft() at C:/Users/Admin/Desktop/prodva/Differentiator/structAccessFunctions.cpp:14:
+
+     12: 
+     13: node_t** nodeLeft (node_t* node) {
+=>   14:     assert(node);
+     15: 
+     16:     return &(node->left);
+
+# 7 0x00007FF74C409EFF in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:897:
+
+    895: 
+    896:     node_t* parNode = *nodeParent(node);
+=>  897:     if (*nodeLeft(parNode) == node)
+    898:         *nodeLeft(parNode) = *nodeLeft(node);
+    899:     else
+
+# 8 0x00007FF74C409961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF74C40A352 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:952:
+
+    950:         oldTreeSize = *treeSize(tree);
+    951:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  952:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    953:     } while (oldTreeSize != *treeSize(tree));
+    954: 
+
+#10 0x00007FF74C40914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF74C3D1767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 10:32:14, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 10:32:25
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF74C439830 (64-bit), Flags: Cmdre0, Thread: 0x2CB8 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF74C3E319C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF74C3E3704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FF8A6F01989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FF8A6EE4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FF8A6EA1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FF8A6F02AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF74C40305A in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: nodeLeft() at C:/Users/Admin/Desktop/prodva/Differentiator/structAccessFunctions.cpp:14:
+
+     12: 
+     13: node_t** nodeLeft (node_t* node) {
+=>   14:     assert(node);
+     15: 
+     16:     return &(node->left);
+
+# 7 0x00007FF74C409EFF in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:897:
+
+    895: 
+    896:     node_t* parNode = *nodeParent(node);
+=>  897:     if (*nodeLeft(parNode) == node)
+    898:         *nodeLeft(parNode) = *nodeLeft(node);
+    899:     else
+
+# 8 0x00007FF74C409961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF74C40A352 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:952:
+
+    950:         oldTreeSize = *treeSize(tree);
+    951:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  952:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    953:     } while (oldTreeSize != *treeSize(tree));
+    954: 
+
+#10 0x00007FF74C40914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF74C3D1767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 10:32:14, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 10:33:04
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: #1: РљСѓС‡Р° Р±С‹Р»Р° РїРѕРІСЂРµР¶РґРµРЅР°. (0xC0000374) при выполнении кода по адресу 0x00007FF8A9C17885 в функции RtlpMuiRegCreateRegistryInfo() в модуле C:\WINDOWS\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+Ой, всё (EXCEPTION_NONCONTINUABLE).
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF708BD9830 (64-bit), Flags: Cmdre0, Thread: 0x5648 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A9C17885 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlpMuiRegCreateRegistryInfo()
+# 2 0x00007FF8A9B26742 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlSetProcessPreferredUILanguages()
+# 3 0x00007FF8A9C1D9AA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlLengthCurrentClearRunForwardEx()
+# 4 0x00007FF8A9B1ED2B in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlAllocateHeap()
+# 5 0x00007FF8A9B793BA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 6 0x00007FF8A6E5E0FB in C:\WINDOWS\System32\ucrtbase.dll: free_base()
+
+# 7 0x00007FF708BA9EE0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:894:
+
+    892:     fprintfNodeToLatex(tree, node, latexFile);
+    893: 
+=>  894:     free(*nodeRight(node));
+    895: 
+    896:     node_t* parNode = *nodeParent(node);
+
+# 8 0x00007FF708BA9961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF708BAA360 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:956:
+
+    954:         oldTreeSize = *treeSize(tree);
+    955:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  956:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    957:     } while (oldTreeSize != *treeSize(tree));
+    958: 
+
+#10 0x00007FF708BA914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF708B71767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 10:37:43, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 10:37:53
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: #1: РљСѓС‡Р° Р±С‹Р»Р° РїРѕРІСЂРµР¶РґРµРЅР°. (0xC0000374) при выполнении кода по адресу 0x00007FF8A9C17885 в функции RtlpMuiRegCreateRegistryInfo() в модуле C:\WINDOWS\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+Ой, всё (EXCEPTION_NONCONTINUABLE).
+
+С помощью функции _set_se_translator() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF708BD9830 (64-bit), Flags: Cmdre0, Thread: 0x5648 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A9C17885 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlpMuiRegCreateRegistryInfo()
+# 2 0x00007FF8A9B26742 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlSetProcessPreferredUILanguages()
+# 3 0x00007FF8A9C1D9AA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlLengthCurrentClearRunForwardEx()
+# 4 0x00007FF8A9B1ED2B in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlAllocateHeap()
+# 5 0x00007FF8A9B793BA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 6 0x00007FF8A6E5E0FB in C:\WINDOWS\System32\ucrtbase.dll: free_base()
+
+# 7 0x00007FF708BA9EE0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:894:
+
+    892:     fprintfNodeToLatex(tree, node, latexFile);
+    893: 
+=>  894:     free(*nodeRight(node));
+    895: 
+    896:     node_t* parNode = *nodeParent(node);
+
+# 8 0x00007FF708BA9961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF708BAA360 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:956:
+
+    954:         oldTreeSize = *treeSize(tree);
+    955:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  956:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    957:     } while (oldTreeSize != *treeSize(tree));
+    958: 
+
+#10 0x00007FF708BA914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF708B71767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 10:37:43, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 10:37:52
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: #1: РљСѓС‡Р° Р±С‹Р»Р° РїРѕРІСЂРµР¶РґРµРЅР°. (0xC0000374) при выполнении кода по адресу 0x00007FF8A9C17885 в функции RtlpMuiRegCreateRegistryInfo() в модуле C:\WINDOWS\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+Ой, всё (EXCEPTION_NONCONTINUABLE).
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7E6B09830 (64-bit), Flags: Cmdre0, Thread: 0x22A4 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A9C17885 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlpMuiRegCreateRegistryInfo()
+# 2 0x00007FF8A9B26742 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlSetProcessPreferredUILanguages()
+# 3 0x00007FF8A9C1D9AA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlLengthCurrentClearRunForwardEx()
+# 4 0x00007FF8A9B1ED2B in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlAllocateHeap()
+# 5 0x00007FF8A9B793BA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 6 0x00007FF8A6E5E0FB in C:\WINDOWS\System32\ucrtbase.dll: free_base()
+
+# 7 0x00007FF7E6AD9EE0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:894:
+
+    892:     fprintfNodeToLatex(tree, node, latexFile);
+    893: 
+=>  894:     free(*nodeRight(node));//FIXME
+    895: 
+    896:     node_t* parNode = *nodeParent(node);
+
+# 8 0x00007FF7E6AD9961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF7E6ADA360 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:956:
+
+    954:         oldTreeSize = *treeSize(tree);
+    955:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  956:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    957:     } while (oldTreeSize != *treeSize(tree));
+    958: 
+
+#10 0x00007FF7E6AD914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF7E6AA1767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 18:24:00, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 18:24:06
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: #1: РљСѓС‡Р° Р±С‹Р»Р° РїРѕРІСЂРµР¶РґРµРЅР°. (0xC0000374) при выполнении кода по адресу 0x00007FF8A9C17885 в функции RtlpMuiRegCreateRegistryInfo() в модуле C:\WINDOWS\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+Ой, всё (EXCEPTION_NONCONTINUABLE).
+
+С помощью функции _set_se_translator() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7E6B09830 (64-bit), Flags: Cmdre0, Thread: 0x22A4 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A9C17885 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlpMuiRegCreateRegistryInfo()
+# 2 0x00007FF8A9B26742 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlSetProcessPreferredUILanguages()
+# 3 0x00007FF8A9C1D9AA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlLengthCurrentClearRunForwardEx()
+# 4 0x00007FF8A9B1ED2B in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlAllocateHeap()
+# 5 0x00007FF8A9B793BA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 6 0x00007FF8A6E5E0FB in C:\WINDOWS\System32\ucrtbase.dll: free_base()
+
+# 7 0x00007FF7E6AD9EE0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:894:
+
+    892:     fprintfNodeToLatex(tree, node, latexFile);
+    893: 
+=>  894:     free(*nodeRight(node));//FIXME
+    895: 
+    896:     node_t* parNode = *nodeParent(node);
+
+# 8 0x00007FF7E6AD9961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF7E6ADA360 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:956:
+
+    954:         oldTreeSize = *treeSize(tree);
+    955:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  956:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    957:     } while (oldTreeSize != *treeSize(tree));
+    958: 
+
+#10 0x00007FF7E6AD914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF7E6AA1767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 18:24:00, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 18:24:05
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: #1: РљСѓС‡Р° Р±С‹Р»Р° РїРѕРІСЂРµР¶РґРµРЅР°. (0xC0000374) при выполнении кода по адресу 0x00007FF8A9C17885 в функции RtlpMuiRegCreateRegistryInfo() в модуле C:\WINDOWS\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+Ой, всё (EXCEPTION_NONCONTINUABLE).
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6299B9830 (64-bit), Flags: Cmdre0, Thread: 0x61F8 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A9C17885 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlpMuiRegCreateRegistryInfo()
+# 2 0x00007FF8A9B26742 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlSetProcessPreferredUILanguages()
+# 3 0x00007FF8A9C1D9AA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlLengthCurrentClearRunForwardEx()
+# 4 0x00007FF8A9B1ED2B in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlAllocateHeap()
+# 5 0x00007FF8A9B793BA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 6 0x00007FF8A6E5E0FB in C:\WINDOWS\System32\ucrtbase.dll: free_base()
+
+# 7 0x00007FF629989F01 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:896:
+
+    894:     printf("*nodeRight(node) == %p\n", *nodeRight(node));
+    895: 
+=>  896:     free(*nodeRight(node));//FIXME
+    897: 
+    898:     node_t* parNode = *nodeParent(node);
+
+# 8 0x00007FF629989961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF62998A381 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:958:
+
+    956:         oldTreeSize = *treeSize(tree);
+    957:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  958:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    959:     } while (oldTreeSize != *treeSize(tree));
+    960: 
+
+#10 0x00007FF62998914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF629951767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 18:27:21, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 18:27:32
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: #1: РљСѓС‡Р° Р±С‹Р»Р° РїРѕРІСЂРµР¶РґРµРЅР°. (0xC0000374) при выполнении кода по адресу 0x00007FF8A9C17885 в функции RtlpMuiRegCreateRegistryInfo() в модуле C:\WINDOWS\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+Ой, всё (EXCEPTION_NONCONTINUABLE).
+
+С помощью функции _set_se_translator() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6299B9830 (64-bit), Flags: Cmdre0, Thread: 0x61F8 (Main), GetLastError(): 183 (РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р», С‚Р°Рє РєР°Рє РѕРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF8A9C17885 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlpMuiRegCreateRegistryInfo()
+# 2 0x00007FF8A9B26742 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlSetProcessPreferredUILanguages()
+# 3 0x00007FF8A9C1D9AA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlLengthCurrentClearRunForwardEx()
+# 4 0x00007FF8A9B1ED2B in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlAllocateHeap()
+# 5 0x00007FF8A9B793BA in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 6 0x00007FF8A6E5E0FB in C:\WINDOWS\System32\ucrtbase.dll: free_base()
+
+# 7 0x00007FF629989F01 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteRightNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:896:
+
+    894:     printf("*nodeRight(node) == %p\n", *nodeRight(node));
+    895: 
+=>  896:     free(*nodeRight(node));//FIXME
+    897: 
+    898:     node_t* parNode = *nodeParent(node);
+
+# 8 0x00007FF629989961 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:817:
+
+    815:                 (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+    816: 
+=>  817:                 deleteRightNode(tree, node, latexFile);
+    818:                 return 1;
+    819:             }
+
+# 9 0x00007FF62998A381 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:958:
+
+    956:         oldTreeSize = *treeSize(tree);
+    957:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  958:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    959:     } while (oldTreeSize != *treeSize(tree));
+    960: 
+
+#10 0x00007FF62998914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+#11 0x00007FF629951767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 18:27:21, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 18:27:31
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF6251296FE в функции deleteNeutralNode() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 791. Попытка прочесть данные по адресу 0x0000020B0000008C в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF625159830 (64-bit), Flags: Cmdre0, Thread: 0x4330 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6251296FE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:791:
+
+    789:     assert(latexFile);
+    790: 
+=>  791:     if (*nodeLeft(node))
+    792:         deleteNeutralNode(tree, *nodeLeft(node), latexFile);
+    793: 
+
+# 1 0x00007FF62512972D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:792:
+
+    790: 
+    791:     if (*nodeLeft(node))
+=>  792:         deleteNeutralNode(tree, *nodeLeft(node), latexFile);
+    793: 
+    794:     if (*nodeRight(node))
+
+# 2 0x00007FF62512A398 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:959:
+
+    957:         oldTreeSize = *treeSize(tree);
+    958:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  959:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    960:         treeDump(tree, dumpInfo, "РєРѕРЅРµС† С†РёРєР»Р°");
+    961:     } while (oldTreeSize != *treeSize(tree));
+
+# 3 0x00007FF62512914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+# 4 0x00007FF6250F1767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 18:33:34, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 18:33:43
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00007FF6251296FE в функции deleteNeutralNode() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 791. Попытка прочесть данные по адресу 0x0000020B0000008C в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF625159830 (64-bit), Flags: Cmdre0, Thread: 0x4330 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6251296FE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:791:
+
+    789:     assert(latexFile);
+    790: 
+=>  791:     if (*nodeLeft(node))
+    792:         deleteNeutralNode(tree, *nodeLeft(node), latexFile);
+    793: 
+
+# 1 0x00007FF62512972D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: deleteNeutralNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:792:
+
+    790: 
+    791:     if (*nodeLeft(node))
+=>  792:         deleteNeutralNode(tree, *nodeLeft(node), latexFile);
+    793: 
+    794:     if (*nodeRight(node))
+
+# 2 0x00007FF62512A398 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: simplifyTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:959:
+
+    957:         oldTreeSize = *treeSize(tree);
+    958:         constConvolution(tree, (*treeRoot(tree)), latexFile);
+=>  959:         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+    960:         treeDump(tree, dumpInfo, "РєРѕРЅРµС† С†РёРєР»Р°");
+    961:     } while (oldTreeSize != *treeSize(tree));
+
+# 3 0x00007FF62512914E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:697:
+
+    695:     diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(expressionTree), dumpInfo, "x", latexFile);
+    696: 
+=>  697:     simplifyTree(&diffTree, dumpInfo, latexFile);
+    698:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    699:     createFunctionGraph(&diffTree, "РіСЂР°С„РёРє РїСЂРѕРёР·РІРѕРґРЅРѕР№", latexFile, dumpInfo);
+
+# 4 0x00007FF6250F1767 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:20:
+
+     18:     solveMathExpressionTree (&expressionTree, &dumpInfo);
+     19: 
+=>   20:     printfLatexReport(&expressionTree, &dumpInfo);
+     21:     deleteTree(&expressionTree);
+     22: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 25 2025 18:33:34, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 25 2025 18:33:42
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------

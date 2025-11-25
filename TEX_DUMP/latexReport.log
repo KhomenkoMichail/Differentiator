@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.20)  24 NOV 2025 10:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.20)  25 NOV 2025 18:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Admin/Desktop/prodva/Differentiator/latexReport.tex
-(c:/Users/Admin/Desktop/prodva/Differentiator/latexReport.tex
+**c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex
+(c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -374,7 +374,11 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count278
 \l__pdf_internal_box=\box53
-) (latexReport.aux)
+) (latexReport.aux
+LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 5.
+ (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmr.fd
+File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+))
 \openout1 = `latexReport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -392,10 +396,6 @@ LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 9.
-LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 9.
- (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmr.fd
-File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Info: Redefining \th on input line 9.
  (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
@@ -459,5 +459,45 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
  (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-!pdfTeX error: pdflatex (file ./funcGraph1.png): reading image file failed
- ==> Fatal error occurred, no output PDF file produced!
+<FUNC_GRAPHS/funcGraph1.png, id=1, 602.25pt x 451.6875pt>
+File: FUNC_GRAPHS/funcGraph1.png Graphic file (type png)
+<use FUNC_GRAPHS/funcGraph1.png>
+Package pdftex.def Info: FUNC_GRAPHS/funcGraph1.png  used on input line 28.
+(pdftex.def)             Requested size: 284.52757pt x 213.40279pt.
+<FUNC_GRAPHS/funcGraph2.png, id=2, 602.25pt x 451.6875pt>
+File: FUNC_GRAPHS/funcGraph2.png Graphic file (type png)
+<use FUNC_GRAPHS/funcGraph2.png>
+Package pdftex.def Info: FUNC_GRAPHS/funcGraph2.png  used on input line 33.
+(pdftex.def)             Requested size: 284.52757pt x 213.40279pt.
+<FUNC_GRAPHS/funcGraph3.png, id=3, 602.25pt x 451.6875pt>
+File: FUNC_GRAPHS/funcGraph3.png Graphic file (type png)
+<use FUNC_GRAPHS/funcGraph3.png>
+Package pdftex.def Info: FUNC_GRAPHS/funcGraph3.png  used on input line 45.
+(pdftex.def)             Requested size: 284.52757pt x 213.40279pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1
+
+{C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./FUNC_GRAPHS/funcGraph1.png (PNG copy)> <./FUNC_GRAPHS/funcGraph2.png (PNG copy)>] [2 <./FUNC_GRAPHS/funcGraph3.png (PNG copy)>] (latexReport.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 4802 strings out of 474486
+ 72806 string characters out of 5743754
+ 1928542 words of memory out of 5000000
+ 27051 multiletter control sequences out of 15000+600000
+ 562189 words of font info for 47 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,6n,65p,297b,241s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1000.pk><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on latexReport.pdf (2 pages, 144119 bytes).
+PDF statistics:
+ 96 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -13,6 +13,8 @@
 #include "helpingFunctions.h"
 #include "DSL.h"
 
+static int graphsCounter = 0;
+
 int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile) {
     assert(tree);
     assert(dumpInfo);
@@ -167,8 +169,7 @@ int processNodeType (tree_t* tree, node_t* node, char** bufPos) {
             if((searchedVariable != NULL) && (strcmp(searchedVariable->varName, valueString) == 0)) {
                 (nodeValue(node))->varHash = searchedVariable->varHash;
             }
-            else {//FIXME
-                //((tree->variableArr)[0]).varName = strdup(valueString);
+            else {
                 strncpy(((tree->variableArr)[0]).varName, valueString, lenOfValue);
                 ((tree->variableArr)[0]).varHash = variableHash;
                 qsort(tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), structVariableComparator);
@@ -291,22 +292,22 @@ double solveMathExpressionTree (tree_t* tree, dump* dumpInfo) {
     assert(dumpInfo);
 
     for(size_t numOfVar = 0; numOfVar < tree->variableArrSize; numOfVar++)
-        if (((tree->variableArr)[numOfVar].varName)[0] != '\0')
-            (tree->variableArr)[numOfVar].varValue = getDoubleVarValue((tree->variableArr)[numOfVar].varName);
+        if (((tree->variableArr)[numOfVar].varName)[0] != '\0') {
+            printf("Enter the value of variable \"%s\": ", (tree->variableArr)[numOfVar].varName);
+            (tree->variableArr)[numOfVar].varValue = getDoubleVarValue();
+        }
 
     double result = solveNode(tree, *treeRoot(tree));
 
-    printf("the result of solving Math Expression is : %lf", result);
+    printf("the result of solving Math Expression is : %g", result);
 
     return result;
 }
 
-double getDoubleVarValue (const char* varName) {
+double getDoubleVarValue (void) {
     int ch = 0;
     double number = NAN;
     char ch1 = '\0';
-
-    printf("Enter the value of variable \"%s\": ", varName);
 
     while ((scanf ("%lf%c", &number, &ch1) != 2) || (ch1 != '\n')) {
 
@@ -696,6 +697,8 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
     createFunctionGraph(&diffTree, "график производной", latexFile, dumpInfo);
 
+    findTheTangentAtPoint(expressionTree, &diffTree, "x", dumpInfo, latexFile);
+
     fprintf(latexFile, "\\end{document}\n");
 
     deleteTree(&diffTree);
@@ -887,13 +890,19 @@ void deleteRightNode(tree_t* tree, node_t* node, FILE* latexFile) {
     fprintf(latexFile, "\\[");
     fprintfNodeToLatex(tree, node, latexFile);
 
-    free(*nodeRight(node));
+    printf("*nodeRight(node) == %p\n", *nodeRight(node));
+
+    free(*nodeRight(node));//FIXME
 
     node_t* parNode = *nodeParent(node);
-    if (*nodeLeft(parNode) == node)
-        *nodeLeft(parNode) = *nodeLeft(node);
+    if (parNode) {
+        if (*nodeLeft(parNode) == node)
+            *nodeLeft(parNode) = *nodeLeft(node);
+        else
+            *nodeRight(parNode) = *nodeLeft(node);
+    }
     else
-        *nodeRight(parNode) = *nodeLeft(node);
+        *treeRoot(tree) = *nodeLeft(node);
 
     *nodeParent(*nodeLeft(node)) = parNode;
 
@@ -917,10 +926,14 @@ void deleteLeftNode(tree_t* tree, node_t* node, FILE* latexFile) {
     free(*nodeLeft(node));
 
     node_t* parNode = *nodeParent(node);
-    if (*nodeLeft(parNode) == node)
-        *nodeLeft(parNode) = *nodeRight(node);
+    if (parNode) {
+        if (*nodeLeft(parNode) == node)
+            *nodeLeft(parNode) = *nodeRight(node);
+        else
+            *nodeRight(parNode) = *nodeRight(node);
+    }
     else
-        *nodeRight(parNode) = *nodeRight(node);
+        *treeRoot(tree) = *nodeRight(node);
 
     *nodeParent(*nodeRight(node)) = parNode;
 
@@ -943,9 +956,11 @@ void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile) {
 
     size_t oldTreeSize = 0;
     do {
+        treeDump(tree, dumpInfo, "начало цикла");
         oldTreeSize = *treeSize(tree);
         constConvolution(tree, (*treeRoot(tree)), latexFile);
         deleteNeutralNode(tree, (*treeRoot(tree)), latexFile);
+        treeDump(tree, dumpInfo, "конец цикла");
     } while (oldTreeSize != *treeSize(tree));
 
     fprintf(latexFile, "Итого:\n\\[ ");
@@ -1112,37 +1127,131 @@ node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile) {
     return node;
 }
 
-void createFunctionGraph (tree_t* tree, const char* graphName, FILE* latexFile, dump* dumpInfo) {
+void createFunctionGraph(tree_t* tree, const char* graphName, FILE* latexFile, dump* dumpInfo) {
     assert(tree);
     assert(graphName);
     assert(latexFile);
     assert(dumpInfo);
 
-    FILE* gnuplotFile = fopen(dumpInfo->nameOfPlotFile, "w");
+    graphsCounter++;
 
+    FILE* gnuplotFile = fopen(dumpInfo->nameOfPlotFile, "w");
     if (!gnuplotFile) {
-        fprintf(stderr, "Error of opening file \"%s\"", dumpInfo->nameOfPlotFile);
+        fprintf(stderr, "Error opening file \"%s\"", dumpInfo->nameOfPlotFile);
         perror("");
         return;
     }
 
+    fprintf(gnuplotFile, "set terminal png size 800,600\n");
+    fprintf(gnuplotFile, "set output 'TEX_DUMP/FUNC_GRAPHS/funcGraph%d.png'\n", graphsCounter);
+    fprintf(gnuplotFile, "set xlabel 'x'\n");
+    fprintf(gnuplotFile, "set ylabel 'y'\n");
+    fprintf(gnuplotFile, "set grid\n");
     fprintf(gnuplotFile, "f(x) = ");
     fprintfNodeToGnuplot(tree, *treeRoot(tree), gnuplotFile);
-    fprintf(gnuplotFile, "\nplot f(x) with lines title \"%s\"", graphName);
-
-    static int graphsCounter = 0;
-    graphsCounter++;
-
-    char plotCallCommand[2*STR_SIZE] = {};
-    snprintf(plotCallCommand, sizeof(plotCallCommand), "gnuplot -e \"set terminal png; set output 'funcGraph%d.png'; load '%s'\"", graphsCounter, dumpInfo->nameOfPlotFile);
-    system(plotCallCommand);
-
-    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
-    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{funcGraph%d.png}\n\\end{figure}",
-            graphsCounter);
+    fprintf(gnuplotFile, "\nplot f(x) with lines title \"%s\"\n", graphName);
 
     if (fclose(gnuplotFile) != 0) {
         fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
         perror("");
     }
+
+    char plotCallCommand[STR_SIZE] = {};
+    snprintf(plotCallCommand, sizeof(plotCallCommand),
+             "gnuplot \"%s\"", dumpInfo->nameOfPlotFile);
+
+    system(plotCallCommand);
+
+    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
+    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{FUNC_GRAPHS/funcGraph%d.png}\n", graphsCounter);
+    fprintf(latexFile, "\t\\caption{%s}\n", graphName);
+    fprintf(latexFile, "\\end{figure}\n");
 }
+
+int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffVarName,
+                            dump* dumpInfo, FILE* latexFile) {
+    assert(funcTree);
+    assert(diffTree);
+    assert(diffVarName);
+    assert(dumpInfo);
+    assert(latexFile);
+
+    printf("Enter the point at which you want to get the tangent: ");
+    double point = getDoubleVarValue ();
+
+    unsigned long long diffVarHash = getStringHash(diffVarName);
+
+    variableInfo* funcVariable = (struct variableInfo*)bsearch(&diffVarHash,
+        funcTree->variableArr, funcTree->variableArrSize, sizeof(variableInfo),
+        bsearchHashComparator);
+
+    variableInfo* diffVariable = (struct variableInfo*)bsearch(&diffVarHash,
+        diffTree->variableArr, diffTree->variableArrSize, sizeof(variableInfo),
+        bsearchHashComparator);
+
+    if ((!funcVariable) || (!diffVariable)) {
+        printf("Error in function %s: cannot find variable \"%s\".\n", __func__, diffVarName);
+        return 1;
+    }
+
+    funcVariable->varValue = point;
+    diffVariable->varValue = point;
+
+    double pointValue = solveNode(funcTree, *treeRoot(funcTree));
+    double derivativeValue = solveNode(diffTree, *treeRoot(diffTree));
+
+    fprintf(latexFile, "\\section{Нахождение касательной функции в точке.}\n");
+    fprintf(latexFile, "Уравнение касательной функции:\n");
+
+    fprintf(latexFile, "\\[ f = ");
+    fprintfNodeToLatex(funcTree, *treeRoot(funcTree), latexFile);
+    fprintf(latexFile, " \\]\n\n в точке %s = %g:\n", diffVarName, point);
+
+    fprintf(latexFile, "\\[ f = %g + (%g)*(%s - %g)\\]\n\n", pointValue, derivativeValue,
+                                                             diffVarName, point);
+
+    FILE* gnuplotFile = fopen(dumpInfo->nameOfPlotFile, "w");
+    if (!gnuplotFile) {
+        fprintf(stderr, "Error opening file \"%s\"", dumpInfo->nameOfPlotFile);
+        perror("");
+        return 1;
+    }
+
+    graphsCounter++;
+
+    fprintf(gnuplotFile, "set terminal png size 800,600\n");
+    fprintf(gnuplotFile, "set output 'TEX_DUMP/FUNC_GRAPHS/funcGraph%d.png'\n", graphsCounter);
+    fprintf(gnuplotFile, "set xlabel 'x'\n");
+    fprintf(gnuplotFile, "set ylabel 'y'\n");
+    fprintf(gnuplotFile, "set grid\n");
+    fprintf(gnuplotFile, "f(x) = ");
+    fprintfNodeToGnuplot(funcTree, *treeRoot(funcTree), gnuplotFile);
+    fprintf(gnuplotFile, "\ntangent(x) = %g + (%g)*(%s - %g)\n", pointValue, derivativeValue,
+                                                             diffVarName, point);
+
+    fprintf(gnuplotFile, "plot f(x) with lines title \"Исходная функция\", \\\n");
+    fprintf(gnuplotFile, "\ttangent(x) with lines title \"Касательная в точке %g\"\n", point);
+
+    if (fclose(gnuplotFile) != 0) {
+        fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
+        perror("");
+    }
+
+    char plotCallCommand[STR_SIZE] = {};
+    snprintf(plotCallCommand, sizeof(plotCallCommand),
+             "gnuplot \"%s\"", dumpInfo->nameOfPlotFile);
+
+    system(plotCallCommand);
+
+    fprintf(latexFile, "\\begin{figure}[h]\n\t\\centering\n");
+    fprintf(latexFile, "\t\\includegraphics[width=0.5\\textwidth]{FUNC_GRAPHS/funcGraph%d.png}\n", graphsCounter);
+    //fprintf(latexFile, "\t\\caption{%s}\n", graphName);
+    fprintf(latexFile, "\\end{figure}\n");
+
+    return 0;
+}
+//NOTE - запрашивать имя переменной по которой идет дифференцирование, протягивать его,
+
+
+
+

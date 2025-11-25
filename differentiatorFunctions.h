@@ -19,7 +19,7 @@
 
     double solveMathExpressionTree (tree_t* tree, dump* dumpInfo);
 
-    double getDoubleVarValue (const char* varName);
+    double getDoubleVarValue (void);
 
     node_t* newNodeCtor (tree_t* tree, nodeType_t nodeType, nodeValue_t nodeValue, node_t* left, node_t* right);
 
@@ -29,15 +29,15 @@
 
     int findDiffVariable (node_t* node, unsigned long long diffVarHash);
 
-    node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, FILE* latexFile);
+    node_t* fprintfNodeToLatex (tree_t* tree, node_t* node, FILE* latexFile);//
 
-    int needBrackets (node_t* node);
+    int needBrackets (node_t* node);//
 
-    int getOperatorPriority (operatorCode_t opCode);
+    int getOperatorPriority (operatorCode_t opCode);//
 
-    void printfLatexReport (tree_t* expressionTree, dump* dumpInfo);
+    void printfLatexReport (tree_t* expressionTree, dump* dumpInfo);//
 
-    const char* getRandomPhrase (void);
+    const char* getRandomPhrase (void);//
 
     double constConvolution (tree_t* tree, node_t* node, FILE* latexFile);
 
@@ -51,8 +51,12 @@
 
     void simplifyTree (tree_t* tree, dump* dumpInfo, FILE* latexFile);
 
-    node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile);
+    node_t* fprintfNodeToGnuplot(tree_t* tree, node_t* node, FILE* gnuplotFile);//
 
-    void createFunctionGraph (tree_t* tree, const char* graphName, FILE* latexFile, dump* dumpInfo);
+    void createFunctionGraph (tree_t* tree, const char* graphName, FILE* latexFile,
+                              dump* dumpInfo);//
+
+    int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffVarName,
+                            dump* dumpInfo, FILE* latexFile);//
 
 #endif
