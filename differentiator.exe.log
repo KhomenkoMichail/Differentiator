@@ -2407,3 +2407,1101 @@ Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x00007FF7D59842F9 в функции solveNode() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 245 в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7D59BB830 (64-bit), Flags: Cmdre0, Thread: 0x5720 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7D59842F9 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:245:
+
+    243:                     return (leftValue * rightValue);
+    244:                 case opDIV:
+=>  245:                     return (leftValue / rightValue);
+    246:                 case opPOW:
+    247:                     return (pow(leftValue, rightValue));
+
+# 1 0x00007FF7D5984276 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:235:
+
+    233: 
+    234:             if(*nodeRight(node))
+=>  235:                 rightValue = solveNode(tree, *nodeRight(node));
+    236: 
+    237:             switch ((nodeValue(node))->opCode) {
+
+# 2 0x00007FF7D5989711 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:728:
+
+    726:         //diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
+    727: 
+=>  728:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    729:         double degreeFactorial = (double)getFactorial(curDegree);
+    730: 
+
+# 3 0x00007FF7D598C678 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 4 0x00007FF7D598AD64 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236: 
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF7D5951757 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:22:
+
+     20: 
+     21: 
+=>   22:     printfLatexReport(&expressionTree, &dumpInfo);
+     23: 
+     24:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 15:56:03, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:05:54
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x00007FF7D59842F9 в функции solveNode() в файле C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp на строке 245 в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7D59BB830 (64-bit), Flags: Cmdre0, Thread: 0x5720 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7D59842F9 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:245:
+
+    243:                     return (leftValue * rightValue);
+    244:                 case opDIV:
+=>  245:                     return (leftValue / rightValue);
+    246:                 case opPOW:
+    247:                     return (pow(leftValue, rightValue));
+
+# 1 0x00007FF7D5984276 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:235:
+
+    233: 
+    234:             if(*nodeRight(node))
+=>  235:                 rightValue = solveNode(tree, *nodeRight(node));
+    236: 
+    237:             switch ((nodeValue(node))->opCode) {
+
+# 2 0x00007FF7D5989711 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:728:
+
+    726:         //diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
+    727: 
+=>  728:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    729:         double degreeFactorial = (double)getFactorial(curDegree);
+    730: 
+
+# 3 0x00007FF7D598C678 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 4 0x00007FF7D598AD64 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236: 
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 5 0x00007FF7D5951757 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:22:
+
+     20: 
+     21: 
+=>   22:     printfLatexReport(&expressionTree, &dumpInfo);
+     23: 
+     24:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 15:56:03, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:05:53
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 1 (_DOMAIN): Нарушение области определения в функции sin (nan, [0]). Она вернет значение nan.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF68A88B830 (64-bit), Flags: Cmdre0, Thread: 0x7304 (Main), errno: 33 (Domain error). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF68A83318C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF68A833CE6 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF68A85D821 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF68A85F55E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: sin()
+
+# 4 0x00007FF68A85435E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:251:
+
+    249:                     return (pow(leftValue, rightValue));
+    250:                 case opSIN:
+=>  251:                     return (sin(rightValue));
+    252:                 case opCOS:
+    253:                     return (cos(rightValue));
+
+# 5 0x00007FF68A859738 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:728:
+
+    726:     for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
+    727: 
+=>  728:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    729:         if (isnan(diffValue)) {
+    730:             fprintf(latexFile, "РќРµРІРѕР·РјРѕР¶РЅРѕ СЂР°Р·Р»РѕР¶РёС‚СЊ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ РІ СЂСЏРґ РўРµР№Р»РѕСЂР° РІ РѕРєСЂРµСЃС‚РЅРѕСЃС‚Рё С‚РѕС‡РєРё %s = 0 С‚.Рє.\n", diffVarName);
+
+# 6 0x00007FF68A85C728 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 7 0x00007FF68A85AE14 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236: 
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 8 0x00007FF68A821757 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:22:
+
+     20: 
+     21: 
+=>   22:     printfLatexReport(&expressionTree, &dumpInfo);
+     23: 
+     24:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:27:22, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:27:33
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 1 (_DOMAIN): Нарушение области определения в функции sin (nan, [0]). Она вернет значение nan.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6FA959050 (64-bit), Flags: Cmdre0, Thread: 0x2A44 (Main), errno: 33 (Domain error). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6FA8B4BBC in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF6FA8B5716 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF6FA8DD9D1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF6FA8E3EFE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: sin()
+
+# 4 0x00007FF6FA8D32BB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:255:
+
+    253:                     return (pow(leftValue, rightValue));
+    254:                 case opSIN:
+=>  255:                     return (sin(rightValue));
+    256:                 case opCOS:
+    257:                     return (cos(rightValue));
+
+# 5 0x00007FF6FA8D83E4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:733:
+
+    731:     for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
+    732: 
+=>  733:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    734:         if (isnan(diffValue)) {
+    735:             fprintf(latexFile, "РќРµРІРѕР·РјРѕР¶РЅРѕ СЂР°Р·Р»РѕР¶РёС‚СЊ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ РІ СЂСЏРґ РўРµР№Р»РѕСЂР° РІ РѕРєСЂРµСЃС‚РЅРѕСЃС‚Рё С‚РѕС‡РєРё %s = 0 С‚.Рє.\n", diffVarName);
+
+# 6 0x00007FF6FA8DC8D8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 7 0x00007FF6FA8DAFC4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 8 0x00007FF6FA871757 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:22:
+
+     20: 
+     21: 
+=>   22:     printfLatexReport(&expressionTree, &dumpInfo);
+     23: 
+     24:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:36:39, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:36:50
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 1 (_DOMAIN): Нарушение области определения в функции sin (nan, [0]). Она вернет значение nan.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF757B6E870 (64-bit), Flags: Cmdre0, Thread: 0x2EF8 (Main), errno: 33 (Domain error). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF757A850CC in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF757A85C26 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF757AADEC1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF757AB43EE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: sin()
+
+# 4 0x00007FF757AA37CB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:255:
+
+    253:                     return (pow(leftValue, rightValue));
+    254:                 case opSIN:
+=>  255:                     return (sin(rightValue));
+    256:                 case opCOS:
+    257:                     return (cos(rightValue));
+
+# 5 0x00007FF757AA88EF in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:732:
+
+    730:     for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
+    731: 
+=>  732:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    733:         if (isnan(diffValue)) {
+    734:             fprintf(latexFile, "РќРµРІРѕР·РјРѕР¶РЅРѕ СЂР°Р·Р»РѕР¶РёС‚СЊ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ РІ СЂСЏРґ РўРµР№Р»РѕСЂР° РІ РѕРєСЂРµСЃС‚РЅРѕСЃС‚Рё С‚РѕС‡РєРё %s = 0 С‚.Рє.\n", diffVarName);
+
+# 6 0x00007FF757AACDC8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 7 0x00007FF757AAB4B4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 8 0x00007FF757A40709 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:39:26, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:39:38
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 1 (_DOMAIN): Нарушение области определения в функции cos (nan, [0]). Она вернет значение nan.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF757B6E870 (64-bit), Flags: Cmdre0, Thread: 0x2EF8 (Main), errno: 33 (Domain error). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF757A850CC in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF757A85C26 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF757AADEC1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF757AB358E in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: cos()
+
+# 4 0x00007FF757AA37E3 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:257:
+
+    255:                     return (sin(rightValue));
+    256:                 case opCOS:
+=>  257:                     return (cos(rightValue));
+    258:                 case opTG:
+    259:                     return (tan(rightValue));
+
+# 5 0x00007FF757AA36A6 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:236:
+
+    234: 
+    235:             if(*nodeLeft(node))
+=>  236:                 leftValue = solveNode(tree, *nodeLeft(node));
+    237: 
+    238:             if(*nodeRight(node))
+
+# 6 0x00007FF757AA88EF in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:732:
+
+    730:     for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
+    731: 
+=>  732:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    733:         if (isnan(diffValue)) {
+    734:             fprintf(latexFile, "РќРµРІРѕР·РјРѕР¶РЅРѕ СЂР°Р·Р»РѕР¶РёС‚СЊ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ РІ СЂСЏРґ РўРµР№Р»РѕСЂР° РІ РѕРєСЂРµСЃС‚РЅРѕСЃС‚Рё С‚РѕС‡РєРё %s = 0 С‚.Рє.\n", diffVarName);
+
+# 7 0x00007FF757AACDC8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 8 0x00007FF757AAB4B4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 9 0x00007FF757A40709 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:39:26, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:39:37
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 1 (_DOMAIN): Нарушение области определения в функции sin (nan, [0]). Она вернет значение nan.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF76EC6E870 (64-bit), Flags: Cmdre0, Thread: 0x4BD0 (Main), errno: 33 (Domain error). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF76EB850BC in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF76EB85C16 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF76EBADEB1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF76EBB43DE in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: sin()
+
+# 4 0x00007FF76EBA37C0 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:257:
+
+    255:                     return (pow(leftValue, rightValue));
+    256:                 case opSIN:
+=>  257:                     return (sin(rightValue));
+    258:                 case opCOS:
+    259:                     return (cos(rightValue));
+
+# 5 0x00007FF76EBA88E4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:734:
+
+    732:     for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
+    733: 
+=>  734:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    735:         if (isnan(diffValue)) {
+    736:             fprintf(latexFile, "РќРµРІРѕР·РјРѕР¶РЅРѕ СЂР°Р·Р»РѕР¶РёС‚СЊ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ РІ СЂСЏРґ РўРµР№Р»РѕСЂР° РІ РѕРєСЂРµСЃС‚РЅРѕСЃС‚Рё С‚РѕС‡РєРё %s = 0 С‚.Рє.\n", diffVarName);
+
+# 6 0x00007FF76EBACDB8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+# 7 0x00007FF76EBAB4A4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+# 8 0x00007FF76EB40704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:41:41, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:41:51
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00007FF67C34A953 в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp на строке 21 в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF67C40E870 (64-bit), Flags: Cmdre0, Thread: 0x60F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF67C34A953 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:21:
+
+     19:     switch(*nodeType(node)) {
+     20:         case typeNumber:
+=>   21:             if ((nodeValue(node))->constValue >= 0)
+     22:                 fprintf(latexFile, "%g", (nodeValue(node))->constValue);
+     23:             else
+
+# 1 0x00007FF67C34AC11 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:57:
+
+     55:                 case opDIV:
+     56:                     fprintf(latexFile, "\\frac{");
+=>   57:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     58:                     fprintf(latexFile, "}{");
+     59:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 2 0x00007FF67C34AB86 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:50:
+
+     48: 
+     49:                 case opMUL:
+=>   50:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     51:                     fprintf(latexFile, " \\cdot ");
+     52:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 3 0x00007FF67C34AAF5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:40:
+
+     38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+=>   40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+     41:                     break;
+     42: 
+
+# 4 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 5 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 6 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 7 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 8 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 9 0x00007FF67C348C73 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:756:
+
+    754:     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    755:     fprintf(latexFile, " = ");
+=>  756:     fprintfNodeToLatex(&taylorTree, *treeRoot(&taylorTree), latexFile);
+    757:     fprintf(latexFile, "+ o(%s^%llu)}\\]\n", diffVarName, degree);
+    758: 
+
+#10 0x00007FF67C34CDD8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+#11 0x00007FF67C34B4C4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+#12 0x00007FF67C2E0704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:48:05, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:48:15
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00007FF67C34A953 в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp на строке 21 в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF67C40E870 (64-bit), Flags: Cmdre0, Thread: 0x60F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF67C34A953 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:21:
+
+     19:     switch(*nodeType(node)) {
+     20:         case typeNumber:
+=>   21:             if ((nodeValue(node))->constValue >= 0)
+     22:                 fprintf(latexFile, "%g", (nodeValue(node))->constValue);
+     23:             else
+
+# 1 0x00007FF67C34AC11 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:57:
+
+     55:                 case opDIV:
+     56:                     fprintf(latexFile, "\\frac{");
+=>   57:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     58:                     fprintf(latexFile, "}{");
+     59:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 2 0x00007FF67C34AB86 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:50:
+
+     48: 
+     49:                 case opMUL:
+=>   50:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     51:                     fprintf(latexFile, " \\cdot ");
+     52:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 3 0x00007FF67C34AAF5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:40:
+
+     38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+=>   40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+     41:                     break;
+     42: 
+
+# 4 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 5 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 6 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 7 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 8 0x00007FF67C34AAB2 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 9 0x00007FF67C348C73 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:756:
+
+    754:     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    755:     fprintf(latexFile, " = ");
+=>  756:     fprintfNodeToLatex(&taylorTree, *treeRoot(&taylorTree), latexFile);
+    757:     fprintf(latexFile, "+ o(%s^%llu)}\\]\n", diffVarName, degree);
+    758: 
+
+#10 0x00007FF67C34CDD8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+#11 0x00007FF67C34B4C4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+#12 0x00007FF67C2E0704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:48:05, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:48:15
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00007FF7FEF8A923 в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp на строке 21 в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7FF04E870 (64-bit), Flags: Cmdre0, Thread: 0x5CC0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7FEF8A923 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:21:
+
+     19:     switch(*nodeType(node)) {
+     20:         case typeNumber:
+=>   21:             if ((nodeValue(node))->constValue >= 0)
+     22:                 fprintf(latexFile, "%g", (nodeValue(node))->constValue);
+     23:             else
+
+# 1 0x00007FF7FEF8ABE1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:57:
+
+     55:                 case opDIV:
+     56:                     fprintf(latexFile, "\\frac{");
+=>   57:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     58:                     fprintf(latexFile, "}{");
+     59:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 2 0x00007FF7FEF8AB56 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:50:
+
+     48: 
+     49:                 case opMUL:
+=>   50:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     51:                     fprintf(latexFile, " \\cdot ");
+     52:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 3 0x00007FF7FEF8AAC5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:40:
+
+     38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+=>   40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+     41:                     break;
+     42: 
+
+# 4 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 5 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 6 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 7 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 8 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 9 0x00007FF7FEF88C51 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:755:
+
+    753:     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    754:     fprintf(latexFile, " = ");
+=>  755:     fprintfNodeToLatex(&taylorTree, *treeRoot(&taylorTree), latexFile);
+    756:     fprintf(latexFile, "+ o(%s^%llu)}\\]\n", diffVarName, degree);
+    757: 
+
+#10 0x00007FF7FEF8CDA8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+#11 0x00007FF7FEF8B494 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+#12 0x00007FF7FEF20704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:50:21, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:50:31
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00007FF7FEF8A923 в функции fprintfNodeToLatex() в файле C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp на строке 21 в модуле C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7FF04E870 (64-bit), Flags: Cmdre0, Thread: 0x5CC0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7FEF8A923 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:21:
+
+     19:     switch(*nodeType(node)) {
+     20:         case typeNumber:
+=>   21:             if ((nodeValue(node))->constValue >= 0)
+     22:                 fprintf(latexFile, "%g", (nodeValue(node))->constValue);
+     23:             else
+
+# 1 0x00007FF7FEF8ABE1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:57:
+
+     55:                 case opDIV:
+     56:                     fprintf(latexFile, "\\frac{");
+=>   57:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     58:                     fprintf(latexFile, "}{");
+     59:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 2 0x00007FF7FEF8AB56 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:50:
+
+     48: 
+     49:                 case opMUL:
+=>   50:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     51:                     fprintf(latexFile, " \\cdot ");
+     52:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 3 0x00007FF7FEF8AAC5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:40:
+
+     38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+=>   40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+     41:                     break;
+     42: 
+
+# 4 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 5 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 6 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 7 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 8 0x00007FF7FEF8AA82 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: fprintfNodeToLatex() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:38:
+
+     36:             switch((nodeValue(node))->opCode) {
+     37:                 case opADD:
+=>   38:                     fprintfNodeToLatex(tree, *nodeLeft(node), latexFile);
+     39:                     fprintf(latexFile, " + ");
+     40:                     fprintfNodeToLatex(tree, *nodeRight(node), latexFile);
+
+# 9 0x00007FF7FEF88C51 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:755:
+
+    753:     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
+    754:     fprintf(latexFile, " = ");
+=>  755:     fprintfNodeToLatex(&taylorTree, *treeRoot(&taylorTree), latexFile);
+    756:     fprintf(latexFile, "+ o(%s^%llu)}\\]\n", diffVarName, degree);
+    757: 
+
+#10 0x00007FF7FEF8CDA8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+#11 0x00007FF7FEF8B494 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+#12 0x00007FF7FEF20704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:27:
+
+     25: 
+     26: 
+=>   27:     printfLatexReport(&expressionTree, &dumpInfo);
+     28: 
+     29:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 26 2025 17:50:21, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 26 2025 17:50:31
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------

@@ -1,7 +1,9 @@
 #ifndef DSL_H
 #define DSL_H
 
-#define NUM(value) newNodeCtor(tree, typeNumber, {.constValue = value}, NULL, NULL)
+#define NUM_(value) newNodeCtor(tree, typeNumber, {.constValue = value}, NULL, NULL)
+#define _1 NUM_(1.0)
+#define _2 NUM_(2.0)
 
 #define dL differentiateNode(tree, *nodeLeft(node), dumpInfo, diffVarName, latexFile)
 #define dR differentiateNode(tree, *nodeRight(node), dumpInfo, diffVarName,  latexFile)
@@ -55,4 +57,5 @@
 #define VAR_T_(hash) newNodeCtor(&taylorTree, typeVariable, {.varHash = hash}, NULL, NULL)
 #define NUM_T_(value) newNodeCtor(&taylorTree, typeNumber, {.constValue = value}, NULL, NULL)
 
+#define IS_NUM(side, value) ((*nodeType(*node##side(node)) == typeNumber) && (compareDouble(nodeValue(*node##side(node))->constValue, value)))
 #endif

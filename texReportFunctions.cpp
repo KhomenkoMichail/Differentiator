@@ -233,7 +233,7 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
 
     firstDiffReport(expressionTree, dumpInfo, latexFile);
-
+    //FIXME taylor suda
     fprintf(latexFile, "\\end{document}\n");
 
     if (fclose(latexFile) != 0) {

@@ -1,3 +1,5 @@
+#include <TXLib.h>
+#undef $
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -5,6 +7,8 @@
 #include <sys/stat.h>
 #include <ctype.h>
 #include <math.h>
+
+#pragma GCC diagnostic ignored "-Wredundant-tags"
 
 #include "structsAndConsts.h"
 #include "structAccessFunctions.h"
@@ -209,6 +213,8 @@ double solveNode (tree_t* tree, node_t* node) {
     assert(tree);
     assert(node);
 
+
+
     switch (*nodeType(node)) {
         case typeNumber:
             return (nodeValue(node))->constValue;
@@ -234,6 +240,9 @@ double solveNode (tree_t* tree, node_t* node) {
             if(*nodeRight(node))
                 rightValue = solveNode(tree, *nodeRight(node));
 
+            if(isnan(rightValue))
+                return NAN;
+
             switch ((nodeValue(node))->opCode) {
                 case opADD:
                     return (leftValue + rightValue);
@@ -242,7 +251,9 @@ double solveNode (tree_t* tree, node_t* node) {
                 case opMUL:
                     return (leftValue * rightValue);
                 case opDIV:
-                    return (leftValue / rightValue);
+                    if (!compareDouble(rightValue, 0.0))
+                        return (leftValue / rightValue);
+                    else return NAN;
                 case opPOW:
                     return (pow(leftValue, rightValue));
                 case opSIN:
@@ -327,12 +338,12 @@ node_t* differentiateNode (tree_t* tree, node_t* node, dump* dumpInfo, const cha
 
     switch (*nodeType(node)) {
         case typeNumber:
-            return $(NUM(0.0));
+            return $(NUM_(0.0));
         case typeVariable:
             if ((nodeValue(node))->varHash == diffVarHash)
-                return $(NUM(1.0));
+                return $(_1);
             else
-                return $(NUM(0.0));
+                return $(NUM_(0.0));
         case typeOperator:
             switch (nodeValue(node)->opCode) {
                 case opADD:
@@ -343,48 +354,48 @@ node_t* differentiateNode (tree_t* tree, node_t* node, dump* dumpInfo, const cha
                     return $(ADD_(MUL_(dL, cR), MUL_(cL, dR)));
                 case opDIV:
                     return $(DIV_(SUB_(MUL_(dL, cR), MUL_(cL, dR)), MUL_(cR, cR)));
-                case opPOW: {
-                    int baseHasDiffVar = findDiffVariable(*nodeLeft(node), diffVarHash);
-                    int powHasDiffVar = findDiffVariable(*nodeRight(node), diffVarHash);
-
-                    if(baseHasDiffVar && powHasDiffVar)
-                        return $(ADD_(MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL), MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR)));
-                    else if(baseHasDiffVar)
-                        return $(MUL_(MUL_(cR, POW_(cL, SUB_(cR, NUM(1.0)))), dL));
-                    else if(powHasDiffVar)
-                        return $(MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR));
-                    else return $(NUM(0.0));
-                }
                 case opSIN:
                     return $(COMPOUND_FUNC(COS_(cR)));
                 case opCOS:
-                    return $(COMPOUND_FUNC(MUL_(NUM(-1.0), SIN_(cR))));
+                    return $(COMPOUND_FUNC(MUL_(NUM_(-1.0), SIN_(cR))));//FIXME НУМ_
                 case opTG:
-                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(COS_(cR), NUM(2.0)))));
+                    return $(COMPOUND_FUNC(DIV_(_1, POW_(COS_(cR), _2))));
                 case opCTG:
-                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SIN_(cR), NUM(2.0)))));
+                    return $(COMPOUND_FUNC(DIV_(NUM_(-1.0), POW_(SIN_(cR), _2))));
                 case opARCSIN:
-                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5)))));
+                    return $(COMPOUND_FUNC(DIV_(_1, POW_(SUB_(_1, POW_(cR, _2)), NUM_(0.5)))));
                 case opARCCOS:
-                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SUB_(NUM(1.0), POW_(cR, NUM(2.0))), NUM(0.5)))));
+                    return $(COMPOUND_FUNC(DIV_(NUM_(-1.0), POW_(SUB_(_1, POW_(cR, _2)), NUM_(0.5)))));
                 case opARCTG:
-                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0))))));
+                    return $(COMPOUND_FUNC(DIV_(_1, ADD_(_1, POW_(cR, _2)))));
                 case opARCCTG:
-                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), ADD_(NUM(1.0), POW_(cR, NUM(2.0))))));
+                    return $(COMPOUND_FUNC(DIV_(NUM_(-1.0), ADD_(_1, POW_(cR, _2)))));
                 case opSH:
                     return $(COMPOUND_FUNC(CH_(cR)));
                 case opCH:
                     return $(COMPOUND_FUNC(SH_(cR)));
                 case opTH:
-                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), POW_(CH_(cR), NUM(2.0)))));
+                    return $(COMPOUND_FUNC(DIV_(_1, POW_(CH_(cR), _2))));
                 case opCTH:
-                    return $(COMPOUND_FUNC(DIV_(NUM(-1.0), POW_(SH_(cR), NUM(2.0)))));
+                    return $(COMPOUND_FUNC(DIV_(NUM_(-1.0), POW_(SH_(cR), _2))));
                 case opLN:
-                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), cR)));
+                    return $(COMPOUND_FUNC(DIV_(_1, cR)));
                 case opLOG:
-                    return $(COMPOUND_FUNC(DIV_(NUM(1.0), MUL_(cR, LN_(cL)))));
+                    return $(COMPOUND_FUNC(DIV_(_1, MUL_(cR, LN_(cL)))));
                 case opEXP:
                     return $(COMPOUND_FUNC(EXP_(cR)));
+                case opPOW: {
+                    int baseHasDiffVar = findDiffVariable(*nodeLeft(node), diffVarHash);
+                    int powHasDiffVar = findDiffVariable(*nodeRight(node), diffVarHash);
+
+                    if(baseHasDiffVar && powHasDiffVar)
+                        return $(ADD_(MUL_(MUL_(cR, POW_(cL, SUB_(cR, _1))), dL), MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR)));
+                    else if(baseHasDiffVar)
+                        return $(MUL_(MUL_(cR, POW_(cL, SUB_(cR, _1))), dL));
+                    else if(powHasDiffVar)
+                        return $(MUL_(MUL_(POW_(cL, cR), LN_(cL)), dR));
+                    else return $(NUM_(0.0));
+                }
                 default:
                     return NULL;
             }
@@ -521,22 +532,19 @@ int deleteNeutralNode (tree_t* tree, node_t* node, FILE* latexFile) {
     if (*nodeType(node) == typeOperator) {
         if (nodeValue(node)->opCode == opMUL) {
 
-            if (((*nodeType(*nodeLeft(node)) == typeNumber) && (compareDouble(nodeValue(*nodeLeft(node))->constValue, 0.0))) ||
-               ((*nodeType(*nodeRight(node)) == typeNumber) && (compareDouble(nodeValue(*nodeRight(node))->constValue, 0.0)))) {
+            if ((IS_NUM(Left, 0.0)) || (IS_NUM(Right, 0.0))) {
 
                 makeZeroNode(tree, node, latexFile);
                 return 1;
             }
 
-            if ((*nodeType(*nodeLeft(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeLeft(node))->constValue, 1.0))) {
+            if (IS_NUM(Left, 1.0)) {
 
                 deleteLeftNode(tree, node, latexFile);
                 return 1;
             }
 
-            if ((*nodeType(*nodeRight(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+            if (IS_NUM(Right, 1.0)) {
 
                 deleteRightNode(tree, node, latexFile);
                 return 1;
@@ -544,35 +552,30 @@ int deleteNeutralNode (tree_t* tree, node_t* node, FILE* latexFile) {
         }
         if (nodeValue(node)->opCode == opDIV) {
 
-            if ((*nodeType(*nodeLeft(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeLeft(node))->constValue, 0.0))) {
+            if (IS_NUM(Left, 0.0)) {
 
                 makeZeroNode(tree, node, latexFile);
                 return 1;
             }
-            if ((*nodeType(*nodeRight(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeRight(node))->constValue, 1.0))) {
+            if (IS_NUM(Right, 1.0)) {
 
                 deleteRightNode(tree, node, latexFile);
             }
         }
         if (nodeValue(node)->opCode == opADD) {
-            if ((*nodeType(*nodeLeft(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeLeft(node))->constValue, 0.0))) {
+            if (IS_NUM(Left, 0.0)) {
 
                 deleteLeftNode(tree, node, latexFile);
                 return 1;
             }
-            if ((*nodeType(*nodeRight(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeRight(node))->constValue, 0.0))) {
+            if (IS_NUM(Right, 0.0)) {
 
                 deleteRightNode(tree, node, latexFile);
                 return 1;
             }
         }
         if (nodeValue(node)->opCode == opSUB) {
-            if ((*nodeType(*nodeRight(node)) == typeNumber) &&
-                (compareDouble(nodeValue(*nodeRight(node))->constValue, 0.0))) {
+            if (IS_NUM(Right, 0.0)) {
 
                 deleteRightNode(tree, node, latexFile);
                 return 1;
@@ -721,11 +724,17 @@ void expandTheFunctionInTaylor(tree_t* expressionTree, dump* dumpInfo, FILE* lat
 
     fprintf(latexFile, "{\\Large Ну что почесались:}\n\n");
 
-    for (size_t curDegree = 0; curDegree <= degree; curDegree++) {
-
-        //diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
+    for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
 
         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+        if (isnan(diffValue)) {
+            fprintf(latexFile, "Невозможно разложить эту функцию в ряд Тейлора в окрестности точки %s = 0 т.к.\n", diffVarName);
+            fprintf(latexFile, "%llu-ая производная функции\n\\[ ", curDegree);
+            fprintfNodeToLatex(&diffTree, *treeRoot(&diffTree), latexFile);
+            fprintf(latexFile, "\\]\n Содержит 0 в знаменателе.\n");
+            return; //FIXME
+        }
+
         double degreeFactorial = (double)getFactorial(curDegree);
 
         *treeRoot(&taylorTree) = ADD_T_(*treeRoot(&taylorTree), MUL_T_(DIV_T_(NUM_T_(diffValue), NUM_T_(degreeFactorial)), POW_T_(VAR_T_(diffVarHash), NUM_T_((double)curDegree))));
