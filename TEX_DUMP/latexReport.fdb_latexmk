@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1764106515.91885 "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" "latexReport.pdf" "latexReport" 1764106516.78925 0
+["pdflatex"] 1764161835.2511 "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" "latexReport.pdf" "latexReport" 1764161835.9169 0
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764099067 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/labx1440.pk" 1764055021 36852 0c96ba12b1435b0f22c888fd715331f9 ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/labx2488.pk" 1764090684 66304 7df9c19247572d91e9f5b84cf393c87d ""
@@ -61,12 +61,12 @@
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1704400941 30006 57b07afb710ee2f649c65cfbafda39c1 ""
-  "FUNC_GRAPHS/funcGraph1.png" 1764106481 32104 09f0840491e1a30f3f59c89cadac541e ""
-  "FUNC_GRAPHS/funcGraph2.png" 1764106491 31167 ef8392204e21a1527910c29e796a3f4c ""
-  "FUNC_GRAPHS/funcGraph3.png" 1764106496 23012 8f68d4282c0dcb590ff00bd4ec11a0c5 ""
-  "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" 1764106512 311671 9772c40e5cb13df3ab33feb11c6beade ""
-  "latexReport.aux" 1764106516 1242 981690522b82e8940378bdd0cd93fab7 "pdflatex"
-  "latexReport.tex" 1764106512 311671 9772c40e5cb13df3ab33feb11c6beade ""
+  "FUNC_GRAPHS/funcGraph1.png" 1764161785 32104 09f0840491e1a30f3f59c89cadac541e ""
+  "FUNC_GRAPHS/funcGraph2.png" 1764161798 31167 ef8392204e21a1527910c29e796a3f4c ""
+  "FUNC_GRAPHS/funcGraph3.png" 1764161803 25473 805b90807e3249a9a3a976776408fa3c ""
+  "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" 1764161832 16337 782c0b15323017935c24984260581e10 ""
+  "latexReport.aux" 1764161835 1241 8d675ff0d03c6207430796587e1511ed "pdflatex"
+  "latexReport.tex" 1764161832 16337 782c0b15323017935c24984260581e10 ""
   (generated)
   "latexReport.aux"
   "latexReport.log"

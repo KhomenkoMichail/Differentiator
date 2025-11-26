@@ -701,7 +701,7 @@ void expandTheFunctionInTaylor(tree_t* expressionTree, dump* dumpInfo, FILE* lat
 
     fprintf(latexFile, "\\section{Упражнение третье - разложение по Тайлеру}");
 
-    printf("Enter the name of variable according to which\n the decomposition of the Taylor formula will be carried out");
+    printf("Enter the name of variable according to which the decomposition of the Taylor formula will be carried out: ");
     const char* diffVarName = getDiffVarName(expressionTree);
     unsigned long long diffVarHash = getStringHash(diffVarName);
 
@@ -723,12 +723,14 @@ void expandTheFunctionInTaylor(tree_t* expressionTree, dump* dumpInfo, FILE* lat
 
     for (size_t curDegree = 0; curDegree <= degree; curDegree++) {
 
-        diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
+        //diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
 
         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
         double degreeFactorial = (double)getFactorial(curDegree);
 
         *treeRoot(&taylorTree) = ADD_T_(*treeRoot(&taylorTree), MUL_T_(DIV_T_(NUM_T_(diffValue), NUM_T_(degreeFactorial)), POW_T_(VAR_T_(diffVarHash), NUM_T_((double)curDegree))));
+
+        diffTree.rootNode = differentiateNode(&diffTree, *treeRoot(&diffTree), dumpInfo, diffVarName, latexFile);
     }
 
     fprintf(latexFile, "{\\Large В итоге:}\n\n");

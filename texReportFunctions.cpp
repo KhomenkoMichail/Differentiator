@@ -229,7 +229,7 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
 
     fprintfTexReportIntro(latexFile);
     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
-    fprintf(latexFile, " \\]\n\n Ее график имеет вид:\n\n");
+    fprintf(latexFile, " }\\]\n\n Ее график имеет вид:\n\n");
     createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
 
     firstDiffReport(expressionTree, dumpInfo, latexFile);
@@ -492,7 +492,7 @@ int findTheTangentAtPoint (tree_t* funcTree, tree_t* diffTree, const char* diffV
     fprintfNodeToLatex(funcTree, *treeRoot(funcTree), latexFile);
     fprintf(latexFile, " \\]\n\n в точке %s = %g:\n", diffVarName, point);
 
-    fprintf(latexFile, "\\[ f = %g + (%g)*(%s - %g)\\]\n\n", pointValue, derivativeValue,
+    fprintf(latexFile, "\\[\\boxed{ f = %g + (%g)*(%s - %g)}\\]\n\n", pointValue, derivativeValue,
                                                              diffVarName, point);
 
     FILE* gnuplotFile = fopen(dumpInfo->nameOfPlotFile, "w");
@@ -546,7 +546,7 @@ void fprintfTexReportIntro (FILE* latexFile) {
     fprintf(latexFile, "\\begin{center}\n");
     fprintf(latexFile, "\\vspace*{3cm}\n\n");
     fprintf(latexFile, "{\\Huge \\textbf{Курс \\guillemotleftОт раздолб до отл 10 на семестрой по матану за одну ночь\\guillemotright.}}\\\\[1cm]\n");
-    fprintf(latexFile, "{\\Large Выполнил: Хоменко М.М.}\\\\[0.5cm]\n");
+    fprintf(latexFile, "{\\Large Автор: Хоменко М.М.}\\\\[0.5cm]\n");
     fprintf(latexFile, "\\vfill\n");
     fprintf(latexFile, "{\\Large Долгопрудный, \\the\\year}\n");
     fprintf(latexFile, "\\end{center}\n");
@@ -559,11 +559,11 @@ void fprintfTexReportIntro (FILE* latexFile) {
     fprintf(latexFile, "Поэтому каждый из вас может успешно сдать семестровую.\n\n");
     fprintf(latexFile, "Автор данного пособия не учился в школе и, дабы помочь себе ");
     fprintf(latexFile, "подобным сдать экзамен, собрал небольшой курс упражнений для подготовки всего за одну ночь. ");
-    fprintf(latexFile, "Желаю вам приятного времяпрепровождения.\n\n");
+    fprintf(latexFile, "Желаю Вам приятного времяпрепровождения.\n\n");
 
     fprintf(latexFile, "\\section{Упражнение первое: взятие производной простейшей функции}\n");
     fprintf(latexFile, "Имеем функцию:\n");
-    fprintf(latexFile, "\\[ f = ");
+    fprintf(latexFile, "\\[\\boxed{ f = ");
 }
 
 int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
@@ -585,11 +585,11 @@ int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
     simplifyTree(&diffTree, dumpInfo, latexFile);
 
     fprintf(latexFile, "{\\Large Итого получаем:}\n\n");
-    fprintf(latexFile, "\\[ \\frac{d}{d%s}(", diffVarName);
+    fprintf(latexFile, "\\[\\boxed{ \\frac{d}{d%s}(", diffVarName);
     fprintfNodeToLatex(expressionTree, *treeRoot(expressionTree), latexFile);
     fprintf(latexFile, ") = ");
     fprintfNodeToLatex(&diffTree, *treeRoot(&diffTree), latexFile);
-    fprintf(latexFile, "\\]\n");
+    fprintf(latexFile, "}\\]\n");
 
     fprintf(latexFile, "{\\Large График полученной производной:}\n\n");
     createFunctionGraph(&diffTree, "график производной", latexFile, dumpInfo);
