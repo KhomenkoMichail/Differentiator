@@ -9,11 +9,12 @@
 #include "treeFunctions.h"
 #include "differentiatorFunctions.h"
 #include "texReportFunctions.h"
+#include "mathExpressionReader.h"
 
 int main (void) {
+
     tree_t expressionTree = {};
     struct dump dumpInfo = {};
-    //_fpreset();
 
 
     dumpInfo.nameOfGraphFile = "DUMPS/treeGraph.txt";
@@ -28,4 +29,5 @@ int main (void) {
 
     free(expressionTree.variableArr);
     deleteTree(&expressionTree);
+
 }

@@ -3505,3 +3505,1143 @@ Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6613CF870 (64-bit), Flags: Cmdre0, Thread: 0x2D1C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6612E509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF6612E5604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF66130D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF66130DD88 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:179:
+
+    177:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    178:     if (**bufPos != '$')
+=>  179:         syntaxError(bufPos);
+    180: 
+    181:     (*bufPos)++;
+
+# 8 0x00007FF6613027DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF6612A06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 10:42:54, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 10:43:02
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7B6B7F870 (64-bit), Flags: Cmdre0, Thread: 0x12F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7B6A9509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF7B6A95604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF7B6ABD172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF7B6ABDD88 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:179:
+
+    177:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    178:     if (**bufPos != '$')
+=>  179:         syntaxError(bufPos);
+    180: 
+    181:     (*bufPos)++;
+
+# 8 0x00007FF7B6AB27DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF7B6A506F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 10:46:19, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 10:47:15
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF625D6F870 (64-bit), Flags: Cmdre0, Thread: 0x2224 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF625C8509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF625C85604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF625CAD172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF625CADD88 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:179:
+
+    177:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    178:     if (**bufPos != '$')
+=>  179:         syntaxError(bufPos);
+    180: 
+    181:     (*bufPos)++;
+
+# 8 0x00007FF625CA27DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF625C406F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 10:48:23, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 10:48:32
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7D811F870 (64-bit), Flags: Cmdre0, Thread: 0x4114 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7D803509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF7D8035604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF7D805D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF7D805D979 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getBracketExpressionNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:125:
+
+    123:         if (**bufPos == ')')
+    124:             (*bufPos)++;
+=>  125:         else syntaxError(bufPos); //FIXME
+    126:         return newNode;
+    127:     }
+
+# 8 0x00007FF7D805D7FB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getUnaryOperatorNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:106:
+
+    104:             (*bufPos) += lenOfName;
+    105:             skipSpaces(bufPos);
+=>  106:             return newNodeCtor(tree, typeOperator, {.opCode = (operatorsArray[numOfOp]).opCode}, NULL, getBracketExpressionNode(tree, bufPos));
+    107:         }
+    108: 
+
+# 9 0x00007FF7D805DB99 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getPowNodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:157:
+
+    155: 
+    156:     skipSpaces(bufPos);
+=>  157:     node_t* firstOperand = getUnaryOperatorNode(tree, bufPos);
+    158: 
+    159:     while(**bufPos == '^') {
+
+#10 0x00007FF7D805DA16 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMULandDIVnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:137:
+
+    135: 
+    136:     skipSpaces(bufPos);
+=>  137:     node_t* firstOperand = getPowNodes(tree, bufPos);
+    138: 
+    139:     while((**bufPos == '*') || (**bufPos == '\\')) {
+
+#11 0x00007FF7D805DCAA in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getADDandSUBnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:175:
+
+    173: 
+    174:     skipSpaces(bufPos);
+=>  175:     node_t* firstOperand = getMULandDIVnodes(tree, bufPos);
+    176: 
+    177:     while((**bufPos == '+') || (**bufPos == '-')) {
+
+#12 0x00007FF7D805DE2D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:196:
+
+    194: 
+    195:     skipSpaces(bufPos);
+=>  196:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    197: 
+    198:     skipSpaces(bufPos);
+
+#13 0x00007FF7D80527DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+#14 0x00007FF7D7FF06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:00:51, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:01:58
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF7D811F870 (64-bit), Flags: Cmdre0, Thread: 0x5484 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF7D803509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF7D8035604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF7D805D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF7D805D979 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getBracketExpressionNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:125:
+
+    123:         if (**bufPos == ')')
+    124:             (*bufPos)++;
+=>  125:         else syntaxError(bufPos); //FIXME
+    126:         return newNode;
+    127:     }
+
+# 8 0x00007FF7D805D7FB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getUnaryOperatorNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:106:
+
+    104:             (*bufPos) += lenOfName;
+    105:             skipSpaces(bufPos);
+=>  106:             return newNodeCtor(tree, typeOperator, {.opCode = (operatorsArray[numOfOp]).opCode}, NULL, getBracketExpressionNode(tree, bufPos));
+    107:         }
+    108: 
+
+# 9 0x00007FF7D805DB99 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getPowNodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:157:
+
+    155: 
+    156:     skipSpaces(bufPos);
+=>  157:     node_t* firstOperand = getUnaryOperatorNode(tree, bufPos);
+    158: 
+    159:     while(**bufPos == '^') {
+
+#10 0x00007FF7D805DA16 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMULandDIVnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:137:
+
+    135: 
+    136:     skipSpaces(bufPos);
+=>  137:     node_t* firstOperand = getPowNodes(tree, bufPos);
+    138: 
+    139:     while((**bufPos == '*') || (**bufPos == '\\')) {
+
+#11 0x00007FF7D805DCAA in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getADDandSUBnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:175:
+
+    173: 
+    174:     skipSpaces(bufPos);
+=>  175:     node_t* firstOperand = getMULandDIVnodes(tree, bufPos);
+    176: 
+    177:     while((**bufPos == '+') || (**bufPos == '-')) {
+
+#12 0x00007FF7D805DE2D in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:196:
+
+    194: 
+    195:     skipSpaces(bufPos);
+=>  196:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    197: 
+    198:     skipSpaces(bufPos);
+
+#13 0x00007FF7D80527DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+#14 0x00007FF7D7FF06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:00:51, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:04:00
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF65F60F870 (64-bit), Flags: Cmdre0, Thread: 0x1778 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF65F52509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF65F525604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF65F54D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF65F54D985 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getBracketExpressionNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:127:
+
+    125:         if (**bufPos == ')')
+    126:             (*bufPos)++;
+=>  127:         else syntaxError(bufPos); //FIXME
+    128:         return newNode;
+    129:     }
+
+# 8 0x00007FF65F54D7FB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getUnaryOperatorNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:106:
+
+    104:             (*bufPos) += lenOfName;
+    105:             skipSpaces(bufPos);
+=>  106:             return newNodeCtor(tree, typeOperator, {.opCode = (operatorsArray[numOfOp]).opCode}, NULL, getBracketExpressionNode(tree, bufPos));
+    107:         }
+    108: 
+
+# 9 0x00007FF65F54DBA5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getPowNodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:159:
+
+    157: 
+    158:     skipSpaces(bufPos);
+=>  159:     node_t* firstOperand = getUnaryOperatorNode(tree, bufPos);
+    160: 
+    161:     while(**bufPos == '^') {
+
+#10 0x00007FF65F54DA22 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMULandDIVnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:139:
+
+    137: 
+    138:     skipSpaces(bufPos);
+=>  139:     node_t* firstOperand = getPowNodes(tree, bufPos);
+    140: 
+    141:     while((**bufPos == '*') || (**bufPos == '\\')) {
+
+#11 0x00007FF65F54DCB6 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getADDandSUBnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:177:
+
+    175: 
+    176:     skipSpaces(bufPos);
+=>  177:     node_t* firstOperand = getMULandDIVnodes(tree, bufPos);
+    178: 
+    179:     while((**bufPos == '+') || (**bufPos == '-')) {
+
+#12 0x00007FF65F54DE39 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:198:
+
+    196: 
+    197:     skipSpaces(bufPos);
+=>  198:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    199: 
+    200:     skipSpaces(bufPos);
+
+#13 0x00007FF65F5427DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+#14 0x00007FF65F4E06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:05:12, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:05:20
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF65F60F870 (64-bit), Flags: Cmdre0, Thread: 0x1090 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF65F52509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF65F525604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF65F54D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF65F54D985 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getBracketExpressionNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:127:
+
+    125:         if (**bufPos == ')')
+    126:             (*bufPos)++;
+=>  127:         else syntaxError(bufPos); //FIXME
+    128:         return newNode;
+    129:     }
+
+# 8 0x00007FF65F54D7FB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getUnaryOperatorNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:106:
+
+    104:             (*bufPos) += lenOfName;
+    105:             skipSpaces(bufPos);
+=>  106:             return newNodeCtor(tree, typeOperator, {.opCode = (operatorsArray[numOfOp]).opCode}, NULL, getBracketExpressionNode(tree, bufPos));
+    107:         }
+    108: 
+
+# 9 0x00007FF65F54DBA5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getPowNodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:159:
+
+    157: 
+    158:     skipSpaces(bufPos);
+=>  159:     node_t* firstOperand = getUnaryOperatorNode(tree, bufPos);
+    160: 
+    161:     while(**bufPos == '^') {
+
+#10 0x00007FF65F54DA22 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMULandDIVnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:139:
+
+    137: 
+    138:     skipSpaces(bufPos);
+=>  139:     node_t* firstOperand = getPowNodes(tree, bufPos);
+    140: 
+    141:     while((**bufPos == '*') || (**bufPos == '\\')) {
+
+#11 0x00007FF65F54DCB6 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getADDandSUBnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:177:
+
+    175: 
+    176:     skipSpaces(bufPos);
+=>  177:     node_t* firstOperand = getMULandDIVnodes(tree, bufPos);
+    178: 
+    179:     while((**bufPos == '+') || (**bufPos == '-')) {
+
+#12 0x00007FF65F54DE39 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:198:
+
+    196: 
+    197:     skipSpaces(bufPos);
+=>  198:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    199: 
+    200:     skipSpaces(bufPos);
+
+#13 0x00007FF65F5427DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+#14 0x00007FF65F4E06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:05:12, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:13:27
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF65F60F870 (64-bit), Flags: Cmdre0, Thread: 0x2334 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF65F52509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF65F525604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF65F54D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF65F54D985 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getBracketExpressionNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:127:
+
+    125:         if (**bufPos == ')')
+    126:             (*bufPos)++;
+=>  127:         else syntaxError(bufPos); //FIXME
+    128:         return newNode;
+    129:     }
+
+# 8 0x00007FF65F54D7FB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getUnaryOperatorNode() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:106:
+
+    104:             (*bufPos) += lenOfName;
+    105:             skipSpaces(bufPos);
+=>  106:             return newNodeCtor(tree, typeOperator, {.opCode = (operatorsArray[numOfOp]).opCode}, NULL, getBracketExpressionNode(tree, bufPos));
+    107:         }
+    108: 
+
+# 9 0x00007FF65F54DBA5 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getPowNodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:159:
+
+    157: 
+    158:     skipSpaces(bufPos);
+=>  159:     node_t* firstOperand = getUnaryOperatorNode(tree, bufPos);
+    160: 
+    161:     while(**bufPos == '^') {
+
+#10 0x00007FF65F54DA22 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMULandDIVnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:139:
+
+    137: 
+    138:     skipSpaces(bufPos);
+=>  139:     node_t* firstOperand = getPowNodes(tree, bufPos);
+    140: 
+    141:     while((**bufPos == '*') || (**bufPos == '/')) {
+
+#11 0x00007FF65F54DCB6 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getADDandSUBnodes() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:177:
+
+    175: 
+    176:     skipSpaces(bufPos);
+=>  177:     node_t* firstOperand = getMULandDIVnodes(tree, bufPos);
+    178: 
+    179:     while((**bufPos == '+') || (**bufPos == '-')) {
+
+#12 0x00007FF65F54DE39 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:198:
+
+    196: 
+    197:     skipSpaces(bufPos);
+=>  198:     node_t* newNode = getADDandSUBnodes(tree, bufPos);
+    199: 
+    200:     skipSpaces(bufPos);
+
+#13 0x00007FF65F5427DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+#14 0x00007FF65F4E06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:05:12, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:23:34
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF70B71F870 (64-bit), Flags: Cmdre0, Thread: 0x3040 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF70B63509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF70B635604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF70B65D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF70B65DE63 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:202:
+
+    200:     skipSpaces(bufPos);
+    201:     if (**bufPos != '$')
+=>  202:         syntaxError(bufPos);
+    203: 
+    204:     (*bufPos)++;
+
+# 8 0x00007FF70B6527DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF70B5F06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:23:53, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:31:05
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF70B71F870 (64-bit), Flags: Cmdre0, Thread: 0x56A0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF70B63509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF70B635604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF70B65D172 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:16:
+
+     14: 
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+=>   16:     assert(0); //FIXME may be
+     17: }
+     18: 
+
+# 7 0x00007FF70B65DE63 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:202:
+
+    200:     skipSpaces(bufPos);
+    201:     if (**bufPos != '$')
+=>  202:         syntaxError(bufPos);
+    203: 
+    204:     (*bufPos)++;
+
+# 8 0x00007FF70B6527DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF70B5F06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:23:53, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:31:55
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF70A7BF870 (64-bit), Flags: Cmdre0, Thread: 0x3240 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF70A6D509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF70A6D5604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF70A6FD1AB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:17:
+
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+     16:     printf("In string \"%s\"\n",  *bufPos);
+=>   17:     assert(0); //FIXME may be
+     18: }
+     19: 
+
+# 7 0x00007FF70A6FDE9C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:203:
+
+    201:     skipSpaces(bufPos);
+    202:     if (**bufPos != '$')
+=>  203:         syntaxError(bufPos);
+    204: 
+    205:     (*bufPos)++;
+
+# 8 0x00007FF70A6F27DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF70A6906F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:36:09, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:36:17
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF69621F870 (64-bit), Flags: Cmdre0, Thread: 0x547C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF69613509C in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF696135604 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11171
+# 2 0x00007FFE32901989 in C:\WINDOWS\System32\ucrtbase.dll: raise()
+# 3 0x00007FFE328E4AB1 in C:\WINDOWS\System32\ucrtbase.dll: abort()
+# 4 0x00007FFE328A1049 in C:\WINDOWS\System32\ucrtbase.dll: isctype_l()
+# 5 0x00007FFE32902AE1 in C:\WINDOWS\System32\ucrtbase.dll: assert()
+
+# 6 0x00007FF69615D1AB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: syntaxError() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:17:
+
+     15:     printf("Syntax error in position %p: error symbol \"%c\"\n", *bufPos, **bufPos);
+     16:     printf("In string \"%s\"\n",  *bufPos);
+=>   17:     assert(0); //FIXME may be
+     18: }
+     19: 
+
+# 7 0x00007FF69615DEB8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: getMathExpressionTree() at C:/Users/Admin/Desktop/prodva/Differentiator/mathExpressionReader.cpp:205:
+
+    203:     skipSpaces(bufPos);
+    204:     if (**bufPos != '$')
+=>  205:         syntaxError(bufPos);
+    206: 
+    207:     (*bufPos)++;
+
+# 8 0x00007FF6961527DB in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: readFileAndCreateTree() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:51:
+
+     49:     else
+     50:     //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+=>   51:         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+     52: 
+     53: 
+
+# 9 0x00007FF6960F06F4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:25:
+
+     23:     dumpInfo.nameOfPlotFile = "TEX_DUMP/FUNC_GRAPHS/funcGraph.plt";
+     24: 
+=>   25:     readFileAndCreateTree(&expressionTree, &dumpInfo, "mathExpression.txt");
+     26: 
+     27: /*
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:44:36, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:44:45
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe,
+
+ВНЕЗАПНО: _matherr(): Математическая ошибка 3 (_OVERFLOW): Результат слишком большой в функции log (0, [0]). Она вернет значение -inf.
+
+С помощью __setusermatherr() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400], Instance: 0x00007FF6CD25F870 (64-bit), Flags: Cmdre0, Thread: 0x2568 (Main), errno: 34 (Result too large). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00007FF6CD1750BC in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txError() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11090
+# 1 0x00007FF6CD175C16 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnMatherr() at C:/Users/Admin/Downloads/CodeBlocks/TX/TXLib.h:11247
+# 2 0x00007FF6CD19ECA1 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: __mingw_raise_matherr()
+# 3 0x00007FF6CD1A4871 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: log()
+
+# 4 0x00007FF6CD193904 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:287:
+
+    285:                     return (1 / (tanh(rightValue)));
+    286:                 case opLN:
+=>  287:                     return (log(rightValue));
+    288:                 case opLOG:
+    289:                     return log(rightValue) / log(leftValue);
+
+# 5 0x00007FF6CD193680 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:241:
+
+    239: 
+    240:             if(*nodeLeft(node))
+=>  241:                 leftValue = solveNode(tree, *nodeLeft(node));
+    242: 
+    243:             if(*nodeRight(node))
+
+# 6 0x00007FF6CD1936BD in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:244:
+
+    242: 
+    243:             if(*nodeRight(node))
+=>  244:                 rightValue = solveNode(tree, *nodeRight(node));
+    245: 
+    246:             if(isnan(rightValue))
+
+# 7 0x00007FF6CD193680 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: solveNode() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:241:
+
+    239: 
+    240:             if(*nodeLeft(node))
+=>  241:                 leftValue = solveNode(tree, *nodeLeft(node));
+    242: 
+    243:             if(*nodeRight(node))
+
+# 8 0x00007FF6CD1988E7 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: expandTheFunctionInTaylor() at C:/Users/Admin/Desktop/prodva/Differentiator/differentiatorFunctions.cpp:733:
+
+    731:     for (size_t curDegree = 0; curDegree <= degree; curDegree++) { //FIXME teylor func
+    732: 
+=>  733:         double diffValue = solveNode(&diffTree, *treeRoot(&diffTree));
+    734:         if (isnan(diffValue)) {
+    735:             fprintf(latexFile, "РќРµРІРѕР·РјРѕР¶РЅРѕ СЂР°Р·Р»РѕР¶РёС‚СЊ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ РІ СЂСЏРґ РўРµР№Р»РѕСЂР° РІ РѕРєСЂРµСЃС‚РЅРѕСЃС‚Рё С‚РѕС‡РєРё %s = 0 С‚.Рє.\n", diffVarName);
+
+# 9 0x00007FF6CD19CDD8 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: firstDiffReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:600:
+
+    598:     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
+    599: 
+=>  600:     expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile);
+    601: 
+    602:     deleteTree(&diffTree);
+
+#10 0x00007FF6CD19B4C4 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: printfLatexReport() at C:/Users/Admin/Desktop/prodva/Differentiator/texReportFunctions.cpp:235:
+
+    233:     createFunctionGraph(expressionTree, "РіСЂР°С„РёРє РёСЃС…РѕРґРЅРѕР№ С„СѓРЅРєС†РёРё", latexFile, dumpInfo);
+    234: 
+=>  235:     firstDiffReport(expressionTree, dumpInfo, latexFile);
+    236:     //FIXME taylor suda
+    237:     fprintf(latexFile, "\\end{document}\n");
+
+#11 0x00007FF6CD130704 in C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe: main() at C:/Users/Admin/Desktop/prodva/Differentiator/main.cpp:28:
+
+     26: 
+     27: 
+=>   28:     printfLatexReport(&expressionTree, &dumpInfo);
+     29: 
+     30:     free(expressionTree.variableArr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-17 06:00:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Admin\Downloads\CodeBlocks\TX\TXLib.h
+Compiled:	Nov 28 2025 11:49:26, GNU g++ 13.2.0, std=201703L, MinGW-W64 Runtime 11.0.1 (alpha - rev. 0) 0000-00-00, 64-bit, DEBUG
+Started:	Nov 28 2025 11:49:36
+
+Run file:	C:\Users\Admin\Desktop\prodva\Differentiator\differentiator.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Differentiator
+
+--------------------------------------------------

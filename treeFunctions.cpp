@@ -174,7 +174,7 @@ void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* n
     char graphvizCallCommand[STR_SIZE] = {};
     snprintf(graphvizCallCommand, sizeof(graphvizCallCommand), "dot -Tpng %s -o DUMPS/graph%d.png", nameOfTextGraphFile, graphImageCounter);
     system(graphvizCallCommand);
-    fprintf(dumpFile, "Image:\n <img src=DUMPS/graph%d.png width=1000px>\n", graphImageCounter);
+    fprintf(dumpFile, "Image:\n <img src=graph%d.png width=1000px>\n", graphImageCounter);
 
 }
 

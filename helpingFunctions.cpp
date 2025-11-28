@@ -53,7 +53,7 @@ void skipSpaces(char** bufPos) {
     assert(bufPos);
     assert(*bufPos);
 
-    while(**bufPos == ' ')
+    while (**bufPos == ' ' || **bufPos == '\t' || **bufPos == '\n')
         (*bufPos)++;
 }
 

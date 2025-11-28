@@ -1,1 +1,1 @@
-(sin nil (x nil nil ))
+sin ( 1 / x ) * cos ( 2 * x + 1 ) ^ 3 - ln ( x ^ 2 ) / exp ( x ) + tg ( 3.14 * x )$

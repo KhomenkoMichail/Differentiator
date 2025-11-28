@@ -16,6 +16,7 @@
 #include "differentiatorFunctions.h"
 #include "helpingFunctions.h"
 #include "texReportFunctions.h"
+#include "mathExpressionReader.h"
 #include "DSL.h"
 
 int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile) {
@@ -46,7 +47,9 @@ int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile)
         return 1;
     }
     else
-        *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+    //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
+        *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
+
 
     if (fclose(dumpFile) != 0) {
         fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfDumpFile);
@@ -425,6 +428,7 @@ node_t* newNodeCtor (tree_t* tree, nodeType_t curType, nodeValue_t curValue, nod
     *treeSize(tree) += 1;
     return newNode;
 }
+
 
 node_t* copyNode (tree_t* tree, node_t* node) {
 

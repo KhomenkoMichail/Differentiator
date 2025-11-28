@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1764171060.91927 "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" "latexReport.pdf" "latexReport" 1764171061.76311 0
+["pdflatex"] 1764319963.62537 "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" "latexReport.pdf" "latexReport" 1764319964.18664 0
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764099067 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/labx1440.pk" 1764055021 36852 0c96ba12b1435b0f22c888fd715331f9 ""
   "C:/Users/Admin/AppData/Local/MiKTeX/fonts/pk/ljfour/lh/lh-t2a/dpi600/labx2488.pk" 1764090684 66304 7df9c19247572d91e9f5b84cf393c87d ""
@@ -19,9 +19,12 @@
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1233951854 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1233951854 940 228d6584342e91276bf566bcf9716b83 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
+  "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247596667 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty" 1704647332 150008 7a05b0fdc0167c04e192003e780ab195 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/generic/babel/locale/en/babel-en.ini" 1704647334 3966 caeee5a9e5771d4446aa1ca9015ba1b2 ""
@@ -61,12 +64,12 @@
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/Admin/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1704400941 30006 57b07afb710ee2f649c65cfbafda39c1 ""
-  "FUNC_GRAPHS/funcGraph1.png" 1764171035 32104 09f0840491e1a30f3f59c89cadac541e ""
-  "FUNC_GRAPHS/funcGraph2.png" 1764171046 31167 ef8392204e21a1527910c29e796a3f4c ""
-  "FUNC_GRAPHS/funcGraph3.png" 1764171049 23012 8f68d4282c0dcb590ff00bd4ec11a0c5 ""
-  "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" 1764171059 311357 df64214ab4d69a16d76a08fdbf85abbb ""
-  "latexReport.aux" 1764171061 1242 981690522b82e8940378bdd0cd93fab7 "pdflatex"
-  "latexReport.tex" 1764171059 311357 df64214ab4d69a16d76a08fdbf85abbb ""
+  "FUNC_GRAPHS/funcGraph1.png" 1764319949 16291 289dc475d1487f81c8b55ce93f7a2636 ""
+  "FUNC_GRAPHS/funcGraph2.png" 1764319959 19410 e2ac3a329699789492dd3161687ffc1b ""
+  "FUNC_GRAPHS/funcGraph3.png" 1764319962 18265 6bfe78b35ffbd97733f2897f4e56ea72 ""
+  "c:/Users/Admin/Desktop/prodva/Differentiator/TEX_DUMP/latexReport.tex" 1764319962 9899 1f4ad754a7838293e32c337739a705e3 ""
+  "latexReport.aux" 1764319964 1077 9f8749fd25c21fd0ce6ba10de82f4b61 "pdflatex"
+  "latexReport.tex" 1764319962 9899 1f4ad754a7838293e32c337739a705e3 ""
   (generated)
   "latexReport.aux"
   "latexReport.log"
