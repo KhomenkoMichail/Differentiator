@@ -233,7 +233,9 @@ void printfLatexReport(tree_t* expressionTree, dump* dumpInfo) {
     createFunctionGraph(expressionTree, "график исходной функции", latexFile, dumpInfo);
 
     firstDiffReport(expressionTree, dumpInfo, latexFile);
-    //FIXME taylor suda
+
+    expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile); //FIXME
+
     fprintf(latexFile, "\\end{document}\n");
 
     if (fclose(latexFile) != 0) {
@@ -596,8 +598,6 @@ int firstDiffReport (tree_t* expressionTree, dump* dumpInfo, FILE* latexFile) {
 
     fprintf(latexFile, "\\section{Упражнение второе: вычисление касательной функции в точке}\n");
     findTheTangentAtPoint(expressionTree, &diffTree, diffVarName, dumpInfo, latexFile);
-
-    //expandTheFunctionInTaylor(expressionTree, dumpInfo, latexFile); //FIXME
 
     deleteTree(&diffTree);
     return 0;

@@ -125,7 +125,7 @@ node_t* getBracketExpressionNode (tree_t* tree, char** bufPos) {
         skipSpaces(bufPos);
         if (**bufPos == ')')
             (*bufPos)++;
-        else syntaxError(bufPos); //FIXME
+        else syntaxError(bufPos);
         return newNode;
     }
     else

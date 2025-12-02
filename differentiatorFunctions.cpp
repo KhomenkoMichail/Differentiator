@@ -47,7 +47,6 @@ int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile)
         return 1;
     }
     else
-    //    *treeRoot(tree) = nodeCtorByReadBuffer(&bufferStart, tree, NULL, dumpInfo, dumpFile);
         *treeRoot(tree) = getMathExpressionTree (tree, &bufferStart);
 
 
@@ -58,156 +57,6 @@ int readFileAndCreateTree (tree_t* tree, dump* dumpInfo, const char* nameOfFile)
     }
 
     treeDump(tree, dumpInfo, "Вот созданное финальное дерево:");
-
-    return 0;
-}
-
-node_t* nodeCtorByReadBuffer(char** bufPos, tree_t* tree, node_t* parentNode, dump* dumpInfo, FILE* dumpFile) {
-    assert(bufPos);
-    assert(dumpInfo);
-    assert(tree);
-    assert(dumpFile);
-
-    DUMP_MESSAGE(dumpFile, "Зашла в функцию создания узла\n", *bufPos);
-    skipSpaces(bufPos);
-    if(**bufPos == '(') {
-        *treeSize(tree) += 1;
-        (*bufPos)++;
-        skipSpaces(bufPos);
-
-        DUMP_MESSAGE(dumpFile, "Прочитала (\n", *bufPos);
-
-        node_t* newNode = (node_t*)calloc(1, sizeof(node_t));
-
-        *nodeType(newNode) = getNodeType(bufPos);
-        processNodeType(tree, newNode, bufPos);
-
-        *(nodeParent(newNode)) = parentNode;
-
-        DUMP_MESSAGE(dumpFile, "Прочитала имя узла.\n", *bufPos);
-
-        DUMP_MESSAGE(dumpFile, "<h3>Сейчас зайду в левое поддерево.\n</font></h3>", *bufPos);
-        *nodeLeft(newNode) = nodeCtorByReadBuffer(bufPos, tree, newNode, dumpInfo, dumpFile);
-
-        if(*nodeLeft(newNode) != NULL) {
-            fclose(dumpFile);
-            SUBTREE_DUMP((*nodeLeft(newNode)), dumpInfo, "Вот созданное ЛЕВОЕ поддерево.\n");
-            dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
-        }
-
-        DUMP_MESSAGE(dumpFile, "<h3>Сейчас зайду в правое поддерево.\n</font></h3>", *bufPos);
-        *nodeRight(newNode) = nodeCtorByReadBuffer(bufPos, tree, newNode, dumpInfo, dumpFile);
-
-        if(*nodeRight(newNode) != NULL) {
-            fclose(dumpFile);
-            SUBTREE_DUMP((*nodeRight(newNode)), dumpInfo, "Вот созданное ПРАВОЕ поддерево.\n");
-            dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
-        }
-
-        skipSpaces(bufPos);
-        (*bufPos)++;
-
-        DUMP_MESSAGE(dumpFile, "Прочитала ).\n", *bufPos);
-
-        return newNode;
-    }
-
-    if (strncmp(*bufPos, "nil", 3) == 0) {
-        DUMP_MESSAGE(dumpFile, "Нашла nil.\n", *bufPos);
-        (*bufPos) += 4;
-        DUMP_MESSAGE(dumpFile, "Прочитала nil.\n", *bufPos);
-        return NULL;
-    }
-
-    return NULL;
-}
-
-nodeType_t getNodeType(char** bufPos) {
-    assert(bufPos);
-    assert(*bufPos);
-
-    if (isdigit(**bufPos))
-        return typeNumber;
-
-    if (**bufPos == '-') {
-        if (isdigit(*(*bufPos + 1)))
-            return typeNumber;
-        else
-            return typeOperator;
-    }
-
-    char operatorName[MAX_OP_NAME_LEN] = {};
-    sscanf(*bufPos, "%64s", operatorName);
-
-    #include "operatorsArray.h"
-    for (size_t numOfOp = 0; numOfOp < NUM_OF_OPERATORS; numOfOp++)
-        if (strncmp((operatorsArray[numOfOp]).opName, operatorName, MAX_OP_NAME_LEN) == 0)
-             return typeOperator;
-
-    return typeVariable;
-}
-
-int processNodeType (tree_t* tree, node_t* node, char** bufPos) {
-    assert(tree);
-    assert(bufPos);
-    assert(*bufPos);
-    assert(node);
-
-    int lenOfValue = 0;
-    char valueString[STR_SIZE] = {};
-
-    switch (*nodeType(node)) {
-        case typeNumber:
-            sscanf(*bufPos, "%64s%n", valueString, &lenOfValue);
-            (*bufPos) += lenOfValue;
-
-            (nodeValue(node))->constValue = atof(valueString);
-            break;
-
-        case typeVariable: {
-            sscanf(*bufPos, "%s%n", valueString, &lenOfValue);
-            (*bufPos) += lenOfValue;
-
-            unsigned long long variableHash = getStringHash(valueString);
-            struct variableInfo* searchedVariable = (struct variableInfo*)bsearch(&variableHash,
-            tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), bsearchHashComparator);
-
-            if((searchedVariable != NULL) && (strcmp(searchedVariable->varName, valueString) == 0)) {
-                (nodeValue(node))->varHash = searchedVariable->varHash;
-            }
-            else {
-                strncpy(((tree->variableArr)[0]).varName, valueString, lenOfValue);
-                ((tree->variableArr)[0]).varHash = variableHash;
-                qsort(tree->variableArr, tree->variableArrSize, sizeof(struct variableInfo), structVariableComparator);
-                (nodeValue(node))->varHash = variableHash;
-            }
-
-            break;
-        }
-        case typeOperator: {
-            sscanf(*bufPos, "%64s%n", valueString, &lenOfValue);
-            (*bufPos) += lenOfValue;
-
-            #include "operatorsArray.h"
-            int curOpCode = 0;
-
-            for (size_t numOfOp = 0; numOfOp < NUM_OF_OPERATORS; numOfOp++)
-                if (strncmp((operatorsArray[numOfOp]).opName, valueString, MAX_OP_NAME_LEN) == 0) {
-                    curOpCode = (operatorsArray[numOfOp]).opCode;
-                    break;
-                }
-
-            if (curOpCode == 0) {
-                printf("ERROR! Bad operator name \"%s\"\n", valueString);
-                return 1;
-            }
-
-            (nodeValue(node))->opCode = (operatorCode_t)curOpCode;
-            break;
-        }
-        default:
-            break;
-    }
 
     return 0;
 }
@@ -360,7 +209,7 @@ node_t* differentiateNode (tree_t* tree, node_t* node, dump* dumpInfo, const cha
                 case opSIN:
                     return $(COMPOUND_FUNC(COS_(cR)));
                 case opCOS:
-                    return $(COMPOUND_FUNC(MUL_(NUM_(-1.0), SIN_(cR))));//FIXME НУМ_
+                    return $(COMPOUND_FUNC(MUL_(NUM_(-1.0), SIN_(cR))));
                 case opTG:
                     return $(COMPOUND_FUNC(DIV_(_1, POW_(COS_(cR), _2))));
                 case opCTG:
